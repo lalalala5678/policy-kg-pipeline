@@ -1,10 +1,11 @@
 ﻿# AGENT.md — 政策三元组抽取与知识图谱推演任务说明
 
-更新时间：2026-02-09（step2 sampling + doccano guideline）
+更新时间：2026-02-09（step3 preprocess + qc）
 
 ## 当前执行状态
 - Step 1（领域 Schema 设计）：已完成
 - Step 2（样本文档抽样与标注规范）：已完成
+- Step 3（预处理与切分策略）：已完成
 - 交付文件：
   - `00_整理记录/schema_v1.yaml`（v1.4，已修复枚举冲突并扩展工程参数适配）
   - `00_整理记录/schema_step1_readthrough_report.md`
@@ -19,6 +20,16 @@
   - `00_整理记录/step2_doccano_labeled_examples.jsonl`
   - `00_整理记录/scripts/build_step2_sampling.py`
   - `step2.md`
+  - `00_整理记录/step3_input_manifest.json`
+  - `00_整理记录/step3_document_corpus.jsonl`
+  - `00_整理记录/step3_clause_corpus.jsonl`
+  - `00_整理记录/step3_offset_map.jsonl`
+  - `00_整理记录/step3_qc_report.json`
+  - `00_整理记录/step3_qc_report.md`
+  - `00_整理记录/step3_evaluation.md`
+  - `00_整理记录/scripts/step3_preprocess_utils.py`
+  - `00_整理记录/scripts/run_step3_preprocess.py`
+  - `step3.md`
 - 说明：
   - Step 1 基于全量 151 份政策文本通读统计，不是抽样推断。
   - Step 2 在排除 `02_汇总拼接` 与压缩包目录后，对 147 份独立政策文本做主题抽样；每主题 8 份，去重样本池 38 份。
@@ -68,6 +79,7 @@
 3. 预处理与切分策略
    - 编码统一、段落切分、长文本滑窗
    - 先按 `<h2>file:` 拆分 uni*.txt 拼接文，再执行 clause 切分
+   - 当前状态：已完成（offset 映射层与 QC 门禁已落地）
 
 4. UIE 基线抽取
    - 使用 Schema prompt 做零样本推理

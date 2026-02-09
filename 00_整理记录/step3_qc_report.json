@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-02-09 19:06:28",
+  "preprocess_version": "step3_preprocess_v1.0",
+  "git_commit": "5c7c40a6b036ddb63edece4e1f97bc539a5c41d8",
+  "pipeline_params_hash": "cd182077a4ddf8c8941b9edfe2f484adead9ae497bcddf77b927566f669616b0",
+  "source_file_count": 151,
+  "unit_document_count": 317,
+  "compiled_source_file_count": 4,
+  "compiled_chunk_count": 170,
+  "encoding_used_count": {
+    "utf-8": 151,
+    "gb18030": 0
+  },
+  "raw_char_total": 128968,
+  "clean_char_total": 127771,
+  "preprocess_change_counts": {
+    "removed_bom_count": 0,
+    "collapsed_crlf_count": 1197,
+    "converted_cr_count": 0,
+    "removed_control_count": 0
+  },
+  "offset_mapping_qc": {
+    "docs_with_mismatch": 0,
+    "mismatch_char_total": 0,
+    "mismatch_ratio": 0.0
+  },
+  "clause_qc": {
+    "clause_total": 2022,
+    "docs_without_clause": 0,
+    "docs_with_table_clause": 130,
+    "avg_clause_per_doc": 6.3785,
+    "length_summary": {
+      "count": 2022,
+      "min": 20,
+      "max": 400,
+      "avg": 71.44,
+      "p90": 134
+    },
+    "clause_type_distribution": {
+      "time_rule": 527,
+      "pricing_rule": 207,
+      "scope_rule": 77,
+      "other": 527,
+      "execution_rule": 113,
+      "subsidy_rule": 361,
+      "task_assessment": 80,
+      "table_row_clause": 130
+    },
+    "clause_span_invalid_count": 0,
+    "clause_non_empty_rate": 1.0
+  },
+  "quality_gates": {
+    "all_doc_have_ids": true,
+    "all_clause_span_valid": true,
+    "no_offset_mismatch": true,
+    "clause_non_empty_rate_ge_99": true,
+    "clause_max_len_le_400": true,
+    "overall_pass": true
+  },
+  "artifacts": {
+    "manifest": "00_整理记录/step3_input_manifest.json",
+    "document_corpus": "00_整理记录/step3_document_corpus.jsonl",
+    "clause_corpus": "00_整理记录/step3_clause_corpus.jsonl",
+    "offset_map": "00_整理记录/step3_offset_map.jsonl"
+  }
+}
