@@ -1,0 +1,12 @@
+{
+  "total_docs": 151,
+  "total_clauses": 1957,
+  "task_clauses": 279,
+  "docs_with_task_clause": 60,
+  "task_field_coverage": {
+    "task_subject": 27.24,
+    "task_action": 93.19,
+    "task_deadline": 34.41,
+    "task_assessment": 10.39
+  }
+}

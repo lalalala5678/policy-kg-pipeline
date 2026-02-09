@@ -1,0 +1,332 @@
+{
+  "evaluation_mode": "uie_proxy_keyword_baseline",
+  "doc_count": 25,
+  "micro_precision": 1.0,
+  "micro_recall": 1.0,
+  "false_positive_rate": 0.0,
+  "doc_exact_match_rate": 1.0,
+  "details": [
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/市经济信息化委等关于印发《上海市促进智能机器人产业高质量 创新发展行动方案（2023-2025年）》的通知.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/工业和信息化部 应急管理部关于印发《“工业互联网+安全生产”行动计划（2021-2023年）》的通知.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国务院办公厅关于加快新能源汽车推广应用的指导意见.txt",
+      "gold": [],
+      "pred": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国务院关于印发《中国制造2025》的通知.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于组织申报2022年北方地区冬季清洁取暖项.txt",
+      "gold": [
+        "subsidy",
+        "technology_route"
+      ],
+      "pred": [
+        "subsidy",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于政协十三届全国委员会第四次会议第2529号（农业水利类442号）提案答复的函.txt",
+      "gold": [],
+      "pred": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于印发河津市2024年冬季清洁取暖工作实施方案的通知.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/八部门关于印发《“十四五”智能制造发展规划》的通知.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/中共中央办公厅 国务院办公厅关于推进新型城市基础设施建设打造韧性城市的意见.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《能源生产和消费革命战略（2016-2030）》.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《湖北省综合交通公路水运部分四个三年攻坚工作方案（2018-2020 年）的通知》.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《浙江省人民政府办公厅关于印发浙江省培育发展战略性新兴产业行动计划（2017-2020年）的通知》.txt",
+      "gold": [
+        "task_assessment"
+      ],
+      "pred": [
+        "task_assessment"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《推动汽车、家电、消费电子产品更新消费促进循环经济发展实施方案（2019-2020 年）（征求意见稿）》意见的函.txt",
+      "gold": [],
+      "pred": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《忻州市2023年冬季清洁取暖工作实施方案》.txt",
+      "gold": [
+        "subsidy",
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "subsidy",
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《山东省“十四五”绿色建筑与建筑节能发展规划》.txt",
+      "gold": [
+        "subsidy",
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "subsidy",
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《加快农村能源转型发展助力乡村振兴的实施意见》.txt",
+      "gold": [],
+      "pred": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于长江航务管理局牵头组织推进长江水系船舶岸电系统船载装置改造有关工作的通知》.txt",
+      "gold": [
+        "subsidy",
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "subsidy",
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于进一步推进长江经济带船舶靠港使用岸电的通知》.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于进一步共同推进船舶靠港使用岸电工作的通知》.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于规范我省港口岸电使用价格收费及有关事项的通.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于示范推进国际航线集装箱船舶和邮轮靠港使用岸电.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于支持国家电网公司推进长江流域港口岸电建设应用的指导意见》.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于印发河津市2024年冬季清洁取暖工作实施方案》.txt",
+      "gold": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "pred": [
+        "task_assessment",
+        "technology_route"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于印发北方地区清洁供暖价格政策意见的通知》.txt",
+      "gold": [
+        "task_assessment",
+        "tou_pricing"
+      ],
+      "pred": [
+        "task_assessment",
+        "tou_pricing"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于加快推进电能替代工作的实施意见》.txt",
+      "gold": [
+        "general_price_adjustment",
+        "subsidy",
+        "task_assessment",
+        "technology_route",
+        "tou_pricing"
+      ],
+      "pred": [
+        "general_price_adjustment",
+        "subsidy",
+        "task_assessment",
+        "technology_route",
+        "tou_pricing"
+      ],
+      "tp": 5,
+      "fp": 0,
+      "fn": 0
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "command": "C:\\Python314\\python.exe -m unittest D:\\电器政策知识图谱构建\\00_整理记录\\tests\\test_postprocess_normalizer.py",
+  "return_code": 0,
+  "passed": true,
+  "stdout": "",
+  "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+}

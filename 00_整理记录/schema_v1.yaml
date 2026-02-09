@@ -1,0 +1,436 @@
+schema_version: "1.4"
+schema_name: "policy_kg_schema_cn_energy_pricing"
+created_at: "2026-02-03"
+updated_at: "2026-02-09"
+
+scope:
+  files_total: 151
+  included_groups:
+    - "pricing_tou"
+    - "pricing_tiered_differential"
+    - "pricing_misc"
+    - "electrification_policy_text"
+    - "electrification_compiled_text"
+  excluded_groups:
+    - "workspace_notes_and_logs"
+  decode_strategy:
+    - "UTF-8 strict decode first"
+    - "fallback to GBK only on UTF-8 decode failure"
+
+pre_ingestion_split:
+  compiled_policy_files:
+    enabled: true
+    apply_to_path_regex:
+      - "02_电能替代与清洁取暖/02_汇总拼接/.*\\.txt"
+    split_anchor_regex: "(?=<h2>file:)"
+    extract_title_regex: "<h2>file:(.*?)</h2>"
+    keep_anchor_header: true
+    generated_policy_id_template: "{source_path}#chunk_{chunk_index}"
+    notes:
+      - "split compiled files into independent PolicyDocument units before clause segmentation"
+      - "store parent source path and extracted sub-document title for traceability"
+
+document_level_compensation_rules:
+  enabled: true
+  candidate_fields:
+    - "issue_date"
+    - "doc_type"
+    - "document_no"
+  filename_extract:
+    issue_date_regex: "(\\d{4})\\u5e74(\\d{1,2})\\u6708(\\d{1,2})\\u65e5"
+    doc_type_keywords:
+      notice: ["\\u901a\\u77e5"]
+      opinion: ["\\u610f\\u89c1"]
+      plan: ["\\u65b9\\u6848", "\\u89c4\\u5212", "\\u8ba1\\u5212"]
+      measure: ["\\u529e\\u6cd5", "\\u7ec6\\u5219", "\\u89c4\\u5219"]
+      program: ["\\u884c\\u52a8\\u65b9\\u6848", "\\u5b9e\\u65bd\\u65b9\\u6848"]
+      announcement: ["\\u516c\\u544a", "\\u901a\\u544a"]
+      guideline: ["\\u6307\\u5357", "\\u5bfc\\u5219"]
+      reply_letter: ["\\u7b54\\u590d", "\\u51fd"]
+    document_no_regex: "[\\u4e00-\\u9fa5A-Za-z]{0,10}\\u3014\\d{4}\\u3015\\d+\\u53f7|\\u3014\\d{4}\\u3015\\d+\\u53f7"
+  arbitration_policy:
+    - "body value wins when body and filename values conflict"
+    - "filename value is used only when body value is missing"
+    - "all conflicts are logged with field-level provenance"
+
+evidence_summary:
+  docs_with_policy_meta_org: 72
+  docs_with_policy_meta_date: 128
+  docs_with_scope_region: 140
+  docs_with_target_group: 140
+  docs_with_mechanism_tou: 56
+  docs_with_mechanism_tier: 46
+  docs_with_mechanism_subsidy: 29
+  docs_with_mechanism_task: 68
+  docs_with_mechanism_tech: 54
+  docs_with_param_time_window: 37
+  docs_with_param_price_delta: 43
+  docs_with_param_subsidy_amount: 45
+  docs_with_param_threshold: 49
+
+entities:
+  - name: PolicyDocument
+    description: "One policy document unit"
+    key: "policy_id"
+    attributes:
+      - {name: policy_id, type: string, required: true, note: "path_hash or UUID"}
+      - {name: title, type: string, required: true}
+      - {name: document_no, type: string, required: false}
+      - {name: doc_type, type: enum, required: false, enum: ["notice", "opinion", "plan", "measure", "program", "announcement", "guideline", "reply_letter", "other"]}
+      - {name: issue_date, type: date, required: false}
+      - {name: effective_start_date, type: date, required: false}
+      - {name: effective_end_date, type: date, required: false}
+      - {name: policy_level, type: enum, required: false, enum: ["national", "provincial", "prefecture_city", "county_district", "organization", "unknown"]}
+      - {name: source_path, type: string, required: true}
+      - {name: source_text_sha256, type: string, required: false}
+
+  - name: IssuingOrganization
+    description: "Issuer or joint issuer"
+    key: "org_id"
+    attributes:
+      - {name: org_id, type: string, required: true}
+      - {name: org_name, type: string, required: true}
+      - {name: org_level, type: enum, required: false, enum: ["central", "provincial", "prefecture_city", "county_district", "organization_other"]}
+
+  - name: Region
+    description: "Applicable region"
+    key: "region_id"
+    attributes:
+      - {name: region_id, type: string, required: true}
+      - {name: region_name, type: string, required: true}
+      - {name: region_level, type: enum, required: false, enum: ["country", "province", "city", "county_district", "park_port_grid", "unknown"]}
+
+  - name: TargetGroup
+    description: "Applicable target"
+    key: "target_id"
+    attributes:
+      - {name: target_id, type: string, required: true}
+      - {name: target_name, type: string, required: true}
+      - {name: target_type, type: enum, required: false, enum: ["residential", "commercial_industrial", "enterprise", "energy_intensive_industry", "port_shipping", "agri_rural", "ev_charging", "other"]}
+
+  - name: Mechanism
+    description: "Computable policy mechanism entity"
+    key: "mechanism_id"
+    attributes:
+      - {name: mechanism_id, type: string, required: true}
+      - {name: mechanism_type, type: enum, required: true, enum: ["tou_pricing", "tiered_pricing", "differential_penalty_pricing", "general_price_adjustment", "subsidy", "task_assessment", "technology_route", "other"]}
+      - {name: mechanism_name, type: string, required: false}
+      - {name: season_scope, type: enum, required: false, enum: ["summer", "winter", "annual", "heating_season", "unknown"]}
+      - {name: voltage_scope, type: string, required: false}
+      - {name: mechanism_anchor_clause_id, type: string, required: false, note: "primary clause_id anchor for this mechanism instance"}
+
+  - name: Clause
+    description: "Clause-level evidence unit"
+    key: "clause_id"
+    attributes:
+      - {name: clause_id, type: string, required: true}
+      - {name: clause_type, type: enum, required: true, enum: ["definition", "pricing_rule", "subsidy_rule", "execution_rule", "task_assessment", "scope_rule", "time_rule", "table_row_clause", "other"]}
+      - {name: clause_text, type: string, required: true}
+      - {name: article_no, type: string, required: false}
+      - {name: task_subject, type: string, required: false}
+      - {name: task_action, type: string, required: false, note: "actions joined by delimiter when multiple verbs are present"}
+      - {name: task_deadline, type: string, required: false}
+      - {name: task_assessment, type: string, required: false}
+
+  - name: ParameterDefinition
+    description: "Canonical parameter value definition"
+    key: "param_def_id"
+    attributes:
+      - {name: param_def_id, type: string, required: true}
+      - {name: param_type, type: enum, required: true, enum: ["time_window", "price_delta_pct", "price_value", "subsidy_amount", "area_subsidy_amount", "consumption_threshold_kwh", "capacity_threshold", "tonnage_threshold", "tier_level", "ratio_target", "task_count", "other"]}
+      - {name: norm_value, type: string, required: false}
+      - {name: norm_start, type: string, required: false}
+      - {name: norm_end, type: string, required: false}
+      - {name: norm_unit, type: enum, required: false, enum: ["yuan_per_kwh", "fen_per_kwh", "yuan_per_household", "yuan_per_sqm", "yuan", "ten_thousand_yuan", "percent", "kwh", "kw", "mw", "kva", "ton", "ton_per_hour", "deadweight_ton", "sqm", "time_window", "tier", "none"]}
+      - {name: canonical_key, type: string, required: false, note: "hash of type+normalized value+unit"}
+
+  - name: ParameterMention
+    description: "One concrete parameter mention occurrence in text"
+    key: "param_mention_id"
+    attributes:
+      - {name: param_mention_id, type: string, required: true}
+      - {name: raw_value, type: string, required: true}
+      - {name: raw_unit, type: string, required: false}
+      - {name: direction, type: enum, required: false, enum: ["up", "down", "none"]}
+      - {name: condition_text, type: string, required: false}
+      - {name: source_sentence_text, type: string, required: false, note: "optional snippet, not a required scope anchor"}
+      - {name: evidence_scope, type: enum, required: true, enum: ["clause"]}
+      - {name: evidence_anchor_id, type: string, required: true, note: "clause_id"}
+      - {name: evidence_span_start, type: integer, required: false}
+      - {name: evidence_span_end, type: integer, required: false}
+      - {name: evidence_text_sha256, type: string, required: false}
+
+relations:
+  - {name: issued_by, from: PolicyDocument, to: IssuingOrganization, cardinality: "N:N"}
+  - {name: applies_to_region, from: PolicyDocument, to: Region, cardinality: "N:N"}
+  - {name: applies_to_target, from: PolicyDocument, to: TargetGroup, cardinality: "N:N"}
+  - {name: contains_clause, from: PolicyDocument, to: Clause, cardinality: "1:N"}
+  - {name: contains_mechanism, from: PolicyDocument, to: Mechanism, cardinality: "1:N"}
+  - {name: mechanism_anchor_clause, from: Mechanism, to: Clause, cardinality: "N:1"}
+  - {name: clause_supports_mechanism, from: Clause, to: Mechanism, cardinality: "N:N"}
+  - {name: mechanism_has_parameter_definition, from: Mechanism, to: ParameterDefinition, cardinality: "N:N"}
+  - {name: clause_has_parameter_mention, from: Clause, to: ParameterMention, cardinality: "1:N"}
+  - {name: parameter_mention_refers_to_definition, from: ParameterMention, to: ParameterDefinition, cardinality: "N:1"}
+  - {name: mention_in_policy, from: ParameterMention, to: PolicyDocument, cardinality: "N:1"}
+  - {name: mention_supports_mechanism, from: ParameterMention, to: Mechanism, cardinality: "N:N"}
+  - {name: mechanism_applies_to_target, from: Mechanism, to: TargetGroup, cardinality: "N:N"}
+  - {name: mechanism_applies_to_region, from: Mechanism, to: Region, cardinality: "N:N"}
+  - {name: policy_supersedes, from: PolicyDocument, to: PolicyDocument, cardinality: "N:N"}
+  - {name: policy_references, from: PolicyDocument, to: PolicyDocument, cardinality: "N:N"}
+
+event_types:
+  - name: IssueEvent
+    trigger_examples: ["\\u5370\\u53d1", "\\u53d1\\u5e03", "\\u516c\\u5e03", "\\u901a\\u77e5", "\\u516c\\u544a", "\\u5b9e\\u65bd", "\\u6267\\u884c"]
+    roles: ["PolicyDocument", "IssuingOrganization", "issue_date"]
+  - name: PriceAdjustEvent
+    trigger_examples: ["\\u8c03\\u6574", "\\u4e0a\\u6d6e", "\\u4e0b\\u6d6e", "\\u63d0\\u9ad8", "\\u964d\\u4f4e", "\\u4e0b\\u8c03", "\\u964d\\u4ef7"]
+    roles: ["Mechanism", "ParameterDefinition(price_delta_pct|price_value)", "ParameterMention", "TargetGroup", "Region", "effective_start_date"]
+  - name: SubsidyEvent
+    trigger_examples: ["\\u8865\\u8d34", "\\u5956\\u8865", "\\u8865\\u52a9", "\\u5956\\u52b1", "\\u5148\\u884c\\u5956\\u52b1"]
+    roles: ["Mechanism", "ParameterDefinition(subsidy_amount)", "ParameterMention", "TargetGroup", "Region", "condition_text"]
+  - name: TaskAssessmentEvent
+    trigger_examples: ["\\u4efb\\u52a1", "\\u76ee\\u6807", "\\u8003\\u6838", "\\u9a8c\\u6536", "\\u63a8\\u8fdb", "\\u63a8\\u5e7f"]
+    roles: ["Mechanism", "TargetGroup", "ParameterDefinition(ratio_target|task_count)", "Region"]
+  - name: TechRouteEvent
+    trigger_examples: ["\\u7164\\u6539\\u7535", "\\u7164\\u6539\\u6c14", "\\u5cb8\\u7535", "\\u5145\\u7535\\u57fa\\u7840\\u8bbe\\u65bd", "\\u7535\\u80fd\\u66ff\\u4ee3"]
+    roles: ["Mechanism", "TargetGroup", "Region", "ParameterMention"]
+
+evidence_coordinate_system:
+  text_source: "decoded source text with UTF-8 strict first strategy"
+  offset_basis: "character index on decoded text"
+  span_convention: "[start, end), start inclusive, end exclusive"
+  scope_rules:
+    - "if evidence_scope=clause, anchor_id must be clause_id; span offsets are relative to clause_text"
+  note: "document-level metadata is represented by PolicyDocument attributes, not ParameterMention evidence scope"
+
+clause_segmentation:
+  enabled: true
+  sentence_scope_enabled: false
+  keep_numbering: true
+  split_by_regex:
+    - "(\\u7b2c[\\u4e00-\\u9fa5\\d]+\\u6761)"
+    - "(\\u7b2c[\\u4e00-\\u9fa5\\d]+\\u6b3e)"
+    - "(\\u7b2c[\\u4e00-\\u9fa5\\d]+\\u9879)"
+    - "(\\uFF08[\\u4e00-\\u9fa5\\d]+\\uFF09)"
+    - "(?m)^\\s*(\\d+\\))"
+    - "(\\d+\\.)"
+    - "([\\u4e00\\u4e8c\\u4e09\\u56db\\u4e94\\u516d\\u4e03\\u516b\\u4e5d\\u5341]+\\u3001)"
+    - "(?m)^\\s*([\\u4e00\\u4e8c\\u4e09\\u56db\\u4e94\\u516d\\u4e03\\u516b\\u4e5d\\u5341]+\\u662f)"
+  split_by_punctuation:
+    - "\\uFF1B"
+    - "\\u3002"
+  min_clause_chars: 20
+  max_clause_chars: 400
+  merge_short_tail: true
+  table_row_fallback:
+    enabled: true
+    split_on_newline: true
+    column_delimiter_regex:
+      - "\\t+"
+      - "\\s{2,}"
+    min_cells: 2
+    emit_clause_type: "table_row_clause"
+
+mechanism_instantiation_spec:
+  instance_key_template: "{policy_id}|{mechanism_type}|{season_scope}|{voltage_scope}|{mechanism_anchor_clause_id}"
+  null_placeholder: "<null>"
+  rules:
+    - "same policy_id + mechanism_type + season_scope + voltage_scope + anchor_clause_id => one mechanism instance"
+    - "within one clause, same mechanism_type merges to one instance by default"
+    - "cross-clause merge only when season_scope and voltage_scope match and linkage evidence is explicit"
+    - "if clause contains multiple mechanisms, each mechanism_type creates an independent instance"
+
+normalization_rules:
+  time_window:
+    detect_regex:
+      - "[0-2]?\\d[:\\uFF1A][0-5]\\d\\s*[-~\\u81f3\\u5230]\\s*[0-2]?\\d[:\\uFF1A][0-5]\\d"
+    normalize:
+      - "normalize separator to ':'"
+      - "normalize format to HH:MM-HH:MM"
+      - "mark cross_day=true for windows like 23:00-07:00"
+  percent_ratio:
+    detect_regex:
+      - "(\\u4e0a\\u6d6e|\\u4e0b\\u6d6e|\\u63d0\\u9ad8|\\u964d\\u4f4e)\\s*\\d+\\s*%"
+      - "\\d+\\.?\\d*\\s*%"
+    normalize:
+      - "remove whitespace and keep two decimals"
+      - "if direction word exists, map direction to up/down"
+  monetary_value:
+    detect_regex:
+      - "\\d+\\.?\\d*\\s*\\u5143/\\u5343\\u74e6\\u65f6"
+      - "\\d+\\.?\\d*\\s*\\u5206/\\u5343\\u74e6\\u65f6"
+      - "\\d+\\.?\\d*\\s*\\u5143/\\u5ea6"
+      - "\\d+\\.?\\d*\\s*\\u5143/\\u6237"
+      - "\\d+\\.?\\d*\\s*(\\u5143|\\u4e07\\u5143)"
+    normalize:
+      - "normalize unit tag while preserving raw value"
+      - "normalize yuan_per_degree to yuan_per_kwh"
+      - "optional conversion from ten_thousand_yuan to yuan"
+  area_based_value:
+    detect_regex:
+      - "\\d+\\.?\\d*\\s*\\u5143/\\u5e73\\u65b9\\u7c73"
+      - "\\d+\\.?\\d*\\s*\\u5143/\\u33a1"
+    normalize:
+      - "normalize unit to yuan_per_sqm"
+      - "set param_type to area_subsidy_amount when context contains subsidy verbs"
+  capacity_value:
+    detect_regex:
+      - "\\d+\\.?\\d*\\s*(\\u5343\\u4f0f\\u5b89|kVA)"
+      - "\\d+\\.?\\d*\\s*(\\u5343\\u74e6|kW)"
+      - "\\d+\\.?\\d*\\s*(\\u5146\\u74e6|MW)"
+      - "\\d+\\.?\\d*\\s*\\u4e07\\u5343\\u74e6"
+    normalize:
+      - "normalize capacity unit to one of kva/kw/mw"
+      - "convert ten_thousand_kw to mw"
+      - "set param_type to capacity_threshold when used with threshold cues"
+  tonnage_value:
+    detect_regex:
+      - "\\d+\\.?\\d*\\s*(\\u84b8\\u5428/\\u65f6|\\u84b8\\u5428)"
+      - "\\d+\\.?\\d*\\s*(\\u8f7d\\u91cd\\u5428|\\u603b\\u5428|\\u5428\\u7ea7|\\u5428)"
+      - "\\d+\\.?\\d*\\s*\\u4e07\\u5428"
+    normalize:
+      - "normalize tonnage unit to one of ton/ton_per_hour/deadweight_ton"
+      - "convert ten_thousand_ton to ton"
+      - "set param_type to tonnage_threshold when used with threshold cues"
+  threshold_kwh:
+    detect_regex:
+      - "\\d+\\s*\\u5343\\u74e6\\u65f6"
+      - "\\u8d85\\u8fc7\\d+"
+      - "\\u4e0d\\u4f4e\\u4e8e\\d+"
+      - "\\u7b2c\\u4e00\\u6863|\\u7b2c\\u4e8c\\u6863|\\u7b2c\\u4e09\\u6863"
+    normalize:
+      - "map tier text to tier_index in [1,2,3]"
+      - "store time_granularity as month/year/unknown"
+
+parameter_type_mapping_rules:
+  - "raw_unit in {元/千瓦时, 分/千瓦时, 元/度} => price_value"
+  - "contains {上浮, 下浮, 提高, 降低} and '%' => price_delta_pct"
+  - "raw_unit in {元/户, 元, 万元} and context has subsidy verbs => subsidy_amount"
+  - "raw_unit in {元/平方米, 元/㎡} and context has subsidy verbs => area_subsidy_amount"
+  - "raw_unit in {千瓦时} and threshold cues => consumption_threshold_kwh"
+  - "raw_unit in {千瓦, 万千瓦, 兆瓦, 千伏安, kW, MW, kVA} and threshold cues => capacity_threshold"
+  - "raw_unit in {吨, 蒸吨, 载重吨, 总吨, 吨级, 万吨} and threshold cues => tonnage_threshold"
+
+task_clause_structuring_rules:
+  enabled: true
+  trigger_keywords: ["\\u4efb\\u52a1", "\\u76ee\\u6807", "\\u63a8\\u8fdb", "\\u8d23\\u4efb\\u5206\\u5de5", "\\u8003\\u6838", "\\u9a8c\\u6536"]
+  subject_extract:
+    regex:
+      - "\\u56fd\\u52a1\\u9662|\\u56fd\\u5bb6\\u53d1\\u5c55\\u6539\\u9769\\u59d4|\\u53d1\\u6539\\u59d4|\\u80fd\\u6e90\\u5c40|\\u8d22\\u653f\\u90e8|\\u4ea4\\u901a\\u8fd0\\u8f93\\u90e8|\\u5404\\u7ea7\\u4eba\\u6c11\\u653f\\u5e9c|\\u5404\\u5730\\u653f\\u5e9c|\\u5404\\u90e8\\u95e8|\\u4ef7\\u683c\\u4e3b\\u7ba1\\u90e8\\u95e8|\\u4f9b\\u7535\\u516c\\u53f8|\\u7535\\u7f51\\u4f01\\u4e1a|\\u76f8\\u5173\\u5355\\u4f4d"
+      - "^\\s*([\\u4e00-\\u9fa5]{2,18})(?=\\u8981|\\u5e94|\\u987b|\\u9700|\\u8d1f\\u8d23|\\u5f00\\u5c55|\\u63a8\\u8fdb|\\u843d\\u5b9e|\\u5b8c\\u5584|\\u5efa\\u7acb|\\u6267\\u884c)"
+  action_extract:
+    keywords: ["\\u63a8\\u8fdb", "\\u7ec4\\u7ec7", "\\u843d\\u5b9e", "\\u5236\\u5b9a", "\\u5b8c\\u5584", "\\u5efa\\u7acb", "\\u5b9e\\u65bd", "\\u6267\\u884c", "\\u5f00\\u5c55", "\\u52a0\\u5f3a", "\\u5b8c\\u6210", "\\u52a0\\u5feb", "\\u63a8\\u52a8", "\\u4e25\\u683c", "\\u53d6\\u6d88", "\\u4f18\\u5316"]
+  deadline_extract:
+    regex:
+      - "\\d{4}\\u5e74\\d{1,2}\\u6708\\d{1,2}\\u65e5\\u524d"
+      - "\\d{4}\\u5e74\\u5e95\\u524d"
+      - "\\u5230\\d{4}\\u5e74"
+      - "\\d{4}\\u2014\\d{4}\\u5e74"
+      - "\\d{4}-\\d{4}\\u5e74"
+      - "\\d{4}\\u5e74"
+  assessment_extract:
+    regex:
+      - "[^\\u3002\\uFF1B;]{0,20}(\\u8003\\u6838|\\u9a8c\\u6536|\\u7763\\u5bfc|\\u76d1\\u7763|\\u8bc4\\u4f30|\\u901a\\u62a5)[^\\u3002\\uFF1B;]{0,20}"
+
+canonical_key_spec:
+  algorithm: "sha256"
+  encoding: "utf-8"
+  missing_value_token: "<null>"
+  input_template: "{param_type}|{norm_value_formatted}|{norm_unit}|{norm_start}|{norm_end}"
+  formatting:
+    decimal_scale_max: 6
+    strip_trailing_zero: true
+    percent_format: "0.######%"
+    time_window_format: "HH:MM-HH:MM"
+
+quality_gates:
+  - name: prompt_schema_alignment
+    rule: "all UIE prompt fields must map 1:1 to schema attributes or explicit aliases"
+  - name: evidence_alignment
+    rule: "every ParameterMention must have evidence_scope + evidence_anchor_id, and valid [start,end) span on the anchor text"
+  - name: evidence_anchor_consistency
+    rule: "anchor_id type must match evidence_scope (clause_id only in v1.4)"
+  - name: clause_segmentation_consistency
+    rule: "all clause_id values must be produced by clause_segmentation config"
+  - name: clause_type_enum_alignment
+    rule: "clause_segmentation.table_row_fallback.emit_clause_type must be declared in Clause.clause_type enum"
+  - name: mechanism_binding_consistency
+    rule: "if mechanism_anchor_clause_id exists, mention_supports_mechanism should prefer mentions from same clause"
+  - name: unit_consistency
+    rule: "do not auto-merge conflicting units under same mechanism and parameter type"
+  - name: policy_time_consistency
+    rule: "effective_start_date must be <= effective_end_date when both exist"
+  - name: range_consistency
+    rule: "threshold start must be <= threshold end; tiers must be sortable"
+  - name: canonical_key_reproducibility
+    rule: "canonical_key must be generated strictly using canonical_key_spec template and formatting rules"
+  - name: compiled_file_split_consistency
+    rule: "any file matched by pre_ingestion_split.compiled_policy_files.apply_to_path_regex must be split by split_anchor_regex before extraction"
+  - name: document_filename_conflict_arbitration
+    rule: "for issue_date/doc_type/document_no, when body and filename conflict, body must win and conflict must be logged"
+  - name: task_clause_structuring_completeness
+    rule: "for clauses tagged as task_assessment-like, produce at least one non-empty field among task_subject/task_action/task_deadline/task_assessment"
+
+triple_templates:
+  - "(PolicyDocument)-[issued_by]->(IssuingOrganization)"
+  - "(PolicyDocument)-[applies_to_region]->(Region)"
+  - "(PolicyDocument)-[applies_to_target]->(TargetGroup)"
+  - "(PolicyDocument)-[contains_mechanism]->(Mechanism)"
+  - "(PolicyDocument)-[contains_clause]->(Clause)"
+  - "(Mechanism)-[mechanism_has_parameter_definition]->(ParameterDefinition)"
+  - "(Clause)-[clause_has_parameter_mention]->(ParameterMention)"
+  - "(ParameterMention)-[parameter_mention_refers_to_definition]->(ParameterDefinition)"
+  - "(ParameterMention)-[mention_supports_mechanism]->(Mechanism)"
+
+uie_document_prompt_v1:
+  - "title"
+  - "document_no"
+  - "issue_date"
+  - "effective_start_date"
+  - "effective_end_date"
+  - "org_name"
+  - "region_name"
+  - "target_name"
+
+uie_clause_prompt_v1:
+  - "mechanism_type"
+  - "mechanism_name"
+  - "clause_type"
+  - "raw_value"
+  - "raw_unit"
+  - "direction"
+  - "condition_text"
+  - "task_subject"
+  - "task_action"
+  - "task_deadline"
+  - "task_assessment"
+
+postprocess_generated_fields:
+  - "param_type"
+  - "norm_value"
+  - "norm_unit"
+  - "evidence_scope"
+  - "evidence_anchor_id"
+  - "evidence_span_start"
+  - "evidence_span_end"
+  - "canonical_key"
+
+compatibility_aliases:
+  - {old: "policy_title", new: "title"}
+  - {old: "issuing_organization", new: "org_name"}
+  - {old: "applicable_region", new: "region_name"}
+  - {old: "target_group", new: "target_name"}
+  - {old: "effective_date", new: "effective_start_date/effective_end_date"}
+  - {old: "price_delta_percent", new: "param_type=price_delta_pct + raw_value"}
+  - {old: "price_value", new: "param_type=price_value + raw_value"}
+  - {old: "subsidy_amount", new: "param_type=subsidy_amount + raw_value"}
+  - {old: "threshold_kwh", new: "param_type=consumption_threshold_kwh + raw_value"}
+  - {old: "tier_level", new: "param_type=tier_level + raw_value"}
+  - {old: "task_target", new: "param_type=ratio_target/task_count + raw_value"}
+  - {old: "元/度", new: "norm_unit=yuan_per_kwh"}
+  - {old: "元/平方米", new: "param_type=area_subsidy_amount + raw_value"}
+  - {old: "降价/下调电价", new: "mechanism_type=general_price_adjustment"}
+  - {old: "uie_schema_prompt_v1_1", new: "uie_schema_prompt_v1_2"}
+  - {old: "sentence evidence scope", new: "deprecated; use document/clause scope only"}
+  - {old: "uie_schema_prompt_v1_2", new: "uie_document_prompt_v1 + uie_clause_prompt_v1"}
+  - {old: "clause_text in prompt output", new: "deprecated; clause_text is segmentation input context"}

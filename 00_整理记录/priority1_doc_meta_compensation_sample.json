@@ -1,0 +1,1077 @@
+{
+  "summary": {
+    "total_docs": 151,
+    "before_coverage": {
+      "issue_date": 126,
+      "doc_type": 149,
+      "document_no": 12
+    },
+    "after_coverage": {
+      "issue_date": 126,
+      "doc_type": 149,
+      "document_no": 13
+    },
+    "before_coverage_rate": {
+      "issue_date": 83.44,
+      "doc_type": 98.68,
+      "document_no": 7.95
+    },
+    "after_coverage_rate": {
+      "issue_date": 83.44,
+      "doc_type": 98.68,
+      "document_no": 8.61
+    },
+    "filename_compensation_count": {
+      "issue_date": 0,
+      "doc_type": 0,
+      "document_no": 1
+    },
+    "conflict_count": {
+      "issue_date": 0,
+      "doc_type": 7,
+      "document_no": 0
+    }
+  },
+  "rows_sample": [
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年10月26号 关于蒙西电网试行分时电价政策有关事项的通知 关于蒙东电网.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-01",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年11月23日 广西壮族自治区发展和改革委员会关于完善我区峰谷分时电价机.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-23",
+          "filename_value": "2021-11-23"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年11月23日 陕西省发展和改革委员会关于进一步完善分时电价机制有关事项.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-23",
+          "filename_value": "2021-11-23"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年11月4日 湖南省发展改革委关于进一步完善分时电价政策及有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-04",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-04",
+          "filename_value": "2021-11-04"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年12月14日 山西省发展和改革委员会关于完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-14",
+          "filename_value": "2021-12-14"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年12月24日 天津市发展改革委关于峰谷分时电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-24",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-24",
+          "filename_value": "2021-12-24"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年7月29日 国家发展改革委关于进一步完善分时电价机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-07-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-07-29",
+          "filename_value": "2021-07-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年8月31日 广东省发展改革委关于进一步完善我省峰谷分时电价政策有关问题.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-08-31",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-08-31",
+          "filename_value": "2021-08-31"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年11月29日 山东省发展改革委关于工商业分时电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-11-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-11-29",
+          "filename_value": "2022-11-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年11月7日 河南省发展改革委关于进一步完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-11-07",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-11-07",
+          "filename_value": "2022-11-07"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年12月16日 上海市发展和改革委员会关于进一步完善我市分时电价机制有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-12-16",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-12-16",
+          "filename_value": "2022-12-16"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年12月6日 河北发改委印发《关于明确居民峰谷分时电价政策的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-12-06",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-12-06",
+          "filename_value": "2022-12-06"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年3月2日 山东省发展改革委关于完善居民分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-03-02",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-03-02",
+          "filename_value": "2022-03-02"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年4月2日 湖南省发展和改革委员会关于进一步明确趸售电价与分时电价有关事.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-04-02",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-04-02",
+          "filename_value": "2022-04-02"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年11月28日 江西省发展改革委关于完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-11-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-11-28",
+          "filename_value": "2023-11-28"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年11月28日 福建省发展和改革委员会关于完善分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-11-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-11-28",
+          "filename_value": "2023-11-28"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年4月24日 四川省发展和改革委员会关于调整我省分时电价机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-04-24",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-04-24",
+          "filename_value": "2023-04-24"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年5月13日 重庆市发展和改革委员会关于建立居民分时电价机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-05-13",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-05-13",
+          "filename_value": "2023-05-13"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年6月27日 贵州省发展和改革委员会关于完善峰谷分时电价机制有关事项的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-06-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-06-27",
+          "filename_value": "2023-06-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年7月31日 广西壮族自治区发展和改革委员会关于优化峰谷分时电价机制的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-07-31",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-07-31",
+          "filename_value": "2023-07-31"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年8月21日 北京市发展和改革委员会关于进一步完善本市分时电价机制等有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-08-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-08-21",
+          "filename_value": "2023-08-21"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年8月25日 辽宁省发展改革委关于进一步完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-08-25",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-08-25",
+          "filename_value": "2023-08-25"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年8月30日 新疆维吾尔自治区发展改革委关于进一步完善分时电价有关事宜的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-08-30",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-08-30",
+          "filename_value": "2023-08-30"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年11月18日 云南省发展和改革委员会关于优化调整分时电价政策有关事项的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-11-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-11-18",
+          "filename_value": "2024-11-18"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年1月25日 浙江省发展和改革委员会关于调整工商业峰谷分时电价政策有关事.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-01-25",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-01-25",
+          "filename_value": "2024-01-25"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年3月27日 湖北省发展改革委关于完善工商业分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-03-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-03-27",
+          "filename_value": "2024-03-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年3月4日 安徽省发展改革委安徽省能源局关于进一步优化峰谷分时电价政策等.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-03-04",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-03-04",
+          "filename_value": "2024-03-04"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年4月9日 青海省发展和改革委员会关于优化完善我省峰谷分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-04-09",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-04-09",
+          "filename_value": "2024-04-09"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年5月22日 江苏省发展改革委关于进一步完善分时电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-22",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-22",
+          "filename_value": "2024-05-22"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年5月29日 河南省发展改革委关于调整工商业分时电价有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-29",
+          "filename_value": "2024-05-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月29日 吉林省发展改革委关于优化分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-29",
+          "filename_value": "2024-07-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月29日 黑龙江省发展和改革委员会关于进一步完善峰谷分时电价政策措施.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-29",
+          "filename_value": "2024-07-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月5日 宁夏回族自治区发展改革委关于公开征求《关于完善工商业分时电价.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-05",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-05",
+          "filename_value": "2024-07-05"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月5日 甘肃省发展和改革委员会关于优化调整工商业等用户峰谷分时电价政.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-05",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-05",
+          "filename_value": "2024-07-05"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年8月27日 海南省发展和改革委员会关于调整电动汽车峰谷分时电价政策有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-08-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-08-27",
+          "filename_value": "2024-08-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2011年11月29日 国家发展改革委关于居民生活用电试行阶梯电价的指导意见的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2011-11-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2011-11-29",
+          "filename_value": "2011-11-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "notice",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年06月29日 天津市7月1日起开始试行居民生活用电阶梯电价.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-29",
+          "filename_value": "2012-06-29"
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年5月 湖北省物价局关于实施居民阶梯电价试行方案的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-07-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-07-01",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月14日 重庆市物价局关于居民生活用电试行阶梯电价有关问题的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-14",
+          "filename_value": "2012-06-14"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月15日 北京市发展和改革委员会关于北京市居民生活用电试行阶梯电价的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-15",
+          "filename_value": "2012-06-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    }
+  ]
+}

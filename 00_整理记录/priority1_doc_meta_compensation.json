@@ -1,0 +1,3963 @@
+{
+  "summary": {
+    "total_docs": 151,
+    "before_coverage": {
+      "issue_date": 126,
+      "doc_type": 149,
+      "document_no": 12
+    },
+    "after_coverage": {
+      "issue_date": 126,
+      "doc_type": 149,
+      "document_no": 13
+    },
+    "before_coverage_rate": {
+      "issue_date": 83.44,
+      "doc_type": 98.68,
+      "document_no": 7.95
+    },
+    "after_coverage_rate": {
+      "issue_date": 83.44,
+      "doc_type": 98.68,
+      "document_no": 8.61
+    },
+    "filename_compensation_count": {
+      "issue_date": 0,
+      "doc_type": 0,
+      "document_no": 1
+    },
+    "conflict_count": {
+      "issue_date": 0,
+      "doc_type": 7,
+      "document_no": 0
+    }
+  },
+  "rows": [
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年10月26号 关于蒙西电网试行分时电价政策有关事项的通知 关于蒙东电网.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-01",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年11月23日 广西壮族自治区发展和改革委员会关于完善我区峰谷分时电价机.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-23",
+          "filename_value": "2021-11-23"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年11月23日 陕西省发展和改革委员会关于进一步完善分时电价机制有关事项.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-23",
+          "filename_value": "2021-11-23"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年11月4日 湖南省发展改革委关于进一步完善分时电价政策及有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-11-04",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-11-04",
+          "filename_value": "2021-11-04"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年12月14日 山西省发展和改革委员会关于完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-14",
+          "filename_value": "2021-12-14"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年12月24日 天津市发展改革委关于峰谷分时电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-24",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-24",
+          "filename_value": "2021-12-24"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年7月29日 国家发展改革委关于进一步完善分时电价机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-07-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-07-29",
+          "filename_value": "2021-07-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2021年8月31日 广东省发展改革委关于进一步完善我省峰谷分时电价政策有关问题.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-08-31",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-08-31",
+          "filename_value": "2021-08-31"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年11月29日 山东省发展改革委关于工商业分时电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-11-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-11-29",
+          "filename_value": "2022-11-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年11月7日 河南省发展改革委关于进一步完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-11-07",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-11-07",
+          "filename_value": "2022-11-07"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年12月16日 上海市发展和改革委员会关于进一步完善我市分时电价机制有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-12-16",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-12-16",
+          "filename_value": "2022-12-16"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年12月6日 河北发改委印发《关于明确居民峰谷分时电价政策的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-12-06",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-12-06",
+          "filename_value": "2022-12-06"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年3月2日 山东省发展改革委关于完善居民分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-03-02",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-03-02",
+          "filename_value": "2022-03-02"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2022年4月2日 湖南省发展和改革委员会关于进一步明确趸售电价与分时电价有关事.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-04-02",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-04-02",
+          "filename_value": "2022-04-02"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年11月28日 江西省发展改革委关于完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-11-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-11-28",
+          "filename_value": "2023-11-28"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年11月28日 福建省发展和改革委员会关于完善分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-11-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-11-28",
+          "filename_value": "2023-11-28"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年4月24日 四川省发展和改革委员会关于调整我省分时电价机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-04-24",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-04-24",
+          "filename_value": "2023-04-24"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年5月13日 重庆市发展和改革委员会关于建立居民分时电价机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-05-13",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-05-13",
+          "filename_value": "2023-05-13"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年6月27日 贵州省发展和改革委员会关于完善峰谷分时电价机制有关事项的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-06-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-06-27",
+          "filename_value": "2023-06-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年7月31日 广西壮族自治区发展和改革委员会关于优化峰谷分时电价机制的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-07-31",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-07-31",
+          "filename_value": "2023-07-31"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年8月21日 北京市发展和改革委员会关于进一步完善本市分时电价机制等有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-08-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-08-21",
+          "filename_value": "2023-08-21"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年8月25日 辽宁省发展改革委关于进一步完善分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-08-25",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-08-25",
+          "filename_value": "2023-08-25"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2023年8月30日 新疆维吾尔自治区发展改革委关于进一步完善分时电价有关事宜的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-08-30",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-08-30",
+          "filename_value": "2023-08-30"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年11月18日 云南省发展和改革委员会关于优化调整分时电价政策有关事项的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-11-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-11-18",
+          "filename_value": "2024-11-18"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年1月25日 浙江省发展和改革委员会关于调整工商业峰谷分时电价政策有关事.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-01-25",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-01-25",
+          "filename_value": "2024-01-25"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年3月27日 湖北省发展改革委关于完善工商业分时电价机制有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-03-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-03-27",
+          "filename_value": "2024-03-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年3月4日 安徽省发展改革委安徽省能源局关于进一步优化峰谷分时电价政策等.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-03-04",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-03-04",
+          "filename_value": "2024-03-04"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年4月9日 青海省发展和改革委员会关于优化完善我省峰谷分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-04-09",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-04-09",
+          "filename_value": "2024-04-09"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年5月22日 江苏省发展改革委关于进一步完善分时电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-22",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-22",
+          "filename_value": "2024-05-22"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年5月29日 河南省发展改革委关于调整工商业分时电价有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-29",
+          "filename_value": "2024-05-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月29日 吉林省发展改革委关于优化分时电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-29",
+          "filename_value": "2024-07-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月29日 黑龙江省发展和改革委员会关于进一步完善峰谷分时电价政策措施.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-29",
+          "filename_value": "2024-07-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月5日 宁夏回族自治区发展改革委关于公开征求《关于完善工商业分时电价.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-05",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-05",
+          "filename_value": "2024-07-05"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年7月5日 甘肃省发展和改革委员会关于优化调整工商业等用户峰谷分时电价政.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-05",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-05",
+          "filename_value": "2024-07-05"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/01_分时电价/2024年8月27日 海南省发展和改革委员会关于调整电动汽车峰谷分时电价政策有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-08-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-08-27",
+          "filename_value": "2024-08-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2011年11月29日 国家发展改革委关于居民生活用电试行阶梯电价的指导意见的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2011-11-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2011-11-29",
+          "filename_value": "2011-11-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "notice",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年06月29日 天津市7月1日起开始试行居民生活用电阶梯电价.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-29",
+          "filename_value": "2012-06-29"
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年5月 湖北省物价局关于实施居民阶梯电价试行方案的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-07-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-07-01",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月14日 重庆市物价局关于居民生活用电试行阶梯电价有关问题的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-14",
+          "filename_value": "2012-06-14"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月15日 北京市发展和改革委员会关于北京市居民生活用电试行阶梯电价的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-15",
+          "filename_value": "2012-06-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月15日 山西省物价局关于对我省居民生活用电试行阶梯电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-15",
+          "filename_value": "2012-06-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月15日 江苏省物价局关于试行居民生活用电阶梯式电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-15",
+          "filename_value": "2012-06-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月15日 浙江省物价局关于完善居民生活用电阶梯电价政策有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-15",
+          "filename_value": "2012-06-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月15日 海南省物价局关于试行居民阶梯电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-15",
+          "filename_value": "2012-06-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月18日 河北省物价局关于印发《河北省居民生活用电试行阶梯电价实施方.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-18",
+          "filename_value": "2012-06-18"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月19日 辽宁省物价局关于我省居民生活用电试行阶梯电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-19",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-19",
+          "filename_value": "2012-06-19"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月20日 河南省发展和改革委员会关于河南省居民生活用电试行阶梯电价的.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-20",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-20",
+          "filename_value": "2012-06-20"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年6月27日 吉林省物价局关于我省居民生活用电试行阶梯电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-06-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-06-27",
+          "filename_value": "2012-06-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2012年7月1日 上海市发展改革委关于本市居民生活用电试行阶梯电价实施方案的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2012-07-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2012-07-01",
+          "filename_value": "2012-07-01"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "notice",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2013年12月11日 国家发展改革委关于完善居民阶梯电价制度的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2013-12-11",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2013-12-11",
+          "filename_value": "2013-12-11"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2013年6月17日 青海省发展和改革委员会关于试行居民阶梯电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2013-06-17",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2013-06-17",
+          "filename_value": "2013-06-17"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2016年10月11日 广西壮族自治区物价局关于调整居民生活用电阶梯电价政策有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2016-10-11",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2016-10-11",
+          "filename_value": "2016-10-11"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2016年8月26日 贵州省发展改革委关于进一步完善我省居民阶梯电价政策有关事项.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2016-08-26",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2016-08-26",
+          "filename_value": "2016-08-26"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2018年12月29日 山东省发展改革委关于炼化和焦化企业生产用电实行阶梯电价政.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-12-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-12-29",
+          "filename_value": "2018-12-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2019年10月29日 北京市发展改革委关于居民生活用电“一户多人口”阶梯电量有.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-10-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-10-29",
+          "filename_value": "2019-10-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2019年12月19日 黑龙江省关于出台“多人口”居民用电优惠新政的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-12-19",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-12-19",
+          "filename_value": "2019-12-19"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2019年7月9日 山东省发展和改革委员会关于居民阶梯电价制度有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-07-09",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-07-09",
+          "filename_value": "2019-07-09"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2020年10月 福建省发展和改革委员会关于完善钢铁、水泥和电解铝行业差别（阶梯.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年10月12日 新疆维吾尔自治区发展和改革委员会关于完善我区电解铝行业阶.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-12",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-12",
+          "filename_value": "2021-10-12"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年10月27日 广西壮族自治区发展和改革委员会关于我区高耗能企业执行差别.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-27",
+          "filename_value": "2021-10-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年10月8日 陕西省发展和改革委员会转发国家发展改革委关于完善电解铝行业.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-08",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-08",
+          "filename_value": "2021-10-08"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年10月9日 宁夏回族自治区发展改革委关于我区钢铁、水泥、电解铝行业20.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-09",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-09",
+          "filename_value": "2021-10-09"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年2月1日 江苏省发展改革委关于完善居民阶梯电价有关问题的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-02-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-02-01",
+          "filename_value": "2021-02-01"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年4月29日 广东省发展改革委关于居民阶梯电价“一户多人口”政策有关事项.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-04-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-04-29",
+          "filename_value": "2021-04-29"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年6月21日 四川省发展和改革委员会关于调整四川电网居民生活用电阶梯电价.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-06-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-06-21",
+          "filename_value": "2021-06-21"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2021年8月27日 国家发展改革委关于完善电解铝行业阶梯电价政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-08-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-08-27",
+          "filename_value": "2021-08-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2023年12月27日 安徽省发展改革委关于居民阶梯电价“一户多人口”政策有关事.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-12-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-12-27",
+          "filename_value": "2023-12-27"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2024年1月8日 湖南省发展改革委员会关于进一步完善居民阶梯电价制度的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-01-08",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-01-08",
+          "filename_value": "2024-01-08"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2024年3月28日 陕西省物价局关于居民生活用电试行阶梯电价有关问题的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-03-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-03-28",
+          "filename_value": "2024-03-28"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2024年4月8日 云南省发展和改革委员会关于完善居民“一户多人口”电价政策有关.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-04-08",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-04-08",
+          "filename_value": "2024-04-08"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2024年5月14日 河南省郑州市市电解铝、水泥、钢铁企业执行阶梯电价的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-14",
+          "filename_value": "2024-05-14"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/02_阶梯与差别电价/2024年9月3日 青海省发展和改革委员会关于我省2024年度电解铝、钢铁企业生.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-09-03",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-09-03",
+          "filename_value": "2024-09-03"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2018年9月20日 天津市发展改革委关于降低一般工商业电价有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-09-20",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-09-20",
+          "filename_value": "2018-09-20"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2019年4月22日 国家发展改革委办公厅关于优化电价政策发布机制的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-04-22",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-04-22",
+          "filename_value": "2019-04-22"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2019年7月10日 西藏自治区人民政府关于降低居民生活用电和工商业用电价格的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-07-10",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-07-10",
+          "filename_value": "2019-07-10"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2020年10月19日 内蒙古自治区发展和改革委员会关于进一步完善蒙西地区“煤改.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2020-10-19",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2020-10-19",
+          "filename_value": "2020-10-19"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2021年10月14日 甘肃省发展和改革委员会关于转发国家发展改革委关于完善电解.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-14",
+          "filename_value": "2021-10-14"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2021年10月20日 广东省发展改革委关于进一步深化我省电价改革有关问题的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-20",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-20",
+          "filename_value": "2021-10-20"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2021年10月26日 天津市发改委关于深化电价改革有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-10-26",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-10-26",
+          "filename_value": "2021-10-26"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2023年11月16日 江西省发展改革委关于居民电动汽车充电设施用电价格有关事项.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-11-16",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-11-16",
+          "filename_value": "2023-11-16"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "01_电价政策/03_综合与其他/2024年8月15日 四川省发展改革委关于进一步做好电价政策衔接有关事项的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-08-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-08-15",
+          "filename_value": "2024-08-15"
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《2024-2025年咸阳市采暖季清洁取暖运行.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-12-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-12-18",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《“机器人+”应用行动实施方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": "工信部联通装〔2022〕187号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "工信部联通装〔2022〕187号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《上海市港口岸电建设方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《中共中央国务院关于全面加强生态环境保护坚决打好污染防治攻坚战的意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《交通运输部关于印发船舶大气污染物排放控制区实施方案的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-11-30",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-11-30",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": "交海发〔2017〕163号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "交海发〔2017〕163号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《交通运输部办公厅关于加快长江干线推进靠港船舶使用岸电和推广液化天然气船舶应用的指导意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-09-19",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-09-19",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关中地区铁腕治霾专项行动奖补办法》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "measure",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "measure",
+          "filename_value": "measure"
+        },
+        "document_no": {
+          "value": "陕环函〔2017〕333号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "陕环函〔2017〕333号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于做好电能替代电价工作的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2016-08-22",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2016-08-22",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于全面加强生态环境保护坚决打好污染防治攻坚战的实施意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于创新和完善促进绿色发展价格机制的意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-06-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-06-21",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于加快推广港口岸电系统意见的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于加快推进电能替代工作的实施意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于印发北方地区冬季清洁取暖规划（2017-2021年）的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2017-12-05",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2017-12-05",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于印发北方地区清洁供暖价格政策意见的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2017-09-19",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2017-09-19",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于印发河津市2024年冬季清洁取暖工作实施方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-23",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "notice",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于大气污染防治行动计划的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2013-09-10",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2013-09-10",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于推进电能替代的指导意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于推进电能替代的指导意见》发改能源〔2016〕1054号.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": "发改能源〔2016〕1054号",
+          "source": "filename_compensation",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": "发改能源〔2016〕1054号"
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于推进长江经济带绿色航运发展的指导意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2017-07-20",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2017-07-20",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于支持国家电网公司推进长江流域港口岸电建设应用的指导意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于清洁供暖有关价格政策的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2017-10-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2017-10-27",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于示范推进国际航线集装箱船舶和邮轮靠港使用岸电.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-09-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-09-01",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于规范我省港口岸电使用价格收费及有关事项的通.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-02-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-02-21",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于进一步共同推进船舶靠港使用岸电工作的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-01-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-01-28",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于进一步推进电能替代的指导意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于进一步推进长江经济带船舶靠港使用岸电的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《关于长江航务管理局牵头组织推进长江水系船舶岸电系统船载装置改造有关工作的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-02-09",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-02-09",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《加快农村能源转型发展助力乡村振兴的实施意见》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-01-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-01-28",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《国务院关于印发打赢蓝天保卫战三年行动计划的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-06-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-06-27",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《夏县2023-2024年度冬季清洁取暖“煤改电”“煤改气”运行补贴实施办法》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "measure",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "measure",
+          "filename_value": "measure"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《山东发改委关于完善清洁取暖价格政策的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-11-20",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-11-20",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《山东省“十四五”绿色建筑与建筑节能发展规划》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《忻州市2023年冬季清洁取暖工作实施方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "notice",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《怀柔区2022年农村地区“减煤换煤”工程实方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": "怀农发〔2022〕18号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "怀农发〔2022〕18号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《推动汽车、家电、消费电子产品更新消费促进循环经济发展实施方案（2019-2020 年）（征求意见稿）》意见的函.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-04-17",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-04-17",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《晋城市冬季清洁取暖“煤改电”工作实施方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《浙江省人民政府办公厅关于印发浙江省培育发展战略性新兴产业行动计划（2017-2020年）的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2017-09-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2017-09-18",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《港口岸电布局方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2017-07-20",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2017-07-20",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《湖北省综合交通公路水运部分四个三年攻坚工作方案（2018-2020 年）的通知》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2018-05-22",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2018-05-22",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《滨州市2019年清洁取暖建设推进实施方案》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《能源生产和消费革命战略（2016-2030）》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2016-12-29",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2016-12-29",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/《运城市2022-2023年煤改电煤改气运行补贴办法》.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "measure",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "measure",
+          "filename_value": "measure"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/中共中央 国务院关于加快经济社会发展全面绿色转型的意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/中共中央 国务院印发《长江三角洲区域一体化发展规划纲要》.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2019-12-01",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2019-12-01",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/中共中央办公厅 国务院办公厅关于加强耕地保护提升耕地质量完善占补平衡的意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-11-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-11-27",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "plan",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/中共中央办公厅 国务院办公厅关于推进新型城市基础设施建设打造韧性城市的意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/交通运输部 国家发展改革委 国家能源局 国家电网有限公司关于进一步推进长江经济带船舶靠港使用岸电的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-07-14",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-07-14",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/八部门关于印发《“十四五”智能制造发展规划》的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-21",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于加力支持大规模设备更新和消费品以旧换新的若干措施.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-07-24",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-07-24",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "document_no": {
+          "value": "国发〔2024〕7号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "国发〔2024〕7号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于印发河津市2024年冬季清洁取暖工作实施方案的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-05-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-05-23",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于完善新能源汽车推广应用财政补贴政策的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2020-04-23",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2020-04-23",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于政协十三届全国委员会第四次会议第2529号（农业水利类442号）提案答复的函.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-08-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-08-27",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "plan",
+          "filename_value": "reply_letter"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于组织申报2022年北方地区冬季清洁取暖项.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": "财办资环〔2022〕4号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "财办资环〔2022〕4号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/关于进一步推进电能替代的指导意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-03-28",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-03-28",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/农业农村部关于印发《“十四五”全国农业机械化发展规划》的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-27",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-27",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/北京市农村地区清洁取暖设备更新工作指导意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": "京政农发〔2023〕49号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "京政农发〔2023〕49号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/十五部门关于印发《“十四五”机器人产业发展规划》的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2021-12-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2021-12-21",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国务院关于印发《中国制造2025》的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2015-05-19",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2015-05-19",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国务院办公厅关于加快新能源汽车推广应用的指导意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2014-07-21",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2014-07-21",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国务院办公厅关于加快电动汽车充电基础设施建设的指导意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2015-10-09",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2015-10-09",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国务院办公厅关于印发新能源汽车产业发展规划（2021—2035年）的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2020-11-02",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2020-11-02",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/国家发展改革委等部门关于加强新能源汽车与电网融合互动的实施意见.txt",
+      "fields": {
+        "issue_date": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": "opinion"
+        },
+        "document_no": {
+          "value": "发改能源〔2023〕1721号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "发改能源〔2023〕1721号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/工业和信息化部 应急管理部关于印发《“工业互联网+安全生产”行动计划（2021-2023年）》的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2020-10-15",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2020-10-15",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/市经济信息化委等关于印发《上海市促进智能机器人产业高质量 创新发展行动方案（2023-2025年）》的通知.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2023-10-26",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2023-10-26",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "notice",
+          "filename_value": "notice"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/洋浦港鼓励靠泊船舶使用岸电扶持暂行办法.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-12-05",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-12-05",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "notice",
+          "source": "body_primary_conflict_filename",
+          "conflict": true,
+          "body_value": "notice",
+          "filename_value": "measure"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/01_政策文本/荣成市 2022 年农村清洁取暖工作实施方案.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2022-01-10",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2022-01-10",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": "plan"
+        },
+        "document_no": {
+          "value": null,
+          "source": "missing",
+          "conflict": false,
+          "body_value": null,
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni0.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-12-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-12-18",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "plan",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "plan",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": "怀农发〔2022〕18号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "怀农发〔2022〕18号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni1.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-12-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-12-18",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": "怀农发〔2022〕18号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "怀农发〔2022〕18号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni2.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-12-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-12-18",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": "怀农发〔2022〕18号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "怀农发〔2022〕18号",
+          "filename_value": null
+        }
+      }
+    },
+    {
+      "source_path": "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni4.txt",
+      "fields": {
+        "issue_date": {
+          "value": "2024-12-18",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "2024-12-18",
+          "filename_value": null
+        },
+        "doc_type": {
+          "value": "opinion",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "opinion",
+          "filename_value": null
+        },
+        "document_no": {
+          "value": "长政发〔2017〕50号",
+          "source": "body_primary",
+          "conflict": false,
+          "body_value": "长政发〔2017〕50号",
+          "filename_value": null
+        }
+      }
+    }
+  ]
+}

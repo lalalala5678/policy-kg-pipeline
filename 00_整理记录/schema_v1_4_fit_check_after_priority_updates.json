@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-02-09 18:20:34",
+  "priority1": {
+    "total_docs": 151,
+    "before_coverage": {
+      "issue_date": 126,
+      "doc_type": 149,
+      "document_no": 12
+    },
+    "after_coverage": {
+      "issue_date": 126,
+      "doc_type": 149,
+      "document_no": 13
+    },
+    "before_coverage_rate": {
+      "issue_date": 83.44,
+      "doc_type": 98.68,
+      "document_no": 7.95
+    },
+    "after_coverage_rate": {
+      "issue_date": 83.44,
+      "doc_type": 98.68,
+      "document_no": 8.61
+    },
+    "filename_compensation_count": {
+      "issue_date": 0,
+      "doc_type": 0,
+      "document_no": 1
+    },
+    "conflict_count": {
+      "issue_date": 0,
+      "doc_type": 7,
+      "document_no": 0
+    }
+  },
+  "priority2": {
+    "total_docs": 151,
+    "total_clauses": 1957,
+    "task_clauses": 279,
+    "docs_with_task_clause": 60,
+    "task_field_coverage": {
+      "task_subject": 27.24,
+      "task_action": 93.19,
+      "task_deadline": 34.41,
+      "task_assessment": 10.39
+    }
+  },
+  "priority3": {
+    "evaluation_mode": "uie_proxy_keyword_baseline",
+    "doc_count": 25,
+    "micro_precision": 1.0,
+    "micro_recall": 1.0,
+    "false_positive_rate": 0.0,
+    "doc_exact_match_rate": 1.0
+  },
+  "priority4": {
+    "passed": true,
+    "return_code": 0
+  },
+  "output_files": {
+    "priority1": "00_整理记录/priority1_doc_meta_compensation.json",
+    "priority2": "00_整理记录/priority2_task_clause_structured.jsonl",
+    "priority3": "00_整理记录/priority3_uie_weak_value_eval.json",
+    "priority4": "00_整理记录/priority4_normalization_tests.json"
+  }
+}
