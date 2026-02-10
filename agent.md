@@ -1,11 +1,12 @@
 ﻿# AGENT.md — 政策三元组抽取与知识图谱推演任务说明
 
-更新时间：2026-02-09（step3 preprocess + qc）
+更新时间：2026-02-09（step4 iterative kb optimization）
 
 ## 当前执行状态
 - Step 1（领域 Schema 设计）：已完成
 - Step 2（样本文档抽样与标注规范）：已完成
 - Step 3（预处理与切分策略）：已完成
+- Step 4（UIE 基线抽取 + 可导入性迭代优化）：已完成（达到良好阈值）
 - 交付文件：
   - `00_整理记录/schema_v1.yaml`（v1.4，已修复枚举冲突并扩展工程参数适配）
   - `00_整理记录/schema_step1_readthrough_report.md`
@@ -30,6 +31,23 @@
   - `00_整理记录/scripts/step3_preprocess_utils.py`
   - `00_整理记录/scripts/run_step3_preprocess.py`
   - `step3.md`
+  - `00_整理记录/scripts/run_step4_uie_baseline.py`
+  - `00_整理记录/step4_gpu_doc_doc_predictions.jsonl`
+  - `00_整理记录/step4_gpu_doc_summary.json`
+  - `00_整理记录/step4_gpu_clause_clause_predictions.jsonl`
+  - `00_整理记录/step4_gpu_clause_summary.json`
+  - `00_整理记录/step4_gpu_run.md`
+  - `00_整理记录/step4_iter0_baseline_kb_score.json`
+  - `00_整理记录/step4_iter1_v1_kb_score.json`
+  - `00_整理记录/step4_iter2_v2_kb_score.json`
+  - `00_整理记录/step4_iter3_v2plus_kb_score.json`
+  - `00_整理记录/step4_iter3_v2plus_clause_predictions.jsonl`
+  - `00_整理记录/step4_iter3_v2plus_doc_predictions.jsonl`
+  - `00_整理记录/step4_iteration_scores.md`
+  - `00_整理记录/scripts/step4_kb_postfill_optimize.py`
+  - `00_整理记录/scripts/step4_kb_score.py`
+  - `00_整理记录/scripts/build_step4_iteration_report.py`
+  - `step4.md`
 - 说明：
   - Step 1 基于全量 151 份政策文本通读统计，不是抽样推断。
   - Step 2 在排除 `02_汇总拼接` 与压缩包目录后，对 147 份独立政策文本做主题抽样；每主题 8 份，去重样本池 38 份。
@@ -84,6 +102,7 @@
 4. UIE 基线抽取
    - 使用 Schema prompt 做零样本推理
    - 产出初版结构化结果，识别误抽点
+   - 当前状态：已完成 GPU 全量基线（317 doc + 2022 clause），并完成迭代优化（baseline->v1->v2->v2plus）
 
 5. 规则化归一与校验
    - 正则/词典/单位解析器

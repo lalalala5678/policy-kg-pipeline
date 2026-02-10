@@ -1,0 +1,42 @@
+{
+  "metrics": {
+    "doc_total": 317,
+    "clause_total": 2022,
+    "parse_ok_rate": 1.0,
+    "schema_key_complete_rate": 1.0,
+    "raw_value_span_valid_rate": 1.0,
+    "mechanism_evidence_rate": 0.0,
+    "doc_min_ready_rate": 0.73817,
+    "doc_rich_ready_rate": 0.148265,
+    "mechanism_non_empty_rate": 0.0,
+    "clause_type_non_empty_rate": 0.0,
+    "raw_non_empty_rate": 0.043521,
+    "raw_numeric_rate_among_raw": 0.125,
+    "task_ready_rate": 0.1182,
+    "param_bind_rate": 0.0,
+    "strict_triplet_ready_rate": 0.0,
+    "counts": {
+      "mechanism_non_empty": 0,
+      "clause_type_non_empty": 0,
+      "raw_non_empty": 88,
+      "raw_numeric_clause": 11,
+      "task_ready": 239,
+      "param_bind_true": 0,
+      "param_bind_total_raw_clause": 88,
+      "strict_triplet_ready": 0,
+      "raw_item_total": 99,
+      "raw_item_span_ok": 99,
+      "mechanism_item_total": 0,
+      "mechanism_item_evidence_ok": 0
+    }
+  },
+  "scores": {
+    "structure_score": 20.0,
+    "evidence_score": 10.0,
+    "doc_score": 8.418,
+    "clause_score": 1.064,
+    "total_score": 39.482
+  },
+  "good_threshold": 75.0,
+  "is_good": false
+}

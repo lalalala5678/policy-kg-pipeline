@@ -1,0 +1,18 @@
+{
+  "mode": "v1",
+  "stats": {
+    "clause_type_filled": 2022,
+    "mechanism_filled_by_pattern": 1315,
+    "mechanism_filled_by_fallback": 0,
+    "raw_value_filled_by_rule": 0,
+    "raw_unit_filled_by_rule": 0,
+    "direction_filled_by_rule": 0,
+    "task_filled_by_rule": 0,
+    "bind_true_count": 44,
+    "bind_total_raw_clause": 88,
+    "doc_title_filled": 317,
+    "doc_issue_date_filled": 82,
+    "doc_document_no_filled": 8,
+    "doc_org_name_filled": 58
+  }
+}

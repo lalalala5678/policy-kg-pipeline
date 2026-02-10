@@ -1,0 +1,169 @@
+{
+  "generated_at": "2026-02-09 20:31:17",
+  "run_config": {
+    "stages": "doc",
+    "device": "gpu:0",
+    "doc_limit": 0,
+    "clause_limit": 0,
+    "batch_size": 16,
+    "doc_text_max_chars": 1600,
+    "clause_text_max_chars": 400,
+    "min_prob": 0.3
+  },
+  "input": {
+    "doc_source_file": "00_整理记录/step3_document_corpus.jsonl",
+    "clause_source_file": "00_整理记录/step3_clause_corpus.jsonl",
+    "doc_count": 317,
+    "clause_count": 0
+  },
+  "doc_level": {
+    "elapsed_sec": 59.735,
+    "throughput_doc_per_sec": 5.307,
+    "non_empty_field_count": {
+      "title": 0,
+      "document_no": 2,
+      "issue_date": 132,
+      "effective_start_date": 111,
+      "effective_end_date": 38,
+      "org_name": 139,
+      "region_name": 33,
+      "target_name": 21
+    },
+    "non_empty_field_rate": {
+      "title": 0.0,
+      "document_no": 0.006309,
+      "issue_date": 0.416404,
+      "effective_start_date": 0.350158,
+      "effective_end_date": 0.119874,
+      "org_name": 0.438486,
+      "region_name": 0.104101,
+      "target_name": 0.066246
+    },
+    "run_stats": {
+      "batch_error_count": 0,
+      "item_error_count": 0
+    },
+    "top_source_by_hit": [
+      [
+        "01_电价政策/02_阶梯与差别电价/2012年5月 湖北省物价局关于实施居民阶梯电价试行方案的通知.txt",
+        6
+      ],
+      [
+        "01_电价政策/02_阶梯与差别电价/2012年6月19日 辽宁省物价局关于我省居民生活用电试行阶梯电价的通知.txt",
+        6
+      ],
+      [
+        "01_电价政策/02_阶梯与差别电价/2018年12月29日 山东省发展改革委关于炼化和焦化企业生产用电实行阶梯电价政.txt",
+        6
+      ],
+      [
+        "01_电价政策/02_阶梯与差别电价/2012年6月15日 山西省物价局关于对我省居民生活用电试行阶梯电价的通知.txt",
+        5
+      ],
+      [
+        "01_电价政策/02_阶梯与差别电价/2013年6月17日 青海省发展和改革委员会关于试行居民阶梯电价的通知.txt",
+        5
+      ],
+      [
+        "01_电价政策/01_分时电价/2021年12月24日 天津市发展改革委关于峰谷分时电价政策有关事项的通知.txt",
+        4
+      ],
+      [
+        "01_电价政策/02_阶梯与差别电价/2012年6月20日 河南省发展和改革委员会关于河南省居民生活用电试行阶梯电价的.txt",
+        4
+      ],
+      [
+        "01_电价政策/02_阶梯与差别电价/2019年7月9日 山东省发展和改革委员会关于居民阶梯电价制度有关事项的通知.txt",
+        4
+      ],
+      [
+        "01_电价政策/03_综合与其他/2021年10月14日 甘肃省发展和改革委员会关于转发国家发展改革委关于完善电解.txt",
+        4
+      ],
+      [
+        "02_电能替代与清洁取暖/01_政策文本/《交通运输部关于印发船舶大气污染物排放控制区实施方案的通知》.txt",
+        4
+      ],
+      [
+        "02_电能替代与清洁取暖/01_政策文本/《山东发改委关于完善清洁取暖价格政策的通知》.txt",
+        4
+      ],
+      [
+        "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni1.txt#chunk_31",
+        4
+      ],
+      [
+        "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni2.txt#chunk_31",
+        4
+      ],
+      [
+        "02_电能替代与清洁取暖/02_汇总拼接/电气化、电能替代txt文件_uni4.txt#chunk_34",
+        4
+      ],
+      [
+        "01_电价政策/01_分时电价/2021年11月4日 湖南省发展改革委关于进一步完善分时电价政策及有关事项的通知.txt",
+        3
+      ],
+      [
+        "01_电价政策/01_分时电价/2021年8月31日 广东省发展改革委关于进一步完善我省峰谷分时电价政策有关问题.txt",
+        3
+      ],
+      [
+        "01_电价政策/01_分时电价/2022年12月6日 河北发改委印发《关于明确居民峰谷分时电价政策的通知》.txt",
+        3
+      ],
+      [
+        "01_电价政策/01_分时电价/2023年5月13日 重庆市发展和改革委员会关于建立居民分时电价机制的通知.txt",
+        3
+      ],
+      [
+        "01_电价政策/01_分时电价/2023年6月27日 贵州省发展和改革委员会关于完善峰谷分时电价机制有关事项的通.txt",
+        3
+      ],
+      [
+        "01_电价政策/01_分时电价/2023年7月31日 广西壮族自治区发展和改革委员会关于优化峰谷分时电价机制的通.txt",
+        3
+      ]
+    ]
+  },
+  "clause_level": {
+    "elapsed_sec": 0.0,
+    "throughput_clause_per_sec": null,
+    "non_empty_field_count": {
+      "mechanism_type": 0,
+      "mechanism_name": 0,
+      "clause_type": 0,
+      "raw_value": 0,
+      "raw_unit": 0,
+      "direction": 0,
+      "condition_text": 0,
+      "task_subject": 0,
+      "task_action": 0,
+      "task_deadline": 0,
+      "task_assessment": 0
+    },
+    "non_empty_field_rate": {
+      "mechanism_type": 0.0,
+      "mechanism_name": 0.0,
+      "clause_type": 0.0,
+      "raw_value": 0.0,
+      "raw_unit": 0.0,
+      "direction": 0.0,
+      "condition_text": 0.0,
+      "task_subject": 0.0,
+      "task_action": 0.0,
+      "task_deadline": 0.0,
+      "task_assessment": 0.0
+    },
+    "run_stats": {
+      "batch_error_count": 0,
+      "item_error_count": 0,
+      "truncated_input_count": 0
+    },
+    "top_source_by_hit": []
+  },
+  "artifacts": {
+    "doc_predictions": "00_整理记录/step4_gpu_doc_doc_predictions.jsonl",
+    "clause_predictions": "00_整理记录/step4_gpu_doc_clause_predictions.jsonl"
+  }
+}

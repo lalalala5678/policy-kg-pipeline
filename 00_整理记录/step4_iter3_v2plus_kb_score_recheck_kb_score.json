@@ -1,0 +1,42 @@
+{
+  "metrics": {
+    "doc_total": 317,
+    "clause_total": 2022,
+    "parse_ok_rate": 1.0,
+    "schema_key_complete_rate": 1.0,
+    "raw_value_span_valid_rate": 1.0,
+    "mechanism_evidence_rate": 1.0,
+    "doc_min_ready_rate": 0.842271,
+    "doc_rich_ready_rate": 0.470032,
+    "mechanism_non_empty_rate": 0.781405,
+    "clause_type_non_empty_rate": 1.0,
+    "raw_non_empty_rate": 0.290307,
+    "raw_numeric_rate_among_raw": 0.972743,
+    "task_ready_rate": 0.279426,
+    "param_bind_rate": 0.88075,
+    "strict_triplet_ready_rate": 0.251731,
+    "counts": {
+      "mechanism_non_empty": 1580,
+      "clause_type_non_empty": 2022,
+      "raw_non_empty": 587,
+      "raw_numeric_clause": 571,
+      "task_ready": 565,
+      "param_bind_true": 517,
+      "param_bind_total_raw_clause": 587,
+      "strict_triplet_ready": 509,
+      "raw_item_total": 1180,
+      "raw_item_span_ok": 1180,
+      "mechanism_item_total": 1580,
+      "mechanism_item_evidence_ok": 1580
+    }
+  },
+  "scores": {
+    "structure_score": 20.0,
+    "evidence_score": 20.0,
+    "doc_score": 10.959,
+    "clause_score": 25.373,
+    "total_score": 76.332
+  },
+  "good_threshold": 75.0,
+  "is_good": true
+}

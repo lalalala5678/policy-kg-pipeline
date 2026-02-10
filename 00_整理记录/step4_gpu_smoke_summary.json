@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-02-09 20:29:59",
+  "run_config": {
+    "stages": "doc",
+    "device": "gpu:0",
+    "doc_limit": 3,
+    "clause_limit": 0,
+    "batch_size": 3,
+    "doc_text_max_chars": 1600,
+    "clause_text_max_chars": 400,
+    "min_prob": 0.3
+  },
+  "input": {
+    "doc_source_file": "00_整理记录/step3_document_corpus.jsonl",
+    "clause_source_file": "00_整理记录/step3_clause_corpus.jsonl",
+    "doc_count": 3,
+    "clause_count": 0
+  },
+  "doc_level": {
+    "elapsed_sec": 0.802,
+    "throughput_doc_per_sec": 3.74,
+    "non_empty_field_count": {
+      "title": 0,
+      "document_no": 0,
+      "issue_date": 0,
+      "effective_start_date": 2,
+      "effective_end_date": 0,
+      "org_name": 2,
+      "region_name": 0,
+      "target_name": 0
+    },
+    "non_empty_field_rate": {
+      "title": 0.0,
+      "document_no": 0.0,
+      "issue_date": 0.0,
+      "effective_start_date": 0.666667,
+      "effective_end_date": 0.0,
+      "org_name": 0.666667,
+      "region_name": 0.0,
+      "target_name": 0.0
+    },
+    "run_stats": {
+      "batch_error_count": 0,
+      "item_error_count": 0
+    },
+    "top_source_by_hit": [
+      [
+        "01_电价政策/01_分时电价/2021年11月23日 广西壮族自治区发展和改革委员会关于完善我区峰谷分时电价机.txt",
+        2
+      ],
+      [
+        "01_电价政策/01_分时电价/2021年11月23日 陕西省发展和改革委员会关于进一步完善分时电价机制有关事项.txt",
+        2
+      ]
+    ]
+  },
+  "clause_level": {
+    "elapsed_sec": 0.0,
+    "throughput_clause_per_sec": null,
+    "non_empty_field_count": {
+      "mechanism_type": 0,
+      "mechanism_name": 0,
+      "clause_type": 0,
+      "raw_value": 0,
+      "raw_unit": 0,
+      "direction": 0,
+      "condition_text": 0,
+      "task_subject": 0,
+      "task_action": 0,
+      "task_deadline": 0,
+      "task_assessment": 0
+    },
+    "non_empty_field_rate": {
+      "mechanism_type": 0.0,
+      "mechanism_name": 0.0,
+      "clause_type": 0.0,
+      "raw_value": 0.0,
+      "raw_unit": 0.0,
+      "direction": 0.0,
+      "condition_text": 0.0,
+      "task_subject": 0.0,
+      "task_action": 0.0,
+      "task_deadline": 0.0,
+      "task_assessment": 0.0
+    },
+    "run_stats": {
+      "batch_error_count": 0,
+      "item_error_count": 0,
+      "truncated_input_count": 0
+    },
+    "top_source_by_hit": []
+  },
+  "artifacts": {
+    "doc_predictions": "00_整理记录/step4_gpu_smoke_doc_predictions.jsonl",
+    "clause_predictions": "00_整理记录/step4_gpu_smoke_clause_predictions.jsonl"
+  }
+}
