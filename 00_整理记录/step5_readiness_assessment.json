@@ -1,0 +1,79 @@
+{
+  "manual_review_summary_file": "00_整理记录/step5_manual_gold_review40_summary.json",
+  "thresholds_full_readiness": {
+    "normalization_precision_on_matched": 0.85,
+    "mechanism_binding_precision_on_valid": 0.85,
+    "strict_usable_rate_on_valid": 0.7,
+    "unmatched_decision_precision": 0.9
+  },
+  "threshold_checks": {
+    "normalization_precision_on_matched": false,
+    "mechanism_binding_precision_on_valid": false,
+    "strict_usable_rate_on_valid": false,
+    "unmatched_decision_precision": true
+  },
+  "decision": {
+    "ready_for_next_step_full": false,
+    "ready_for_next_step_partial": true,
+    "recommended_mode": "partial"
+  },
+  "metrics": {
+    "valid_parameter_rate": 0.775,
+    "normalization_precision_on_matched": 0.7,
+    "unmatched_decision_precision": 0.9,
+    "mechanism_binding_precision_on_valid": 0.741935,
+    "strict_usable_rate_on_valid": 0.516129,
+    "strict_usable_rate_on_sample": 0.4
+  },
+  "rule_level": {
+    "normalization_precision": {
+      "kwh_threshold": {
+        "ok": 3,
+        "n": 8,
+        "precision": 0.375
+      },
+      "percent_numeric": {
+        "ok": 10,
+        "n": 10,
+        "precision": 1.0
+      },
+      "time_window": {
+        "ok": 5,
+        "n": 6,
+        "precision": 0.833333
+      },
+      "yuan_generic": {
+        "ok": 3,
+        "n": 6,
+        "precision": 0.5
+      }
+    },
+    "mechanism_binding_precision_on_valid": {
+      "kwh_threshold": {
+        "ok": 6,
+        "n": 8,
+        "precision": 0.75
+      },
+      "no_match": {
+        "ok": 0,
+        "n": 1,
+        "precision": 0.0
+      },
+      "percent_numeric": {
+        "ok": 6,
+        "n": 10,
+        "precision": 0.6
+      },
+      "time_window": {
+        "ok": 6,
+        "n": 6,
+        "precision": 1.0
+      },
+      "yuan_generic": {
+        "ok": 5,
+        "n": 6,
+        "precision": 0.833333
+      }
+    }
+  }
+}

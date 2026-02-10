@@ -1,0 +1,51 @@
+{
+  "metrics": {
+    "doc_total": 317,
+    "clause_total": 2022,
+    "parse_ok_rate": 1.0,
+    "schema_key_complete_rate": 1.0,
+    "raw_value_span_valid_rate": 1.0,
+    "mechanism_evidence_rate": 0.973258,
+    "doc_min_ready_rate": 0.842271,
+    "doc_rich_ready_rate": 0.470032,
+    "mechanism_non_empty_rate": 0.70277,
+    "mechanism_non_empty_rate_high_conf": 0.683976,
+    "low_conf_mechanism_clause_rate": 0.018793,
+    "clause_type_non_empty_rate": 1.0,
+    "raw_non_empty_rate": 0.355094,
+    "raw_numeric_rate_among_raw": 0.980501,
+    "task_ready_rate": 0.279426,
+    "param_bind_rate": 0.78273,
+    "strict_triplet_ready_rate": 0.27547,
+    "strict_triplet_ready_rate_all": 0.27547,
+    "strict_triplet_ready_rate_high_conf": 0.271019,
+    "counts": {
+      "mechanism_non_empty": 1421,
+      "mechanism_non_empty_high_conf": 1383,
+      "low_conf_mechanism_clause": 38,
+      "clause_type_non_empty": 2022,
+      "raw_non_empty": 718,
+      "raw_numeric_clause": 704,
+      "task_ready": 565,
+      "param_bind_true": 562,
+      "param_bind_total_raw_clause": 718,
+      "strict_triplet_ready": 557,
+      "strict_triplet_ready_high_conf": 548,
+      "raw_item_total": 1357,
+      "raw_item_span_ok": 1357,
+      "mechanism_item_total": 1421,
+      "mechanism_item_evidence_ok": 1383
+    }
+  },
+  "scores": {
+    "structure_score": 20.0,
+    "evidence_score": 19.733,
+    "doc_score": 10.959,
+    "clause_score": 24.103,
+    "total_score": 74.795,
+    "clause_score_high_conf": 23.874,
+    "total_score_high_conf": 74.566
+  },
+  "good_threshold": 75.0,
+  "is_good": false
+}

@@ -406,70 +406,433 @@ def evaluate_weak_value_set(annotation_set: List[Dict]) -> Dict:
     return summary
 
 
-def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, object]:
-    merged = f"{raw_text} {context_text}".strip()
+CN_NUM_DIGITS: Dict[str, int] = {
+    "\u96f6": 0,
+    "\u3007": 0,
+    "\u4e00": 1,
+    "\u4e8c": 2,
+    "\u4e24": 2,
+    "\u4e09": 3,
+    "\u56db": 4,
+    "\u4e94": 5,
+    "\u516d": 6,
+    "\u4e03": 7,
+    "\u516b": 8,
+    "\u4e5d": 9,
+    "\u58f9": 1,
+    "\u8d30": 2,
+    "\u53c1": 3,
+    "\u8086": 4,
+    "\u4f0d": 5,
+    "\u9646": 6,
+    "\u67d2": 7,
+    "\u634c": 8,
+    "\u7396": 9,
+}
 
-    # Priority 1: yuan/degree must normalize before generic yuan.
-    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/\u5ea6", merged)
-    if m:
-        return {
-            "matched": True,
-            "rule": "yuan_per_degree_to_yuan_per_kwh",
-            "param_type": "price_value",
-            "norm_value": float(m.group("value")),
-            "norm_unit": "yuan_per_kwh",
-        }
+CN_NUM_SMALL_UNITS: Dict[str, int] = {"\u5341": 10, "\u767e": 100, "\u5343": 1000}
+CN_NUM_LARGE_UNITS: Dict[str, int] = {"\u4e07": 10000, "\u4ebf": 100000000}
 
-    # Priority 2: ten-thousand yuan per village should be captured before plain ten-thousand yuan.
-    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u4e07\u5143/\u6751", merged)
-    if m:
-        return {
-            "matched": True,
-            "rule": "ten_thousand_yuan_per_village",
-            "param_type": "subsidy_amount",
-            "norm_value": float(m.group("value")),
-            "norm_unit": "ten_thousand_yuan",
-            "scope_unit": "village",
-        }
+CN_NUM_BODY = "\u96f6\u3007\u4e00\u4e8c\u4e24\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341\u767e\u5343\u4e07\u4ebf\u58f9\u8d30\u53c1\u8086\u4f0d\u9646\u67d2\u634c\u7396\u70b9"
+DATE_LIKE_VALUE_RE = re.compile(r"^(?:19|20)\d{2}(?:[-/\.年]\d{1,2}){1,2}(?:\u65e5)?$")
+YEAR_ONLY_RE = re.compile(r"^(?:19|20)\d{2}$")
+ARTICLE_NO_RE = re.compile(r"^\s*\u7b2c[\u4e00-\u9fa5\d]+\s*[\u6761\u6b3e\u9879]\s*$")
+TIME_WINDOW_VALUE_RE = re.compile(
+    r"(?P<start>[0-2]?\d[:\uFF1A][0-5]\d)\s*[-~\u81f3\u5230]\s*(?P<end>[0-2]?\d[:\uFF1A][0-5]\d)"
+)
+RATIO_VALUE_RE = re.compile(r"(?P<value>\d+(?:\.\d+)?\s*:\s*\d+(?:\.\d+)?(?:\s*:\s*\d+(?:\.\d+)?)?)")
+SUBSIDY_CUES_RE = re.compile(r"\u8865\u8d34|\u8865\u52a9|\u5956\u52b1|\u5956\u8865|\u8d44\u52a9|\u8865\u507f")
+PRICE_CUES_RE = re.compile(r"\u7535\u4ef7|\u4ef7\u5dee|\u5206\u65f6|\u5cf0\u8c37|\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7")
+THRESHOLD_CUES_RE = re.compile(
+    r"\u4e0d\u8d85\u8fc7|\u4e0d\u9ad8\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u5c11\u4e8e|\u4ee5\u4e0a|\u4ee5\u4e0b|\u4ee5\u5185|\u81f3\u5c11|\u6700\u9ad8|\u6700\u4f4e|\u8fbe\u5230|\u8d85\u8fc7"
+)
+PREFIX_FILTER_RE = re.compile(
+    r"^\s*(?:\u4e0d\u8d85\u8fc7|\u4e0d\u9ad8\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u5c11\u4e8e|\u4e0d\u5f97\u4f4e\u4e8e|\u4ee5\u4e0a|\u4ee5\u4e0b|\u4ee5\u5185|\u81f3\u5c11|\u6700\u9ad8|\u6700\u4f4e|\u7ea6|\u5927\u7ea6|\u7ea6\u4e3a|\u8fbe\u5230)\s*"
+)
 
-    # Priority 3: tonnage class must be treated as tonnage threshold.
-    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u4e07?\u5428\u7ea7", merged)
-    if m:
-        value = float(m.group("value"))
-        if "\u4e07\u5428\u7ea7" in merged:
-            value = value * 10000.0
-        return {
-            "matched": True,
-            "rule": "tonnage_class_threshold",
-            "param_type": "tonnage_threshold",
-            "norm_value": value,
-            "norm_unit": "ton",
-        }
 
-    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u4e07\u5143", merged)
-    if m:
-        return {
-            "matched": True,
-            "rule": "ten_thousand_yuan_generic",
-            "param_type": "subsidy_amount",
-            "norm_value": float(m.group("value")),
-            "norm_unit": "ten_thousand_yuan",
-        }
+def _normalize_time_token(value: str) -> str:
+    if not value:
+        return value
+    parts = value.replace("\uFF1A", ":").split(":")
+    if len(parts) != 2:
+        return value.replace("\uFF1A", ":")
+    hh = f"{int(parts[0]):02d}"
+    mm = f"{int(parts[1]):02d}"
+    return f"{hh}:{mm}"
 
-    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143", merged)
-    if m:
-        return {
-            "matched": True,
-            "rule": "yuan_generic",
-            "param_type": "subsidy_amount",
-            "norm_value": float(m.group("value")),
-            "norm_unit": "yuan",
-        }
 
+def _parse_cn_integer(token: str) -> Optional[int]:
+    if not token:
+        return None
+    total = 0
+    section = 0
+    number = 0
+    has_known = False
+    for ch in token:
+        if ch in CN_NUM_DIGITS:
+            number = CN_NUM_DIGITS[ch]
+            has_known = True
+            continue
+        if ch in CN_NUM_SMALL_UNITS:
+            unit = CN_NUM_SMALL_UNITS[ch]
+            if number == 0:
+                number = 1
+            section += number * unit
+            number = 0
+            has_known = True
+            continue
+        if ch in CN_NUM_LARGE_UNITS:
+            unit = CN_NUM_LARGE_UNITS[ch]
+            section += number
+            if section == 0:
+                section = 1
+            total += section * unit
+            section = 0
+            number = 0
+            has_known = True
+            continue
+        if ch.isspace():
+            continue
+        return None
+    if not has_known:
+        return None
+    return total + section + number
+
+
+def _parse_number_token(token: str) -> Optional[float]:
+    if token is None:
+        return None
+    cleaned = token.strip().replace(",", "").replace("\uff0c", "")
+    cleaned = PREFIX_FILTER_RE.sub("", cleaned)
+    if not cleaned:
+        return None
+    if cleaned.startswith("\u767e\u5206\u4e4b"):
+        pct_raw = cleaned[len("\u767e\u5206\u4e4b") :]
+        pct_val = _parse_number_token(pct_raw)
+        return pct_val
+    if re.fullmatch(r"[+-]?\d+(?:\.\d+)?", cleaned):
+        return float(cleaned)
+    if "\u70b9" in cleaned:
+        int_part, frac_part = cleaned.split("\u70b9", 1)
+        int_val = _parse_cn_integer(int_part) if int_part else 0
+        if int_val is None:
+            return None
+        frac_digits: List[str] = []
+        for ch in frac_part:
+            if ch in CN_NUM_DIGITS:
+                frac_digits.append(str(CN_NUM_DIGITS[ch]))
+                continue
+            if ch.isspace():
+                continue
+            return None
+        if not frac_digits:
+            return float(int_val)
+        return float(f"{int_val}.{''.join(frac_digits)}")
+    int_val = _parse_cn_integer(cleaned)
+    return float(int_val) if int_val is not None else None
+
+
+def _base_normalize_result(rule: str) -> Dict[str, object]:
     return {
-        "matched": False,
-        "rule": "no_match",
+        "matched": True,
+        "rule": rule,
         "param_type": None,
         "norm_value": None,
         "norm_unit": None,
+        "norm_start": None,
+        "norm_end": None,
+        "range_start": None,
+        "range_end": None,
+        "op": None,
+        "scope_unit": None,
     }
+
+
+def _base_unmatched_result(rule: str) -> Dict[str, object]:
+    return {
+        "matched": False,
+        "rule": rule,
+        "param_type": None,
+        "norm_value": None,
+        "norm_unit": None,
+        "norm_start": None,
+        "norm_end": None,
+        "range_start": None,
+        "range_end": None,
+        "op": None,
+        "scope_unit": None,
+    }
+
+
+def _pick_search_space(raw_no_space: str, merged_no_space: str) -> Tuple[str, str]:
+    # Prefer the extracted mention text itself to avoid context leakage.
+    # Context is only used for cue disambiguation or rare fallback.
+    return raw_no_space, merged_no_space
+
+
+def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, object]:
+    raw = (raw_text or "").strip()
+    context = (context_text or "").strip()
+    raw_no_space = re.sub(r"\s+", "", raw)
+    merged = f"{raw} {context}".strip()
+    merged_no_space = re.sub(r"\s+", "", merged)
+    primary_space, fallback_space = _pick_search_space(raw_no_space, merged_no_space)
+
+    if not raw:
+        return _base_unmatched_result("empty_value")
+    if DATE_LIKE_VALUE_RE.fullmatch(raw):
+        return _base_unmatched_result("date_like_filtered")
+    if YEAR_ONLY_RE.fullmatch(raw):
+        return _base_unmatched_result("year_like_filtered")
+    if ARTICLE_NO_RE.fullmatch(raw):
+        return _base_unmatched_result("article_no_filtered")
+
+    m = TIME_WINDOW_VALUE_RE.search(primary_space)
+    if m:
+        start = _normalize_time_token(m.group("start"))
+        end = _normalize_time_token(m.group("end"))
+        out = _base_normalize_result("time_window")
+        out["param_type"] = "time_window"
+        out["norm_value"] = f"{start}-{end}"
+        out["norm_unit"] = "time_window"
+        out["norm_start"] = start
+        out["norm_end"] = end
+        out["op"] = "between"
+        return out
+
+    for text in (primary_space, fallback_space):
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/\u5ea6", text)
+        if m:
+            out = _base_normalize_result("yuan_per_degree_to_yuan_per_kwh")
+            out["param_type"] = "price_value"
+            out["norm_value"] = float(m.group("value"))
+            out["norm_unit"] = "yuan_per_kwh"
+            return out
+
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5206/\u5343\u74e6\u65f6", text)
+        if m:
+            out = _base_normalize_result("fen_per_kwh_to_yuan_per_kwh")
+            out["param_type"] = "price_value"
+            out["norm_value"] = float(m.group("value")) / 100.0
+            out["norm_unit"] = "yuan_per_kwh"
+            return out
+
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/\u5343\u74e6\u65f6", text)
+        if m:
+            out = _base_normalize_result("yuan_per_kwh")
+            out["param_type"] = "price_value"
+            out["norm_value"] = float(m.group("value"))
+            out["norm_unit"] = "yuan_per_kwh"
+            return out
+
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u4e07\u5143/\u6751", text)
+        if m:
+            out = _base_normalize_result("ten_thousand_yuan_per_village")
+            out["param_type"] = "subsidy_amount"
+            out["norm_value"] = float(m.group("value"))
+            out["norm_unit"] = "ten_thousand_yuan"
+            out["scope_unit"] = "village"
+            return out
+
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/(?:\u5e73\u65b9\u7c73|\u33a1|m2|M2)", text)
+        if m:
+            out = _base_normalize_result("yuan_per_sqm")
+            out["param_type"] = "area_subsidy_amount"
+            out["norm_value"] = float(m.group("value"))
+            out["norm_unit"] = "yuan_per_sqm"
+            return out
+
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/\u74e6", text)
+        if m:
+            out = _base_normalize_result("yuan_per_watt")
+            out["param_type"] = "subsidy_amount"
+            out["norm_value"] = float(m.group("value"))
+            out["norm_unit"] = "yuan_per_watt"
+            return out
+
+        m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/(?:\u603b\u5428|\u5428)", text)
+        if m:
+            out = _base_normalize_result("yuan_per_ton")
+            out["param_type"] = "subsidy_amount"
+            out["norm_value"] = float(m.group("value"))
+            out["norm_unit"] = "yuan_per_ton"
+            return out
+
+    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*[%\uFF05]", primary_space)
+    if m:
+        out = _base_normalize_result("percent_numeric")
+        out["param_type"] = "price_delta_pct" if PRICE_CUES_RE.search(merged) else "ratio_target"
+        out["norm_value"] = float(m.group("value"))
+        out["norm_unit"] = "percent"
+        return out
+
+    m = re.search(r"\u767e\u5206\u4e4b(?P<value>[" + CN_NUM_BODY + r"\d\.]+)", primary_space)
+    if m:
+        pct = _parse_number_token(m.group("value"))
+        if pct is not None:
+            out = _base_normalize_result("percent_chinese")
+            out["param_type"] = "price_delta_pct" if PRICE_CUES_RE.search(merged) else "ratio_target"
+            out["norm_value"] = pct
+            out["norm_unit"] = "percent"
+            return out
+
+    m = RATIO_VALUE_RE.search(primary_space)
+    if m:
+        out = _base_normalize_result("ratio_sequence")
+        out["param_type"] = "ratio_target"
+        out["norm_value"] = m.group("value").replace(" ", "")
+        out["norm_unit"] = "none"
+        return out
+
+    m = re.search(
+        r"(?P<start>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*[-~\u81f3\u5230]\s*(?P<end>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6)",
+        primary_space,
+    )
+    if m:
+        start_val = _parse_number_token(m.group("start"))
+        end_val = _parse_number_token(m.group("end"))
+        if start_val is not None and end_val is not None:
+            out = _base_normalize_result("kwh_threshold_range")
+            out["param_type"] = "consumption_threshold_kwh"
+            out["norm_value"] = float(end_val)
+            out["norm_unit"] = "kwh"
+            out["range_start"] = float(start_val)
+            out["range_end"] = float(end_val)
+            out["op"] = "between"
+            return out
+
+    m = re.search(
+        r"(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u4e07\u5343\u74e6|\u5146\u74e6|MW|mw|\u5343\u74e6(?!\u65f6)|kW|kw|W|w|\u5343\u4f0f\u5b89|kVA|kva)",
+        primary_space,
+    )
+    if m:
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            unit_raw = m.group("unit")
+            unit_lower = unit_raw.lower()
+            if unit_raw == "\u4e07\u5343\u74e6":
+                val = val * 10.0
+                norm_unit = "mw"
+            elif unit_raw == "\u5146\u74e6" or unit_lower == "mw":
+                norm_unit = "mw"
+            elif unit_raw == "\u5343\u74e6" or unit_lower == "kw":
+                norm_unit = "kw"
+            elif unit_lower == "w":
+                val = val / 1000.0
+                norm_unit = "kw"
+            else:
+                norm_unit = "kva"
+            out = _base_normalize_result("capacity_value")
+            out["param_type"] = "capacity_threshold" if THRESHOLD_CUES_RE.search(merged) else "other"
+            out["norm_value"] = val
+            out["norm_unit"] = norm_unit
+            return out
+
+    m = re.search(r"(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u5c0f\u65f6|\u65f6)", primary_space)
+    if m:
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            out = _base_normalize_result("duration_hour")
+            out["param_type"] = "duration_threshold_hour"
+            out["norm_value"] = val
+            out["norm_unit"] = "hour"
+            out["op"] = "threshold" if THRESHOLD_CUES_RE.search(merged) else None
+            return out
+
+    m = re.search(r"(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u6237)", primary_space)
+    if m:
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            out = _base_normalize_result("household_count")
+            out["param_type"] = "target_household_count"
+            out["norm_value"] = val
+            out["norm_unit"] = "household"
+            out["op"] = "threshold" if THRESHOLD_CUES_RE.search(merged) else None
+            return out
+
+    m = re.search(
+        r"(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u4e07\u5428\u7ea7|\u4e07\u5428|\u5428\u7ea7|\u84b8\u5428/\u65f6|\u84b8\u5428|\u8f7d\u91cd\u5428|\u603b\u5428|\u5428)",
+        primary_space,
+    )
+    if m:
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            unit_raw = m.group("unit")
+            if unit_raw in ("\u4e07\u5428\u7ea7", "\u4e07\u5428"):
+                val = val * 10000.0
+                norm_unit = "ton"
+            elif unit_raw == "\u84b8\u5428/\u65f6":
+                norm_unit = "ton_per_hour"
+            elif unit_raw in ("\u8f7d\u91cd\u5428", "\u603b\u5428"):
+                norm_unit = "deadweight_ton"
+            else:
+                norm_unit = "ton"
+            out = _base_normalize_result("tonnage_class_threshold" if "\u5428\u7ea7" in unit_raw else "tonnage_value")
+            out["param_type"] = "tonnage_threshold"
+            out["norm_value"] = val
+            out["norm_unit"] = norm_unit
+            return out
+
+    m = re.search(
+        r"(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6)",
+        primary_space,
+    )
+    if m:
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            out = _base_normalize_result("kwh_threshold")
+            out["param_type"] = "consumption_threshold_kwh"
+            out["norm_value"] = val
+            out["norm_unit"] = "kwh"
+            if THRESHOLD_CUES_RE.search(merged):
+                out["op"] = "threshold"
+            return out
+
+    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u4e07\u5143", primary_space)
+    if m:
+        out = _base_normalize_result("ten_thousand_yuan_generic")
+        out["param_type"] = "subsidy_amount"
+        out["norm_value"] = float(m.group("value"))
+        out["norm_unit"] = "ten_thousand_yuan"
+        return out
+
+    m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143", primary_space)
+    if m:
+        out = _base_normalize_result("yuan_generic")
+        if PRICE_CUES_RE.search(merged):
+            out["param_type"] = "price_value"
+        elif SUBSIDY_CUES_RE.search(merged):
+            out["param_type"] = "subsidy_amount"
+        else:
+            out["param_type"] = "subsidy_amount"
+        out["norm_value"] = float(m.group("value"))
+        out["norm_unit"] = "yuan"
+        return out
+
+    m = re.search(
+        r"(?:(?:\u4e0d\u5c11\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u8d85\u8fc7|\u81f3\u5c11)\s*)?(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u4e2a\u6708|\u6708)",
+        primary_space,
+    )
+    if m:
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            out = _base_normalize_result("duration_month")
+            out["param_type"] = "duration_threshold_month"
+            out["norm_value"] = val
+            out["norm_unit"] = "month"
+            out["op"] = "threshold"
+            return out
+
+    m = re.search(r"(?:(?:\u4e0d\u5c11\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u8d85\u8fc7|\u81f3\u5c11)\s*)?(?P<value>[" + CN_NUM_BODY + r"\d\.]+)$", primary_space)
+    if m and re.search(r"\u6708|\u5e74|\u91c7\u6696\u5b63", merged):
+        val = _parse_number_token(m.group("value"))
+        if val is not None:
+            out = _base_normalize_result("duration_month_context")
+            out["param_type"] = "duration_threshold_month"
+            out["norm_value"] = val
+            out["norm_unit"] = "month"
+            out["op"] = "threshold"
+            return out
+
+    return _base_unmatched_result("no_match")

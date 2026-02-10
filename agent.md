@@ -1,12 +1,13 @@
 ﻿# AGENT.md — 政策三元组抽取与知识图谱推演任务说明
 
-更新时间：2026-02-09（step4 iterative kb optimization）
+更新时间：2026-02-11（step5 normalization + validation）
 
 ## 当前执行状态
 - Step 1（领域 Schema 设计）：已完成
 - Step 2（样本文档抽样与标注规范）：已完成
 - Step 3（预处理与切分策略）：已完成
 - Step 4（UIE 基线抽取 + 可导入性迭代优化）：已完成（达到良好阈值）
+- Step 5（规则化归一与校验）：已完成（step4_seq_step2 全量）
 - 交付文件：
   - `00_整理记录/schema_v1.yaml`（v1.4，已修复枚举冲突并扩展工程参数适配）
   - `00_整理记录/schema_step1_readthrough_report.md`
@@ -48,6 +49,14 @@
   - `00_整理记录/scripts/step4_kb_score.py`
   - `00_整理记录/scripts/build_step4_iteration_report.py`
   - `step4.md`
+  - `00_整理记录/scripts/run_step5_normalize_validate.py`
+  - `00_整理记录/step5_seq_step2_parameter_mentions.jsonl`
+  - `00_整理记录/step5_seq_step2_parameter_definitions.jsonl`
+  - `00_整理记录/step5_seq_step2_triples_spo.jsonl`
+  - `00_整理记录/step5_seq_step2_validation_report.json`
+  - `00_整理记录/step5_seq_step2_validation_report.md`
+  - `00_整理记录/tests/test_step5_normalizer.py`
+  - `step5.md`
 - 说明：
   - Step 1 基于全量 151 份政策文本通读统计，不是抽样推断。
   - Step 2 在排除 `02_汇总拼接` 与压缩包目录后，对 147 份独立政策文本做主题抽样；每主题 8 份，去重样本池 38 份。
@@ -107,6 +116,7 @@
 5. 规则化归一与校验
    - 正则/词典/单位解析器
    - 证据对齐（span 回溯）与一致性检查
+   - 当前状态：已完成（mention/definition/triple/validation 报告已产出）
 
 6. 小样本微调与迭代
    - 基于标注数据微调 UIE

@@ -1,0 +1,53 @@
+{
+  "sample_size": 40,
+  "sampling_file": "00_整理记录/step5_manual_gold_sample40.json",
+  "manual_scope": {
+    "rules_covered": [
+      "date_like_filtered",
+      "kwh_threshold",
+      "no_match",
+      "percent_numeric",
+      "time_window",
+      "yuan_generic"
+    ],
+    "matched_rule_count": 30,
+    "unmatched_rule_count": 10
+  },
+  "metrics": {
+    "valid_parameter_rate": 0.775,
+    "normalization_precision_on_matched": 0.7,
+    "unmatched_decision_precision": 0.9,
+    "mechanism_binding_precision_on_valid": 0.741935,
+    "strict_usable_rate_on_valid": 0.516129,
+    "strict_usable_rate_on_sample": 0.4
+  },
+  "counts": {
+    "valid_parameter": 31,
+    "invalid_parameter": 9,
+    "norm_eval_count": 30,
+    "norm_correct_count": 21,
+    "unmatched_eval_count": 10,
+    "unmatched_correct_count": 9,
+    "mech_eval_count": 31,
+    "mech_correct_count": 23,
+    "strict_usable_valid_count": 16
+  },
+  "confidence_interval_95": {
+    "normalization_precision_on_matched": [
+      0.521239,
+      0.833354
+    ],
+    "unmatched_decision_precision": [
+      0.595844,
+      0.982124
+    ],
+    "mechanism_binding_precision_on_valid": [
+      0.567535,
+      0.862985
+    ],
+    "strict_usable_rate_on_valid": [
+      0.348401,
+      0.6803
+    ]
+  }
+}
