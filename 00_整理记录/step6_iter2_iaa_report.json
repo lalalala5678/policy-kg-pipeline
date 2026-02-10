@@ -1,0 +1,104 @@
+{
+  "config": {
+    "mentions": "00_整理记录/step5_seq_step2_v2_rebind11_fixabc_parameter_mentions.jsonl",
+    "clause_corpus": "00_整理记录/step3_clause_corpus.jsonl",
+    "sample_size": 300,
+    "strict_min": 140,
+    "hard_min": 80,
+    "seed": 20260211
+  },
+  "sampling": {
+    "target_total": 300,
+    "actual_total": 300,
+    "strict_high_count": 229,
+    "hard_case_count": 139,
+    "mechanism_distribution": {
+      "task_assessment": 77,
+      "technology_route": 42,
+      "subsidy": 44,
+      "tou_pricing": 56,
+      "tiered_pricing": 45,
+      "general_price_adjustment": 34,
+      "differential_penalty_pricing": 1,
+      "None": 1
+    },
+    "param_type_distribution": {
+      "duration_threshold_month": 15,
+      "ratio_target": 106,
+      "subsidy_amount": 20,
+      "None": 20,
+      "price_delta_pct": 32,
+      "target_household_count": 12,
+      "time_window": 26,
+      "consumption_threshold_kwh": 24,
+      "price_value": 32,
+      "duration_threshold_hour": 5,
+      "tonnage_threshold": 2,
+      "other": 2,
+      "area_subsidy_amount": 4
+    },
+    "bind_group_distribution": {
+      "high_conf": 246,
+      "fallback": 22,
+      "candidate_score": 31,
+      "other": 1
+    },
+    "hard_tag_distribution": {
+      "negative_domain": 41,
+      "candidate_score": 31,
+      "task_clause": 31,
+      "time_token": 26,
+      "threshold_price_same_clause": 25
+    }
+  },
+  "iaa": {
+    "kappa_mechanism": 0.991943,
+    "kappa_param_type": 1.0,
+    "exact_match_norm_unit": 1.0,
+    "agreement_strict_high_eligible": 1.0
+  },
+  "quality": {
+    "denominators": {
+      "all_clause": 2022,
+      "sample_total": 300,
+      "valid_all": 300,
+      "valid_numeric": 280
+    },
+    "mechanism_precision_on_valid_numeric": {
+      "num": 265,
+      "den": 278,
+      "rate": 0.953237
+    },
+    "normalization_precision_on_valid_numeric": {
+      "num": 278,
+      "den": 280,
+      "rate": 0.992857
+    },
+    "strict_high_precision": {
+      "num": 223,
+      "den": 229,
+      "rate": 0.973799
+    }
+  },
+  "error_clusters": {
+    "time_raw_not_time_window": 0,
+    "price_value_large_raw_small_norm": 0,
+    "candidate_score_strict_high": 0
+  },
+  "target_pass": {
+    "kappa_mechanism_ge_0_80": true,
+    "kappa_param_type_ge_0_80": true,
+    "exact_match_norm_unit_ge_0_90": true,
+    "agreement_strict_high_eligible_ge_0_90": true,
+    "mechanism_precision_ge_0_90": true,
+    "normalization_precision_ge_0_90": true,
+    "strict_high_precision_ge_0_92": true,
+    "time_raw_not_time_window_eq_0": true,
+    "price_value_large_raw_small_norm_eq_0": true,
+    "candidate_score_strict_high_eq_0": true,
+    "sample_size_ge_240": true,
+    "sample_strict_ge_120": true,
+    "sample_hard_ge_60": true
+  },
+  "all_targets_passed": true
+}

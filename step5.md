@@ -76,3 +76,8 @@ Updated: 2026-02-11
 - mechanism_bound_rate_valid_numeric >= 0.85: pass
 - strict_high_rate_valid_numeric >= 0.65: pass
 - local_supported_rate_valid_numeric >= 0.85: pass
+
+## Handoff to Step6 (Gold/IAA)
+- Step6 does not modify Step5 outputs in-place; it builds a frozen Gold/IAA benchmark on top of `v2_rebind11_fixabc`.
+- Frozen input and denominator definitions are documented in `00_整理记录/step6_性能指标目标.md`.
+- Step7 fine-tuning can start only after Step6 IAA/Gold thresholds are met.
