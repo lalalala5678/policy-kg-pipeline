@@ -1,0 +1,28 @@
+{
+  "sample_size": 80,
+  "strict_pool_size": 698,
+  "auto_semantic_pass_rate": 0.7125,
+  "bucket_stats": {
+    "lowconf_fallback": {
+      "count": 15,
+      "auto_pass": 0,
+      "auto_pass_rate": 0.0
+    },
+    "rule_context_neighbor": {
+      "count": 4,
+      "auto_pass": 0,
+      "auto_pass_rate": 0.0
+    },
+    "rule_numeric_keyword": {
+      "count": 2,
+      "auto_pass": 1,
+      "auto_pass_rate": 0.5
+    },
+    "rule_pattern": {
+      "count": 59,
+      "auto_pass": 56,
+      "auto_pass_rate": 0.949153
+    }
+  },
+  "note": "This is an automatic semantic consistency precheck, not human gold precision."
+}

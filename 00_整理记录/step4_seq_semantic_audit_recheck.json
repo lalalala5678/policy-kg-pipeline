@@ -1,0 +1,151 @@
+{
+  "sample_file": "00_整理记录/step4_seq_semantic_audit_sample.csv",
+  "sample_size": 80,
+  "missing_columns": [],
+  "duplicate_clause_count": 0,
+  "empty_text_rows": 0,
+  "auto_logic_mismatch_count": 0,
+  "auto_logic_mismatch_sample_ids": [],
+  "confusion_matrix_auto_vs_indep": {
+    "auto_true_indep_true": 57,
+    "auto_true_indep_false": 0,
+    "auto_false_indep_true": 8,
+    "auto_false_indep_false": 15
+  },
+  "bucket_summary": {
+    "lowconf": {
+      "count": 15,
+      "auto_true_rate": 0.0,
+      "indep_true_rate": 0.0,
+      "agreement_rate": 1.0
+    },
+    "rule_highconf": {
+      "count": 65,
+      "auto_true_rate": 0.876923,
+      "indep_true_rate": 1.0,
+      "agreement_rate": 0.876923
+    }
+  },
+  "validity": {
+    "is_sample_complete": true,
+    "is_auto_logic_consistent": true,
+    "agreement_rate": 0.9,
+    "cohen_kappa": 0.72766,
+    "judgement": "Auto audit is structurally valid and reasonably stable under independent recheck."
+  },
+  "disagreements_top20": [
+    {
+      "sample_id": "16",
+      "clause_id": "58ad7cd309406e184ce7e6d21004def570eec462e6489ea11bebbe2d7b469ea4#clause_0000",
+      "bucket": "rule_highconf",
+      "mechanism_type": "subsidy",
+      "mechanism_source": "rule_context_neighbor",
+      "raw_value_top": "2024-09",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": false,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "<h2>file:《永春县设施农业温室大棚政策》.txt</h2>\n 2024-09-11 \t《永春县设施农业温室大棚政策》\t起补面积：类温室大棚的起补面积分别为智能温室2亩、智能温控大棚一10亩、智能温控大棚二10亩、温室大棚一20亩、温室大棚二20亩、温室大棚三20亩。"
+    },
+    {
+      "sample_id": "17",
+      "clause_id": "c32ed07b1f8848d45dcf196616c7064ebdf5a10f0ce328b277c662ee5197f29b#clause_0004",
+      "bucket": "rule_highconf",
+      "mechanism_type": "subsidy",
+      "mechanism_source": "rule_context_neighbor",
+      "raw_value_top": "不低于1",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": false,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "统筹考虑不同领域特点，降低超长期特别国债资金申报门槛，不再设置“项目总投资不低于1亿元”要求，支持中小企业设备更新。"
+    },
+    {
+      "sample_id": "18",
+      "clause_id": "a841fd40884f65693f42fff950340f5c6e1dbdd734f6cb20bc5e15c9bbf474ec#clause_0003",
+      "bucket": "rule_highconf",
+      "mechanism_type": "technology_route",
+      "mechanism_source": "rule_context_neighbor",
+      "raw_value_top": "40",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": false,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "（含自有及租赁船舶）的40％具备受电设施。"
+    },
+    {
+      "sample_id": "19",
+      "clause_id": "7e1dff3ee78977bc7e5f87b686fc7b8ccf4f78bd15144d2fd3f7c60c48ec3209#clause_0005",
+      "bucket": "rule_highconf",
+      "mechanism_type": "tou_pricing",
+      "mechanism_source": "rule_context_neighbor",
+      "raw_value_top": "30",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": true,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "新能源电价浮动在高峰时段上浮30%，低谷时段下浮30%。对于特定时期"
+    },
+    {
+      "sample_id": "20",
+      "clause_id": "693f3a55fe86330e400962dd0b43476d41023ad39e89f0254b4f9e2651efaca2#clause_0005",
+      "bucket": "rule_highconf",
+      "mechanism_type": "subsidy",
+      "mechanism_source": "rule_numeric_keyword",
+      "raw_value_top": "15",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": true,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "对城乡“低保户”和农村“五保户”家庭每户每月免费15度电，以“先征后返”方式进行结算，免费金额统一为每月每户7.84元。"
+    },
+    {
+      "sample_id": "25",
+      "clause_id": "d6295fc6d120b2f270803869f63327efa8f7e3ea98515eb80da25abd977ff9f6#clause_0000",
+      "bucket": "rule_highconf",
+      "mechanism_type": "task_assessment",
+      "mechanism_source": "rule_pattern",
+      "raw_value_top": "2018-06",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": true,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "2018-06-25 《中共中央国务院关于全面加强生态环境保护坚决打好污染防治攻坚战的意见》\n到2020年，生态环境质量总体改善，主要污染物排放总量大幅减少，环境风险得到有效管控，生态环境保护水平同全面建成小康社会目标相适应。"
+    },
+    {
+      "sample_id": "29",
+      "clause_id": "13677b49d0d053be96bfcd32cd36eeba7c68f125c6f32cc220322ba98c178bf4#clause_0000",
+      "bucket": "rule_highconf",
+      "mechanism_type": "task_assessment",
+      "mechanism_source": "rule_pattern",
+      "raw_value_top": "2018-06",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": true,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "2018-06-24 《关于全面加强生态环境保护坚决打好污染防治攻坚战的实施意见》\n总体目标。"
+    },
+    {
+      "sample_id": "40",
+      "clause_id": "caf6cea05c2383ef47c5578fbf1392dfbf0ec0b4fbdc53de67e6f1d3bd2062fc#clause_0002",
+      "bucket": "rule_highconf",
+      "mechanism_type": "tou_pricing",
+      "mechanism_source": "rule_pattern",
+      "raw_value_top": "50",
+      "auto_pass": false,
+      "indep_pass": true,
+      "auto_hint": false,
+      "indep_hint": true,
+      "indep_raw_numeric": true,
+      "clause_text_preview": "高峰电价在平段电价基础上上浮50%，低谷电价在平段电价基础上下浮50%。"
+    }
+  ],
+  "note": "Independent recheck is rule-based second pass, not human gold precision."
+}
