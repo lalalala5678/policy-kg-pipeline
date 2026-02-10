@@ -1,10 +1,10 @@
-import sys
+﻿import sys
 import unittest
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPTS = ROOT / "00_整理记录" / "scripts"
+SCRIPTS = ROOT / "00_\u6574\u7406\u8bb0\u5f55" / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
@@ -33,6 +33,14 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["norm_start"], "10:00")
         self.assertEqual(result["norm_end"], "12:30")
 
+    def test_time_point_not_ratio_target(self):
+        result = normalize_parameter("7:00")
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["rule"], "time_point")
+        self.assertEqual(result["param_type"], "time_window")
+        self.assertEqual(result["norm_unit"], "time_point")
+        self.assertEqual(result["norm_value"], "07:00")
+
     def test_date_like_filtered(self):
         result = normalize_parameter("2024-09")
         self.assertFalse(result["matched"])
@@ -59,22 +67,30 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["norm_value"], "1.5:1:0.5")
 
     def test_no_context_leakage_for_yuan(self):
-        clause = "第三档电量为351千瓦时及以上，价格在第一档基础上每千瓦时提高0.3元。"
-        result = normalize_parameter("0.3元", clause)
+        clause = "\u7b2c\u4e00\u6863\u7535\u91cf\u4e3a351\u5343\u74e6\u65f6\u53ca\u4ee5\u4e0b\uff0c\u8d85\u51fa\u90e8\u5206\u6bcf\u5343\u74e6\u65f6\u52a0\u4ef70.3\u5143\u3002"
+        result = normalize_parameter("0.3\u5143", clause)
         self.assertTrue(result["matched"])
         self.assertNotEqual(result["rule"], "kwh_threshold")
         self.assertNotEqual(result["rule"], "kwh_threshold_range")
         self.assertEqual(result["norm_unit"], "yuan")
 
     def test_no_context_leakage_for_percent(self):
-        clause = "在11:00-12:00和15:00-17:00执行，尖峰电价上浮25%。"
+        clause = "\u572811:00-12:00\u548c15:00-17:00\u6267\u884c\uff0c\u5cf0\u6bb5\u7535\u4ef7\u4e0a\u6d6e25%\u3002"
         result = normalize_parameter("25%", clause)
         self.assertTrue(result["matched"])
         self.assertIn(result["rule"], {"percent_numeric", "percent_chinese"})
         self.assertEqual(result["norm_unit"], "percent")
 
+    def test_no_context_leakage_threshold_vs_price(self):
+        clause = "\u7b2c\u4e00\u6863170\u5343\u74e6\u65f6\u4ee5\u4e0a\u52a0\u4ef70.05\u5143/\u5343\u74e6\u65f6\u3002"
+        result = normalize_parameter("170\u5343\u74e6\u65f6", clause)
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["param_type"], "consumption_threshold_kwh")
+        self.assertEqual(result["norm_unit"], "kwh")
+        self.assertEqual(result["norm_value"], 170.0)
+
     def test_kwh_range(self):
-        result = normalize_parameter("181-400千瓦时")
+        result = normalize_parameter("181-400\u5343\u74e6\u65f6")
         self.assertTrue(result["matched"])
         self.assertEqual(result["rule"], "kwh_threshold_range")
         self.assertEqual(result["param_type"], "consumption_threshold_kwh")
@@ -84,7 +100,7 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["op"], "between")
 
     def test_duration_month(self):
-        result = normalize_parameter("不少于两个月")
+        result = normalize_parameter("\u4e0d\u5c11\u4e8e\u4e24\u4e2a\u6708")
         self.assertTrue(result["matched"])
         self.assertEqual(result["rule"], "duration_month")
         self.assertEqual(result["param_type"], "duration_threshold_month")
@@ -92,7 +108,7 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["norm_value"], 2.0)
 
     def test_duration_hour(self):
-        result = normalize_parameter("8小时")
+        result = normalize_parameter("8\u5c0f\u65f6")
         self.assertTrue(result["matched"])
         self.assertEqual(result["rule"], "duration_hour")
         self.assertEqual(result["param_type"], "duration_threshold_hour")
@@ -100,7 +116,7 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["norm_value"], 8.0)
 
     def test_household_count(self):
-        result = normalize_parameter("500户")
+        result = normalize_parameter("500\u6237")
         self.assertTrue(result["matched"])
         self.assertEqual(result["rule"], "household_count")
         self.assertEqual(result["param_type"], "target_household_count")

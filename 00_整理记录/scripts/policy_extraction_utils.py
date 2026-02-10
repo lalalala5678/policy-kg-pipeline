@@ -440,9 +440,12 @@ ARTICLE_NO_RE = re.compile(r"^\s*\u7b2c[\u4e00-\u9fa5\d]+\s*[\u6761\u6b3e\u9879]
 TIME_WINDOW_VALUE_RE = re.compile(
     r"(?P<start>[0-2]?\d[:\uFF1A][0-5]\d)\s*[-~\u81f3\u5230]\s*(?P<end>[0-2]?\d[:\uFF1A][0-5]\d)"
 )
+TIME_POINT_VALUE_RE = re.compile(r"^(?P<point>[0-2]?\d[:\uFF1A][0-5]\d)$")
 RATIO_VALUE_RE = re.compile(r"(?P<value>\d+(?:\.\d+)?\s*:\s*\d+(?:\.\d+)?(?:\s*:\s*\d+(?:\.\d+)?)?)")
 SUBSIDY_CUES_RE = re.compile(r"\u8865\u8d34|\u8865\u52a9|\u5956\u52b1|\u5956\u8865|\u8d44\u52a9|\u8865\u507f")
 PRICE_CUES_RE = re.compile(r"\u7535\u4ef7|\u4ef7\u5dee|\u5206\u65f6|\u5cf0\u8c37|\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7")
+PRICE_UNIT_VALUE_RE = re.compile(r"\u5143/\u5ea6|\u5143/\u5343\u74e6\u65f6|\u5206/\u5343\u74e6\u65f6")
+PHYSICAL_UNIT_VALUE_RE = re.compile(r"\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6(?!\u7535\u4ef7)|\u5428|MW|mw|kW|kw|W|w|kVA|kva")
 THRESHOLD_CUES_RE = re.compile(
     r"\u4e0d\u8d85\u8fc7|\u4e0d\u9ad8\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u5c11\u4e8e|\u4ee5\u4e0a|\u4ee5\u4e0b|\u4ee5\u5185|\u81f3\u5c11|\u6700\u9ad8|\u6700\u4f4e|\u8fbe\u5230|\u8d85\u8fc7"
 )
@@ -601,9 +604,32 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
         out["op"] = "between"
         return out
 
-    for text in (primary_space, fallback_space):
+    m = TIME_POINT_VALUE_RE.fullmatch(primary_space)
+    if m:
+        point = _normalize_time_token(m.group("point"))
+        out = _base_normalize_result("time_point")
+        out["param_type"] = "time_window"
+        out["norm_value"] = point
+        out["norm_unit"] = "time_point"
+        out["norm_start"] = point
+        out["norm_end"] = point
+        out["op"] = "point"
+        return out
+
+    raw_has_price_unit = bool(PRICE_UNIT_VALUE_RE.search(primary_space))
+    raw_has_physical_unit = bool(PHYSICAL_UNIT_VALUE_RE.search(primary_space)) and not raw_has_price_unit
+    price_search_spaces = [primary_space]
+    if fallback_space != primary_space and not raw_has_physical_unit:
+        price_search_spaces.append(fallback_space)
+
+    raw_primary_number = _parse_number_token(primary_space)
+
+    for text in price_search_spaces:
         m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/\u5ea6", text)
         if m:
+            if text == fallback_space and fallback_space != primary_space and raw_primary_number is not None:
+                if abs(float(m.group("value")) - float(raw_primary_number)) > 1e-9 and not raw_has_price_unit:
+                    continue
             out = _base_normalize_result("yuan_per_degree_to_yuan_per_kwh")
             out["param_type"] = "price_value"
             out["norm_value"] = float(m.group("value"))
@@ -612,6 +638,9 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
 
         m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5206/\u5343\u74e6\u65f6", text)
         if m:
+            if text == fallback_space and fallback_space != primary_space and raw_primary_number is not None:
+                if abs(float(m.group("value")) - float(raw_primary_number)) > 1e-9 and not raw_has_price_unit:
+                    continue
             out = _base_normalize_result("fen_per_kwh_to_yuan_per_kwh")
             out["param_type"] = "price_value"
             out["norm_value"] = float(m.group("value")) / 100.0
@@ -620,6 +649,9 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
 
         m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*\u5143/\u5343\u74e6\u65f6", text)
         if m:
+            if text == fallback_space and fallback_space != primary_space and raw_primary_number is not None:
+                if abs(float(m.group("value")) - float(raw_primary_number)) > 1e-9 and not raw_has_price_unit:
+                    continue
             out = _base_normalize_result("yuan_per_kwh")
             out["param_type"] = "price_value"
             out["norm_value"] = float(m.group("value"))

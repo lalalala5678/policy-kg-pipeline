@@ -32,6 +32,11 @@ Updated: 2026-02-11
 - Added/strengthened: `kwh_threshold_range`, `duration_hour`, `duration_month_context`, `household_count`, `yuan_per_ton`, `yuan_per_watt`, watt-to-kw conversion.
 - Context leakage control: prioritize raw mention text to avoid cross-value contamination.
 - Early mention filter: remove obvious non-parameter items and time-metadata noise before normalization.
+- Added A/B/C-focused guards:
+- Time point repair: `7:00/22:00` no longer falls into `ratio_target`; now typed as `time_window/time_point`.
+- Threshold-vs-price repair: avoid cross-value leakage from clause-level price text into threshold mentions.
+- Low-confidence cap: candidate/fallback inherit reasons are confidence-capped and excluded from strict-high.
+- Unit pairing guard: when `raw_unit` is likely mis-paired in dense clauses, normalization falls back to raw-only mention.
 
 ## Main script and tests
 - Script: `00_整理记录/scripts/run_step5_normalize_validate.py`
@@ -41,23 +46,30 @@ Updated: 2026-02-11
 - `00_整理记录/tests/test_step5_binding_rules.py`
 
 ## Output (final iteration)
-- `00_整理记录/step5_seq_step2_v2_rebind4_parameter_mentions.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind4_parameter_definitions.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind4_triples_spo.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind4_validation_report.json`
-- `00_整理记录/step5_seq_step2_v2_rebind4_validation_report.md`
+- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_parameter_mentions.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_parameter_definitions.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_triples_spo.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_validation_report.json`
+- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_validation_report.md`
 
-## Key results (v2_rebind4)
+## Key results (v2_rebind11_fixabc)
 - mention_total: 1141
-- definition_total: 353
-- triple_total: 3283
+- definition_total: 354
+- triple_total: 3248
 - span_valid_rate: 1.000000
-- normalization_matched_rate: 0.988606
+- normalization_matched_rate: 0.966696
 - mechanism_bound_rate_valid_numeric: 1.000000
-- strict_high_rate_valid_numeric: 0.845745
-- local_supported_rate_valid_numeric: 0.882092
+- strict_high_rate_valid_numeric: 0.870354
+- local_supported_rate_valid_numeric: 0.891206
 - pricing_negative_conflict_rate_valid_numeric: 0.000000
 - all_targets_passed: true
+
+## A/B/C issue delta (before -> after)
+- Time point mis-typed as ratio (`time_raw_not_time_window`): `10 -> 0`
+- Threshold value mapped to price (`price_value_large_raw_small_norm`): `20 -> 0`
+- Same issue inside strict-high: `10 -> 0`
+- Candidate-score bindings: `106 -> 97`
+- Candidate-score entering strict-high: `0 -> 0`
 
 ## Target thresholds and status
 - normalization_matched_rate >= 0.90: pass

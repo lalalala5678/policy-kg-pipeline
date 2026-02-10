@@ -80,11 +80,26 @@ NUMERIC_RE = re.compile(r"\d")
 CN_NUM_RE = re.compile(r"[\u96f6\u3007\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341\u767e\u5343\u4e07\u4e24\u58f9\u8d30\u53c1\u8086\u4f0d\u9646\u67d2\u634c\u7396\u62fe\u4f70\u4edf]")
 CN_PERCENT_RE = re.compile(r"\u767e\u5206\u4e4b[\u96f6\u3007\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341\u767e\u5343\u4e07\d\.]+")
 TIME_RANGE_RE = re.compile(r"\d{1,2}:\d{2}\s*[-~\u81f3\u5230]\s*\d{1,2}:\d{2}")
+TIME_POINT_RE = re.compile(r"^[0-2]?\d[:\uFF1A][0-5]\d$")
 RATIO_RE = re.compile(r"\d+(?:\.\d+)?\s*:\s*\d+(?:\.\d+)?(?:\s*:\s*\d+(?:\.\d+)?)?")
 YEAR_RANGE_RE = re.compile(r"^(?:19|20)\d{2}\s*[-~\u81f3\u5230]\s*(?:19|20)\d{2}$")
 DATE_PART_RE = re.compile(r"^(?:19|20)\d{2}[-/\.](?:0?[1-9]|1[0-2])(?:[-/\.](?:0?[1-9]|[12]\d|3[01]))?$")
 POWER_CONTEXT_RE = re.compile(r"\u7535\u4ef7|\u5206\u65f6|\u5cf0\u8c37|\u8865\u8d34|\u5cb8\u7535|\u53d6\u6696|\u7535\u80fd\u66ff\u4ee3|\u7528\u7535|\u5343\u74e6\u65f6|\u5ea6")
 POLLUTANT_UNIT_RE = re.compile(r"\u5316\u5b66\u9700\u6c27\u91cf|\u6c28\u6c2e|\u4e8c\u6c27\u5316\u786b|\u6c2e\u6c27\u5316\u7269|PM2\.5|\u6392\u653e\u6d53\u5ea6")
+PRICE_UNIT_HINT_RE = re.compile(r"\u5143/\u5ea6|\u5143/\u5343\u74e6\u65f6|\u5206/\u5343\u74e6\u65f6")
+PHYSICAL_UNIT_HINT_RE = re.compile(r"\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6(?!\u7535\u4ef7)|\u5428|MW|mw|kW|kw|W|w|kVA|kva")
+TIER_THRESHOLD_CUE_RE = re.compile(r"\u7b2c\u4e00\u6863|\u7b2c\u4e8c\u6863|\u7b2c\u4e09\u6863|\u5206\u6863|\u9636\u68af|\u6863\u4f4d|\u9608\u503c|\u4e0d\u8d85\u8fc7|\u4ee5\u4e0a|\u4ee5\u5185|\u57fa\u6570")
+TRANSPORT_CONTEXT_RE = re.compile(r"\u6bcf\u767e\u516c\u91cc|\u4e58\u7528\u8f66|\u65b0\u80fd\u6e90\u6c7d\u8f66|\u65b0\u8f66|\u81ea\u52a8\u9a7e\u9a76")
+LOW_CONF_BIND_REASONS = {"candidate_score", "step4_inherit", "step4_fallback", "time_window_tou_hint"}
+UNIT_ALIAS_MAP = {
+    "Ԫ": "\u5143",
+    "��Ԫ": "\u4e07\u5143",
+    "ǧ��ʱ": "\u5343\u74e6\u65f6",
+    "Ԫ/ǧ��ʱ": "\u5143/\u5343\u74e6\u65f6",
+    "Ԫ/��": "\u5143/\u5ea6",
+    "Сʱ": "\u5c0f\u65f6",
+    "ʱ��": "\u65f6\u6bb5",
+}
 
 
 def read_jsonl(path: Path) -> List[Dict]:
@@ -194,6 +209,171 @@ def should_skip_raw_mention(raw_value: str, raw_unit: Optional[str], clause_text
     return False, ""
 
 
+def canonicalize_unit_alias(raw_unit: Optional[str]) -> Optional[str]:
+    if raw_unit is None:
+        return None
+    unit = str(raw_unit).strip()
+    return UNIT_ALIAS_MAP.get(unit, unit)
+
+
+def normalize_time_token(value: str) -> str:
+    token = (value or "").strip().replace("\uFF1A", ":")
+    parts = token.split(":")
+    if len(parts) != 2:
+        return token
+    try:
+        return f"{int(parts[0]):02d}:{int(parts[1]):02d}"
+    except ValueError:
+        return token
+
+
+def extract_local_window(clause_text: str, start: Optional[int], end: Optional[int], radius: int = 28) -> str:
+    if not isinstance(start, int) or not isinstance(end, int):
+        return clause_text
+    lo = max(0, start - radius)
+    hi = min(len(clause_text), end + radius)
+    return clause_text[lo:hi]
+
+
+def parse_arabic_number(text: str) -> Optional[float]:
+    if not text:
+        return None
+    m = re.search(r"[+-]?\d+(?:\.\d+)?", text)
+    if not m:
+        return None
+    try:
+        return float(m.group(0))
+    except ValueError:
+        return None
+
+
+def apply_post_normalization_guards(
+    raw_value: str,
+    raw_unit: Optional[str],
+    clause_text: str,
+    raw_start: Optional[int],
+    raw_end: Optional[int],
+    norm: Dict[str, object],
+) -> Tuple[Dict[str, object], Optional[str]]:
+    adjusted = dict(norm)
+    guard_action: Optional[str] = None
+    raw_text = (raw_value or "").strip()
+    unit_text = (raw_unit or "").strip()
+    merged_raw = f"{raw_text}{unit_text}"
+    local_window = extract_local_window(clause_text, raw_start, raw_end)
+
+    if TIME_POINT_RE.fullmatch(raw_text):
+        if not bool(adjusted.get("matched")) or str(adjusted.get("param_type") or "") == "ratio_target":
+            t = normalize_time_token(raw_text)
+            adjusted.update(
+                {
+                    "matched": True,
+                    "rule": "time_point_retyped",
+                    "param_type": "time_window",
+                    "norm_value": t,
+                    "norm_unit": "time_point",
+                    "norm_start": t,
+                    "norm_end": t,
+                    "range_start": None,
+                    "range_end": None,
+                    "op": "point",
+                    "scope_unit": None,
+                }
+            )
+            guard_action = "time_point_retyped"
+
+    if bool(adjusted.get("matched")) and str(adjusted.get("norm_unit") or "") == "yuan_per_kwh":
+        raw_has_physical_unit = bool(PHYSICAL_UNIT_HINT_RE.search(merged_raw))
+        raw_has_price_unit = bool(PRICE_UNIT_HINT_RE.search(merged_raw))
+        local_has_price_unit = bool(PRICE_UNIT_HINT_RE.search(local_window))
+        if (raw_has_physical_unit and not raw_has_price_unit) or (not raw_has_price_unit and not local_has_price_unit):
+            raw_num = parse_arabic_number(raw_text)
+            if raw_num is not None and PHYSICAL_UNIT_HINT_RE.search(merged_raw):
+                adjusted.update(
+                    {
+                        "matched": True,
+                        "rule": "kwh_threshold_retyped_from_price_conflict",
+                        "param_type": "consumption_threshold_kwh",
+                        "norm_value": float(raw_num),
+                        "norm_unit": "kwh",
+                        "norm_start": None,
+                        "norm_end": None,
+                        "range_start": None,
+                        "range_end": None,
+                        "op": "threshold" if TIER_THRESHOLD_CUE_RE.search(clause_text) else None,
+                        "scope_unit": None,
+                    }
+                )
+                guard_action = "price_conflict_retyped_to_kwh"
+            else:
+                adjusted.update(
+                    {
+                        "matched": False,
+                        "rule": "price_conflict_filtered",
+                        "param_type": None,
+                        "norm_value": None,
+                        "norm_unit": None,
+                        "norm_start": None,
+                        "norm_end": None,
+                        "range_start": None,
+                        "range_end": None,
+                        "op": None,
+                        "scope_unit": None,
+                    }
+                )
+                guard_action = "price_conflict_filtered"
+
+    if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") == "price_value":
+        raw_num = parse_arabic_number(raw_text)
+        if raw_num is not None and raw_num >= 10 and PHYSICAL_UNIT_HINT_RE.search(merged_raw) and not PRICE_UNIT_HINT_RE.search(merged_raw):
+            adjusted.update(
+                {
+                    "matched": True,
+                    "rule": "tier_threshold_retyped_from_price_value",
+                    "param_type": "consumption_threshold_kwh",
+                    "norm_value": float(raw_num),
+                    "norm_unit": "kwh",
+                    "norm_start": None,
+                    "norm_end": None,
+                    "range_start": None,
+                    "range_end": None,
+                    "op": "threshold" if TIER_THRESHOLD_CUE_RE.search(clause_text) else None,
+                    "scope_unit": None,
+                }
+            )
+            guard_action = "tier_threshold_retyped"
+
+    return adjusted, guard_action
+
+
+def build_norm_input(
+    raw_value: str,
+    raw_unit: Optional[str],
+    clause_text: str,
+    raw_start: Optional[int],
+    raw_end: Optional[int],
+) -> Tuple[str, bool]:
+    raw_text = (raw_value or "").strip()
+    unit_text = (raw_unit or "").strip()
+    if not unit_text or unit_text in raw_text:
+        return raw_text, False
+    if re.search(r"\d", unit_text):
+        return raw_text, True
+
+    local_window = extract_local_window(clause_text, raw_start, raw_end)
+    raw_escaped = re.escape(raw_text)
+
+    # Unit prediction can be mis-paired in dense clauses; prefer local anchors around raw value.
+    if PHYSICAL_UNIT_HINT_RE.search(unit_text):
+        if re.search(raw_escaped + r"\s*(?:\u5143(?:/\u5ea6|/\u5343\u74e6\u65f6)?|\u5206/\u5343\u74e6\u65f6)", local_window):
+            return raw_text, True
+    if "\u5143" in unit_text:
+        if re.search(raw_escaped + r"\s*(?:\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6)", local_window):
+            return raw_text, True
+
+    return f"{raw_text}{unit_text}", False
+
+
 def format_norm_value(value: object, unit: Optional[str]) -> str:
     if value is None:
         return "<null>"
@@ -267,6 +447,7 @@ def build_clause_candidates(
     clause_param_types: List[str],
 ) -> Tuple[List[Dict], int]:
     negative_hits = count_hits(NEGATIVE_DOMAIN_PATTERN, clause_text)
+    transport_hits = count_hits(TRANSPORT_CONTEXT_RE, clause_text)
     candidates: List[Dict] = []
     for mechanism in KNOWN_MECHANISMS:
         pos_hits = count_hits(MECHANISM_POSITIVE_PATTERNS[mechanism], clause_text)
@@ -283,6 +464,8 @@ def build_clause_candidates(
 
         forced_drop = bool(neg_hits > 0 and pos_hits == 0 and mechanism in PRICING_MECHANISMS)
         score = pos_hits * 1.6 - neg_hits * 2.2 + prior * 1.0 + inherit_bonus
+        if mechanism in PRICING_MECHANISMS and transport_hits > 0 and pos_hits == 0:
+            score -= 1.8
         if forced_drop:
             score -= 1.5
         if score <= 0:
@@ -399,6 +582,7 @@ def main() -> None:
     filtered_counter: Counter = Counter()
     bind_reason_counter: Counter = Counter()
     bind_transition_counter: Counter = Counter()
+    post_guard_counter: Counter = Counter()
     conflict_bucket: Dict[Tuple[str, str, str], set] = defaultdict(set)
     parse_error_count = 0
 
@@ -422,6 +606,11 @@ def main() -> None:
     clause_negative_count = 0
     raw_value_filtered_non_value = 0
     raw_value_filtered_by_rule = 0
+    unit_pairing_dropped_count = 0
+    unit_alias_applied_count = 0
+    full_clause_retry_success_count = 0
+    low_confidence_cap_count = 0
+    time_window_tou_override_count = 0
     skip_reason_counter: Counter = Counter()
 
     for row in clause_pred_rows:
@@ -455,10 +644,15 @@ def main() -> None:
             raw_end = raw_item.get("end")
             chosen_unit_item = pick_unit(raw_item, unit_items)
             raw_unit = str(chosen_unit_item.get("text", "")).strip() if chosen_unit_item else None
-            if not (is_numeric_like_text(raw_value) or is_numeric_like_text(raw_unit or "")):
+            if raw_unit == "":
+                raw_unit = None
+            raw_unit_norm = canonicalize_unit_alias(raw_unit)
+            if raw_unit and raw_unit_norm and raw_unit_norm != raw_unit:
+                unit_alias_applied_count += 1
+            if not (is_numeric_like_text(raw_value) or is_numeric_like_text(raw_unit_norm or "")):
                 raw_value_filtered_non_value += 1
                 continue
-            skip_it, skip_reason = should_skip_raw_mention(raw_value, raw_unit, clause_text)
+            skip_it, skip_reason = should_skip_raw_mention(raw_value, raw_unit_norm, clause_text)
             if skip_it:
                 raw_value_filtered_by_rule += 1
                 skip_reason_counter[skip_reason] += 1
@@ -467,12 +661,45 @@ def main() -> None:
             this_span_ok = span_valid(clause_text, raw_value, raw_start, raw_end)
             if this_span_ok:
                 span_ok += 1
-            merged_for_norm = raw_value
-            if raw_unit and raw_unit not in raw_value:
-                merged_for_norm = f"{raw_value}{raw_unit}"
+            merged_for_norm, unit_pairing_dropped = build_norm_input(
+                raw_value=raw_value,
+                raw_unit=raw_unit_norm,
+                clause_text=clause_text,
+                raw_start=raw_start if isinstance(raw_start, int) else None,
+                raw_end=raw_end if isinstance(raw_end, int) else None,
+            )
+            if unit_pairing_dropped:
+                unit_pairing_dropped_count += 1
 
             normalization_attempted_count += 1
-            norm = normalize_parameter(merged_for_norm, clause_text)
+            norm_context = extract_local_window(clause_text, raw_start if isinstance(raw_start, int) else None, raw_end if isinstance(raw_end, int) else None)
+            norm = normalize_parameter(merged_for_norm, norm_context)
+            norm, guard_action = apply_post_normalization_guards(
+                raw_value=raw_value,
+                raw_unit=raw_unit_norm,
+                clause_text=clause_text,
+                raw_start=raw_start if isinstance(raw_start, int) else None,
+                raw_end=raw_end if isinstance(raw_end, int) else None,
+                norm=norm,
+            )
+            if not bool(norm.get("matched")) and raw_unit_norm is None:
+                raw_num = parse_arabic_number(raw_value)
+                if raw_num is not None and raw_num < 10:
+                    retry_norm = normalize_parameter(raw_value, clause_text)
+                    retry_norm, retry_guard_action = apply_post_normalization_guards(
+                        raw_value=raw_value,
+                        raw_unit=raw_unit_norm,
+                        clause_text=clause_text,
+                        raw_start=raw_start if isinstance(raw_start, int) else None,
+                        raw_end=raw_end if isinstance(raw_end, int) else None,
+                        norm=retry_norm,
+                    )
+                    if bool(retry_norm.get("matched")):
+                        norm = retry_norm
+                        guard_action = retry_guard_action or "retry_full_clause_decimal"
+                        full_clause_retry_success_count += 1
+            if guard_action:
+                post_guard_counter[guard_action] += 1
             rule = str(norm.get("rule") or "no_rule")
             rule_counter[rule] += 1
             if rule.endswith("_filtered"):
@@ -493,6 +720,7 @@ def main() -> None:
                     "mention_id": mention_id,
                     "raw_value": raw_value,
                     "raw_unit": raw_unit,
+                    "raw_unit_norm": raw_unit_norm,
                     "raw_start": raw_start if isinstance(raw_start, int) else None,
                     "raw_end": raw_end if isinstance(raw_end, int) else None,
                     "span_ok": this_span_ok,
@@ -509,6 +737,7 @@ def main() -> None:
                     "range_end": norm.get("range_end"),
                     "op": norm.get("op"),
                     "scope_unit": norm.get("scope_unit"),
+                    "post_guard_action": guard_action,
                 }
             )
 
@@ -532,7 +761,12 @@ def main() -> None:
             )
 
             if bind_after is None and mechanism_before in KNOWN_MECHANISMS_SET:
-                if not (clause_negative_hits > 0 and mechanism_before in PRICING_MECHANISMS):
+                skip_pricing_fallback = bool(
+                    mechanism_before in PRICING_MECHANISMS
+                    and count_hits(TRANSPORT_CONTEXT_RE, clause_text) > 0
+                    and count_hits(MECHANISM_POSITIVE_PATTERNS[mechanism_before], clause_text) == 0
+                )
+                if not (clause_negative_hits > 0 and mechanism_before in PRICING_MECHANISMS) and not skip_pricing_fallback:
                     bind_after = mechanism_before
                     bind_reason = "step4_fallback"
                     bind_confidence = max(bind_confidence, 0.45)
@@ -542,6 +776,21 @@ def main() -> None:
                         "pos_hits": 0,
                         "neg_hits": clause_negative_hits if mechanism_before in PRICING_MECHANISMS else 0,
                     }
+
+            # Time expressions are clause-local anchors for TOU and should not drift to ratio/task buckets.
+            if str(draft.get("param_type") or "") == "time_window":
+                tou_candidate = next((c for c in clause_candidates if c.get("mechanism") == "tou_pricing"), None)
+                if tou_candidate is not None and int(tou_candidate.get("pos_hits", 0)) > 0 and bind_after != "tou_pricing":
+                    bind_after = "tou_pricing"
+                    bind_reason = "time_window_tou_hint"
+                    bind_support = tou_candidate
+                    bind_confidence = max(float(bind_confidence), 0.59)
+                    dropped_by_negative = False
+                    time_window_tou_override_count += 1
+
+            if bind_reason in LOW_CONF_BIND_REASONS and float(bind_confidence) > 0.59:
+                bind_confidence = 0.59
+                low_confidence_cap_count += 1
 
             bind_reason_counter[bind_reason] += 1
             bind_transition_counter[f"{mechanism_before or 'None'}->{bind_after or 'None'}"] += 1
@@ -779,6 +1028,12 @@ def main() -> None:
             "clause_negative_count": clause_negative_count,
             "raw_value_filtered_non_value_count": raw_value_filtered_non_value,
             "raw_value_filtered_by_rule_count": raw_value_filtered_by_rule,
+            "unit_pairing_dropped_count": unit_pairing_dropped_count,
+            "unit_alias_applied_count": unit_alias_applied_count,
+            "full_clause_retry_success_count": full_clause_retry_success_count,
+            "post_guard_adjusted_count": sum(post_guard_counter.values()),
+            "low_confidence_cap_count": low_confidence_cap_count,
+            "time_window_tou_override_count": time_window_tou_override_count,
         },
         "rates": {
             "span_valid_rate": round(span_valid_rate, 6),
@@ -833,6 +1088,7 @@ def main() -> None:
             "bind_reason_top20": dict(bind_reason_counter.most_common(20)),
             "bind_transition_top20": dict(bind_transition_counter.most_common(20)),
             "skip_reason_top20": dict(skip_reason_counter.most_common(20)),
+            "post_guard_top20": dict(post_guard_counter.most_common(20)),
         },
         "unit_conflicts_top20": conflict_items[:20],
     }
