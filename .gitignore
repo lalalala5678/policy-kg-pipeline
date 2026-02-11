@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+.env
+.env.*
+secrets/
+.venv/
+00_整理记录/step10_iter1/

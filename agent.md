@@ -14,6 +14,7 @@
 - Step8（图包导出与工程验收）：已完成并通过
 - Step8.2（查询样例包与冲突信号化）：已完成并通过
 - Step9（评测与推演落地）：已完成并通过
+- Step11（LangGraph 前后端问答服务）：已完成并部署
 
 ## 2. 交付物主目录（最新）
 - `结果文件夹/`
@@ -78,3 +79,9 @@
 2. 查询评测：`00_整理记录/step9_iter1/step9_query_exec_report.json`
 3. 推演案例：`00_整理记录/step9_iter1/step9_simulation_casebook.json`
 4. 总门禁：`00_整理记录/step9_iter1/step9_gate_report.json`
+
+## 6. Step11 服务入口
+- 本机访问：`http://127.0.0.1:18081/`
+- 系统服务：`langgraph-policy-qa.service`
+- 鉴权：`neo4j / policykg_step9`
+- 能力：自然语言问题 -> 多轮 Text2Cypher 查询 -> 汇总推演答案

@@ -103,6 +103,8 @@ def ensure_neo4j_container(args: argparse.Namespace) -> Dict[str, object]:
                 "-e",
                 "NEO4J_dbms_security_allow__csv__import__from__file__urls=true",
                 "-e",
+                f"NEO4J_server_bolt_advertised__address=:{args.bolt_port}",
+                "-e",
                 "NEO4J_server_memory_heap_initial__size=384m",
                 "-e",
                 "NEO4J_server_memory_heap_max__size=768m",

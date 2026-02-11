@@ -96,3 +96,50 @@
 - Schema 版本：`schema_v1.4`（见 `manifest.json`）
 - 抽取版本：`step7b_iterB_rulefix`（见 `manifest.json`）
 - Step8.2 评测：`step8_2_eval_report.json` 中 `all_targets_passed = true`
+
+---
+
+## 7. DeepSeek + Neo4j（可选）
+
+脚本入口：
+- `00_整理记录/scripts/run_step10_deepseek_graph_qa.py`
+
+用途：
+- 用 DeepSeek 根据自然语言问题生成只读 Cypher；
+- 自动执行 Neo4j 查询；
+- 再由 DeepSeek 基于结果生成回答；
+- 结果落盘到 `00_整理记录/step10_iter1/`。
+
+安全建议：
+- 不要把 API Key 写进仓库文件；
+- 使用环境变量 `DEEPSEEK_API_KEY`，或放到本机 `.env.local`（已被 `.gitignore` 忽略）。
+
+示例命令：
+```bash
+export DEEPSEEK_API_KEY="你的key"
+python3 00_整理记录/scripts/run_step10_deepseek_graph_qa.py \
+  --question "列出高风险事实最多的机制类型前10名" \
+  --neo4j-url http://127.0.0.1:17474 \
+  --neo4j-user neo4j \
+  --neo4j-password policykg_step9 \
+  --deepseek-model deepseek-chat \
+  --print-cypher
+```
+
+---
+
+## 8. LangGraph Web 问答服务（Step11）
+
+新增前后端服务（含登录鉴权 + 多轮查询 + 推演回答）：
+- 代码目录：`langgraph_qa/`
+- 启动脚本：`00_整理记录/scripts/run_step11_langgraph_server.sh`
+- 默认端口：`18081`
+
+本机验证接口：
+- `GET http://127.0.0.1:18081/api/health`
+- `POST http://127.0.0.1:18081/api/login`
+- `POST http://127.0.0.1:18081/api/ask`
+
+说明：
+- 登录账号密码默认与 Neo4j Browser 一致（`neo4j / policykg_step9`）。
+- 查询层使用 `neo4j-graphrag-python` 的 `Text2CypherRetriever`，编排层使用 `LangGraph`。
