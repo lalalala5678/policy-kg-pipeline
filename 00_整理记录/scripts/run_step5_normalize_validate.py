@@ -277,7 +277,7 @@ def apply_post_normalization_guards(
                     "rule": "time_point_retyped",
                     "param_type": "time_window",
                     "norm_value": t,
-                    "norm_unit": "time_point",
+                    "norm_unit": "time_window",
                     "norm_start": t,
                     "norm_end": t,
                     "range_start": None,
@@ -459,24 +459,50 @@ def build_norm_input(
     raw_start: Optional[int],
     raw_end: Optional[int],
 ) -> Tuple[str, bool]:
+    def _local_unit_repair(raw_text_local: str, local_text: str) -> Optional[str]:
+        raw_escaped_local = re.escape(raw_text_local)
+        patterns = [
+            r"(元/度|元/千瓦时|分/千瓦时)",
+            r"(千瓦时|kWh|KWH|kwh|度)",
+            r"(万元/村|万元|元)",
+            r"(户|家|台|个|人)",
+        ]
+        for unit_pat in patterns:
+            m_local = re.search(raw_escaped_local + r"\s*" + unit_pat, local_text)
+            if m_local:
+                return f"{raw_text_local}{m_local.group(1)}"
+        return None
+
     raw_text = (raw_value or "").strip()
     unit_text = (raw_unit or "").strip()
     if not unit_text or unit_text in raw_text:
         return raw_text, False
+    local_window = extract_local_window(clause_text, raw_start, raw_end)
     if re.search(r"\d", unit_text):
+        repaired = _local_unit_repair(raw_text, local_window)
+        if repaired:
+            return repaired, True
         return raw_text, True
 
-    local_window = extract_local_window(clause_text, raw_start, raw_end)
     raw_escaped = re.escape(raw_text)
 
     # Unit prediction can be mis-paired in dense clauses; prefer local anchors around raw value.
     if PHYSICAL_UNIT_HINT_RE.search(unit_text):
         if re.search(raw_escaped + r"\s*(?:\u5143(?:/\u5ea6|/\u5343\u74e6\u65f6)?|\u5206/\u5343\u74e6\u65f6)", local_window):
+            repaired = _local_unit_repair(raw_text, local_window)
+            if repaired:
+                return repaired, True
             return raw_text, True
     if "\u5143" in unit_text:
         if re.search(raw_escaped + r"\s*(?:\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", local_window):
+            repaired = _local_unit_repair(raw_text, local_window)
+            if repaired:
+                return repaired, True
             return raw_text, True
         if re.search(raw_escaped + r"\s*(?:\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6)", local_window):
+            repaired = _local_unit_repair(raw_text, local_window)
+            if repaired:
+                return repaired, True
             return raw_text, True
 
     return f"{raw_text}{unit_text}", False

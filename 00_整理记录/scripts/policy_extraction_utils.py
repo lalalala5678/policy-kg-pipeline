@@ -620,7 +620,8 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
         out = _base_normalize_result("time_point")
         out["param_type"] = "time_window"
         out["norm_value"] = point
-        out["norm_unit"] = "time_point"
+        # Keep unit aligned with time-window family to reduce downstream unit drift.
+        out["norm_unit"] = "time_window"
         out["norm_start"] = point
         out["norm_end"] = point
         out["op"] = "point"

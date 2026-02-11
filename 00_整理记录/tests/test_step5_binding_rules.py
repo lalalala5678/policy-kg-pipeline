@@ -110,7 +110,7 @@ class TestStep5BindingRules(unittest.TestCase):
         )
         self.assertTrue(adjusted["matched"])
         self.assertEqual(adjusted["param_type"], "time_window")
-        self.assertEqual(adjusted["norm_unit"], "time_point")
+        self.assertEqual(adjusted["norm_unit"], "time_window")
         self.assertEqual(adjusted["norm_value"], "22:00")
         self.assertEqual(action, "time_point_retyped")
 
@@ -170,7 +170,7 @@ class TestStep5BindingRules(unittest.TestCase):
         self.assertEqual(adjusted["norm_value"], 1200.0)
         self.assertEqual(action, "price_value_retyped_to_subsidy_amount")
 
-    def test_build_norm_input_drops_mispair_for_price_value(self):
+    def test_build_norm_input_repairs_mispair_for_price_value(self):
         merged, dropped = build_norm_input(
             raw_value="0.507",
             raw_unit="\u5343\u74e6\u65f6",
@@ -179,7 +179,7 @@ class TestStep5BindingRules(unittest.TestCase):
             raw_end=30,
         )
         self.assertTrue(dropped)
-        self.assertEqual(merged, "0.507")
+        self.assertEqual(merged, "0.507\u5143/\u5343\u74e6\u65f6")
 
     def test_build_norm_input_keeps_real_threshold_unit(self):
         merged, dropped = build_norm_input(
@@ -192,7 +192,7 @@ class TestStep5BindingRules(unittest.TestCase):
         self.assertFalse(dropped)
         self.assertEqual(merged, "170\u5343\u74e6\u65f6")
 
-    def test_build_norm_input_drops_money_unit_for_household_count(self):
+    def test_build_norm_input_repairs_money_unit_for_household_count(self):
         merged, dropped = build_norm_input(
             raw_value="3071",
             raw_unit="\u5143",
@@ -201,7 +201,7 @@ class TestStep5BindingRules(unittest.TestCase):
             raw_end=7,
         )
         self.assertTrue(dropped)
-        self.assertEqual(merged, "3071")
+        self.assertEqual(merged, "3071\u6237")
 
     def test_guard_retypes_household_from_yuan_mismatch(self):
         norm = {

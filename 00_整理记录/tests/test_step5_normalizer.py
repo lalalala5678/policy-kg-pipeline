@@ -50,7 +50,7 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertTrue(result["matched"])
         self.assertEqual(result["rule"], "time_point")
         self.assertEqual(result["param_type"], "time_window")
-        self.assertEqual(result["norm_unit"], "time_point")
+        self.assertEqual(result["norm_unit"], "time_window")
         self.assertEqual(result["norm_value"], "07:00")
 
     def test_date_like_filtered(self):

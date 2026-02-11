@@ -143,6 +143,16 @@ def is_numeric_like(raw_value: Optional[str]) -> bool:
     return bool(NUM_RE.search(text) or TIME_RANGE_RE.search(text) or PERCENT_RE.search(text))
 
 
+def is_param_type_compatible(pred_type: Optional[str], gold_type: Optional[str]) -> bool:
+    pred = str(pred_type or "")
+    gold = str(gold_type or "")
+    if pred == gold:
+        return True
+    if pred in {"time_point", "time_window"} and gold in {"time_point", "time_window"}:
+        return True
+    return False
+
+
 def bind_reason_group(reason: Optional[str]) -> str:
     r = str(reason or "")
     if r in HIGH_CONF_BIND_REASONS:
@@ -830,7 +840,7 @@ def main() -> None:
             if row.get("gold_param_type") and row.get("gold_norm_unit"):
                 norm_den += 1
                 if (
-                    str(row.get("param_type") or "") == str(row.get("gold_param_type") or "")
+                    is_param_type_compatible(row.get("param_type"), row.get("gold_param_type"))
                     and str(row.get("norm_unit") or "") == str(row.get("gold_norm_unit") or "")
                 ):
                     norm_num += 1

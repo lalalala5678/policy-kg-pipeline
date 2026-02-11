@@ -1,0 +1,83 @@
+{
+  "input": {
+    "step5_report": "00_整理记录/step7_iter3_unitfix_timeunit_thr060_validation_report.json",
+    "step6_report": "00_整理记录/step7_iter3b_unitfix_timeunit_thr060_iaa_report.json"
+  },
+  "step5_snapshot": {
+    "normalization_matched_on_mentions": {
+      "num": 1119,
+      "den": 1141,
+      "rate": 0.980719
+    },
+    "strict_high_on_valid_numeric": {
+      "num": 952,
+      "den": 1119,
+      "rate": 0.85076
+    },
+    "mechanism_bound_on_valid_numeric": {
+      "num": 1119,
+      "den": 1119,
+      "rate": 1.0
+    },
+    "local_supported_rate_valid_numeric": 0.899017
+  },
+  "step6_snapshot": {
+    "iaa": {
+      "kappa_mechanism": 0.991969,
+      "kappa_param_type": 1.0,
+      "exact_match_norm_unit": 1.0,
+      "agreement_strict_high_eligible": 1.0
+    },
+    "quality_denominators": {
+      "all_clause": 2022,
+      "sample_total": 300,
+      "valid_all": 300,
+      "valid_numeric": 287
+    },
+    "mechanism_precision_on_valid_numeric": {
+      "num": 271,
+      "den": 283,
+      "rate": 0.957597
+    },
+    "normalization_precision_on_valid_numeric": {
+      "num": 287,
+      "den": 287,
+      "rate": 1.0
+    },
+    "strict_high_precision": {
+      "num": 220,
+      "den": 221,
+      "rate": 0.995475
+    },
+    "target_pass": {
+      "kappa_mechanism_ge_0_80": true,
+      "kappa_param_type_ge_0_80": true,
+      "exact_match_norm_unit_ge_0_90": true,
+      "agreement_strict_high_eligible_ge_0_90": true,
+      "mechanism_precision_ge_0_90": true,
+      "normalization_precision_ge_0_90": true,
+      "strict_high_precision_ge_0_92": true,
+      "time_raw_not_time_window_eq_0": true,
+      "price_value_large_raw_small_norm_eq_0": true,
+      "candidate_score_strict_high_eq_0": true,
+      "sample_size_ge_240": true,
+      "sample_strict_ge_120": true,
+      "sample_hard_ge_60": true
+    }
+  },
+  "target_pass": {
+    "step5_normalization_matched_rate_ge_0_95": true,
+    "step5_strict_high_rate_valid_numeric_ge_0_85": true,
+    "step5_mechanism_bound_rate_valid_numeric_eq_1_0": true,
+    "step5_local_supported_rate_valid_numeric_ge_0_85": true,
+    "step6_kappa_mechanism_ge_0_90": true,
+    "step6_kappa_param_type_ge_0_95": true,
+    "step6_mechanism_precision_ge_0_95": true,
+    "step6_normalization_precision_ge_0_995": true,
+    "step6_strict_high_precision_ge_0_992": true,
+    "step6_hard_error_time_raw_not_time_window_eq_0": true,
+    "step6_hard_error_price_value_large_raw_small_norm_eq_0": true,
+    "step6_hard_error_candidate_score_strict_high_eq_0": true
+  },
+  "all_targets_passed": true
+}

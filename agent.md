@@ -147,7 +147,7 @@
 7. 小样本微调与迭代
    - 基于标注数据微调 UIE
    - 对关键字段（时段/电价/补贴）强化
-   - 当前状态：待开始（以 `step6_gold_adjudicated.jsonl` 为监督数据）
+   - 当前状态：已完成 Step7 规则增量优化与门禁复测（`step7_gate_iter3_final.json` = `all_targets_passed=true`）；UIE 参数微调实验待单独开启
 
 8. 三元组与多跳结构输出
    - 生成 SPO + 机制/条款实体化结构
