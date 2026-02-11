@@ -29,7 +29,6 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "policykg_step9")
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "").strip()
 DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
 DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
-KG_SCHEMA_PATH = os.getenv("KG_SCHEMA_PATH", "结果文件夹/schema_v1.yaml")
 
 if not DEEPSEEK_API_KEY:
     raise RuntimeError("DEEPSEEK_API_KEY is required. Put it in .env.langgraph or .env.local")
@@ -41,7 +40,6 @@ qa_service = LangGraphPolicyQA(
     deepseek_api_key=DEEPSEEK_API_KEY,
     deepseek_model=DEEPSEEK_MODEL,
     deepseek_base_url=DEEPSEEK_BASE_URL,
-    schema_path=KG_SCHEMA_PATH,
     max_rounds=3,
     max_rows=20,
 )
@@ -125,4 +123,3 @@ def ask(payload: AskPayload, request: Request) -> Dict[str, Any]:
         "user": username,
         "result": result,
     }
-
