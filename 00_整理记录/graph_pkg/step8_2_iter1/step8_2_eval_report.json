@@ -1,0 +1,136 @@
+{
+  "all_targets_passed": true,
+  "checks": {
+    "conflict_type_classification_coverage_ge_95": true,
+    "core_path_coverage_100": true,
+    "deterministic_pack_rebuild_match_100": true,
+    "edge_signal_coverage_on_strict_high_100": true,
+    "parameterized_example_coverage_100": true,
+    "query_execution_success_rate_100": true,
+    "query_template_count_10_20": true
+  },
+  "conflict_signal_summary": {
+    "conflict_classified": 3929,
+    "conflict_total": 3929,
+    "conflict_type_classification_coverage": 1.0,
+    "conflict_type_distribution": {
+      "dedup_aggregation": 3875,
+      "semantic_collision": 54
+    }
+  },
+  "input": {
+    "conflicts": 3929,
+    "step8_dir": "00_整理记录\\graph_pkg\\step8_iter1",
+    "step8_manifest_run_id": "step8_iter1",
+    "strict_all_edges": 5742,
+    "strict_high_edges": 4868,
+    "strict_high_nodes": 2494
+  },
+  "metrics": {
+    "conflict_type_classification_coverage": 1.0,
+    "core_path_coverage": 1.0,
+    "deterministic_pack_rebuild_match": true,
+    "edge_signal_coverage_on_strict_high": 1.0,
+    "parameterized_example_coverage": 1.0,
+    "query_execution_success_rate": 1.0,
+    "query_template_count": 12
+  },
+  "query_eval": [
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "forward_main",
+      "query_id": "Q01",
+      "result_count": 1,
+      "title": "policy_to_mechanism_path"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "reverse_main",
+      "query_id": "Q02",
+      "result_count": 1,
+      "title": "mechanism_reverse_to_policy"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "forward_main",
+      "query_id": "Q03",
+      "result_count": 1,
+      "title": "mechanism_to_definitions"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "reverse_main",
+      "query_id": "Q04",
+      "result_count": 9,
+      "title": "definition_reverse_to_policy"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "forward_main",
+      "query_id": "Q05",
+      "result_count": 7,
+      "title": "time_window_mechanisms_by_policy"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "forward_main",
+      "query_id": "Q06",
+      "result_count": 10,
+      "title": "threshold_filter_by_param_type"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "forward_main",
+      "query_id": "Q07",
+      "result_count": 3,
+      "title": "region_proxy_filter"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "forward_main",
+      "query_id": "Q08",
+      "result_count": 10,
+      "title": "target_group_proxy_filter"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "risk_signal",
+      "query_id": "Q09",
+      "result_count": 10,
+      "title": "mechanism_conflict_rank"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "risk_signal",
+      "query_id": "Q10",
+      "result_count": 10,
+      "title": "high_risk_facts"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "risk_signal",
+      "query_id": "Q11",
+      "result_count": 1,
+      "title": "cross_clause_conflict_by_mechanism_type"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "path_tag": "risk_signal",
+      "query_id": "Q12",
+      "result_count": 10,
+      "title": "strict_all_backfill_candidates"
+    }
+  ]
+}

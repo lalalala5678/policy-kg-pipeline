@@ -1,0 +1,9 @@
+{
+  "conflict_classified": 3929,
+  "conflict_total": 3929,
+  "conflict_type_classification_coverage": 1.0,
+  "conflict_type_distribution": {
+    "dedup_aggregation": 3875,
+    "semantic_collision": 54
+  }
+}

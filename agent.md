@@ -1,6 +1,6 @@
 ﻿# AGENT.md — 政策三元组抽取与知识图谱推演任务说明
 
-更新时间：2026-02-11（已更新至 Step8）
+更新时间：2026-02-11（已更新至 Step8.2 完成）
 最新提交：`08825ce`（step8: export dual-track graph package with deterministic validation）
 
 ## 当前执行状态（按步骤）
@@ -13,6 +13,7 @@
 - Step 7（规则增量优化与门禁复测）：已完成（门禁达标）
 - Step 7b（固定 Gold 门禁增益实验）：已完成并通过（`all_targets_passed=true`）
 - Step 8（三元组与多跳结构输出）：已完成（双轨入图库+工程验收通过）
+- Step 8.2（图查询样例包 + 冲突信号化）：已完成（门禁达标）
 - Step 9（评测与推演准备）：可开始
 
 ## 最新可用产物（建议作为下游输入）
@@ -57,8 +58,23 @@
 
 依据：
 - Step8 工程门禁全通过（PK/FK/schema/evidence/unit/dry-run）。
-- 重复导出一致性通过，满足复现与回滚要求。
-- 双轨图产物已可直接用于主图推演与扩展复核。
+- Step8.2 已完成“查询样例包 + 冲突信号化”并通过全部门禁。
+- Step9 可直接基于 `step8_2_iter1` 产物执行评测与推演准备。
+
+## Step8.2 完成状态（摘要）
+- 功能1：产出 10~20 条固定查询模板（主图 strict_high + 扩展图 strict_all）
+- 功能2：把冲突日志升级为边级信号（`conflict_count`、`alt_candidates_count`、`risk_level`）
+- 结果：
+  - `query_template_count = 12`
+  - `query_execution_success_rate = 1.0`
+  - `core_path_coverage = 1.0`
+  - `edge_signal_coverage_on_strict_high = 1.0`
+  - `conflict_type_classification_coverage = 1.0`
+  - `deterministic_pack_rebuild_match = true`
+  - `all_targets_passed = true`
+- 产物目录：`00_整理记录/graph_pkg/step8_2_iter1`
+- 评测报告：`00_整理记录/graph_pkg/step8_2_iter1/step8_2_eval_report.json`
+- 详细方案文档：`step8_2.md`
 
 ## Step8 执行建议（本轮）
 1. 采用双轨入图：
