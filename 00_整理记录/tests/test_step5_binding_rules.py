@@ -192,6 +192,17 @@ class TestStep5BindingRules(unittest.TestCase):
         self.assertFalse(dropped)
         self.assertEqual(merged, "170\u5343\u74e6\u65f6")
 
+    def test_build_norm_input_recovers_kwh_from_label_unit(self):
+        merged, dropped = build_norm_input(
+            raw_value="450",
+            raw_unit="\u7535\u91cf",
+            clause_text="\u7b2c\u4e09\u6863\u4e3a450\u5343\u74e6\u65f6\u4ee5\u4e0a\u3002",
+            raw_start=4,
+            raw_end=7,
+        )
+        self.assertTrue(dropped)
+        self.assertEqual(merged, "450\u5343\u74e6\u65f6")
+
     def test_build_norm_input_repairs_money_unit_for_household_count(self):
         merged, dropped = build_norm_input(
             raw_value="3071",

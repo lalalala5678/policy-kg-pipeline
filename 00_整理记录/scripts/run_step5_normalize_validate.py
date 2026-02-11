@@ -459,6 +459,14 @@ def build_norm_input(
     raw_start: Optional[int],
     raw_end: Optional[int],
 ) -> Tuple[str, bool]:
+    def _recover_from_label_unit(raw_text_local: str, unit_text_local: str, local_text: str) -> Optional[str]:
+        raw_escaped_local = re.escape(raw_text_local)
+        if unit_text_local in {"电量", "用电量"}:
+            m_kwh = re.search(raw_escaped_local + r"\s*(千瓦时|kWh|KWH|kwh|度)", local_text)
+            if m_kwh:
+                return f"{raw_text_local}{m_kwh.group(1)}"
+        return None
+
     def _local_unit_repair(raw_text_local: str, local_text: str) -> Optional[str]:
         raw_escaped_local = re.escape(raw_text_local)
         patterns = [
@@ -478,6 +486,9 @@ def build_norm_input(
     if not unit_text or unit_text in raw_text:
         return raw_text, False
     local_window = extract_local_window(clause_text, raw_start, raw_end)
+    recovered_label = _recover_from_label_unit(raw_text, unit_text, local_window)
+    if recovered_label:
+        return recovered_label, True
     if re.search(r"\d", unit_text):
         repaired = _local_unit_repair(raw_text, local_window)
         if repaired:
@@ -891,6 +902,36 @@ def main() -> None:
                     if bool(retry_norm.get("matched")):
                         norm = retry_norm
                         guard_action = retry_guard_action or "retry_full_clause_decimal"
+                        full_clause_retry_success_count += 1
+            if not bool(norm.get("matched")) and raw_unit is not None and parse_arabic_number(raw_value) is None:
+                local_window = extract_local_window(
+                    clause_text,
+                    raw_start if isinstance(raw_start, int) else None,
+                    raw_end if isinstance(raw_end, int) else None,
+                )
+                unit_candidates = [str(raw_unit)]
+                if raw_unit_norm and raw_unit_norm not in unit_candidates:
+                    unit_candidates.append(str(raw_unit_norm))
+                recovered_num = None
+                for u in unit_candidates:
+                    m_local = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*" + re.escape(u), local_window)
+                    if m_local:
+                        recovered_num = m_local.group(1)
+                        break
+                if recovered_num is not None:
+                    recovered_text = f"{recovered_num}{raw_unit_norm or raw_unit}"
+                    retry_norm = normalize_parameter(recovered_text, local_window)
+                    retry_norm, retry_guard_action = apply_post_normalization_guards(
+                        raw_value=raw_value,
+                        raw_unit=raw_unit_norm,
+                        clause_text=clause_text,
+                        raw_start=raw_start if isinstance(raw_start, int) else None,
+                        raw_end=raw_end if isinstance(raw_end, int) else None,
+                        norm=retry_norm,
+                    )
+                    if bool(retry_norm.get("matched")):
+                        norm = retry_norm
+                        guard_action = retry_guard_action or "retry_recover_numeric_from_unit_context"
                         full_clause_retry_success_count += 1
             if guard_action:
                 post_guard_counter[guard_action] += 1
