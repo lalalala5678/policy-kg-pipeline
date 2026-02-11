@@ -1,7 +1,7 @@
 ﻿# AGENT.md — 政策三元组抽取与知识图谱推演任务说明
 
 更新时间：2026-02-11（已更新至 Step8.2 完成）
-最新提交：`08825ce`（step8: export dual-track graph package with deterministic validation）
+最新提交：`9387a9d`（step8.2: query pack + conflict signalization）
 
 ## 当前执行状态（按步骤）
 - Step 1（领域 Schema 设计）：已完成（`00_整理记录/schema_v1.yaml`，当前 v1.4）
