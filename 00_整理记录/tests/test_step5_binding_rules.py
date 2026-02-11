@@ -14,6 +14,8 @@ from run_step5_normalize_validate import (  # noqa: E402
     build_clause_candidates,
     canonicalize_unit_alias,
     choose_binding_for_mention,
+    is_param_unit_compatible,
+    is_parenthetical_weak_constraint,
 )
 
 
@@ -133,6 +135,66 @@ class TestStep5BindingRules(unittest.TestCase):
         )
         self.assertFalse(dropped)
         self.assertEqual(merged, "170\u5343\u74e6\u65f6")
+
+    def test_build_norm_input_drops_money_unit_for_household_count(self):
+        merged, dropped = build_norm_input(
+            raw_value="3071",
+            raw_unit="\u5143",
+            clause_text="\u5171\u8ba13071\u6237\u5c45\u6c11\uff0c\u5e76\u5bf9\u6bcf\u6237\u8fdb\u884c6500\u5143\u7684\u6807\u51c6\u8865\u8d34\u3002",
+            raw_start=3,
+            raw_end=7,
+        )
+        self.assertTrue(dropped)
+        self.assertEqual(merged, "3071")
+
+    def test_guard_retypes_household_from_yuan_mismatch(self):
+        norm = {
+            "matched": True,
+            "rule": "yuan_generic",
+            "param_type": "subsidy_amount",
+            "norm_value": 3071.0,
+            "norm_unit": "yuan",
+            "norm_start": None,
+            "norm_end": None,
+            "range_start": None,
+            "range_end": None,
+            "op": None,
+            "scope_unit": None,
+        }
+        adjusted, action = apply_post_normalization_guards(
+            raw_value="3071",
+            raw_unit="\u5143",
+            clause_text="\u5171\u8ba13071\u6237\u5c45\u6c11\uff0c\u5e76\u5bf9\u6bcf\u6237\u8fdb\u884c6500\u5143\u7684\u6807\u51c6\u8865\u8d34\u3002",
+            raw_start=3,
+            raw_end=7,
+            norm=norm,
+        )
+        self.assertTrue(adjusted["matched"])
+        self.assertEqual(adjusted["param_type"], "target_household_count")
+        self.assertEqual(adjusted["norm_unit"], "household")
+        self.assertEqual(adjusted["norm_value"], 3071.0)
+        self.assertEqual(action, "household_count_retyped")
+
+    def test_strict_compat_rejects_duration_with_price_unit(self):
+        ok = is_param_unit_compatible(
+            param_type="duration_threshold_month",
+            raw_value="6000",
+            raw_unit="\u5143/\u5343\u74e6\u65f6",
+            norm_unit="month",
+            clause_text="\u6bcf\u6237\u6bcf\u5e74\u6700\u9ad8\u8865\u8d34\u7535\u91cf6000\u5343\u74e6\u65f6\uff0c\u8865\u8d34\u65f6\u95f4\u6682\u5b9a3\u5e74\u3002",
+            raw_start=12,
+            raw_end=16,
+        )
+        self.assertFalse(ok)
+
+    def test_parenthetical_duration_is_weak_constraint(self):
+        weak = is_parenthetical_weak_constraint(
+            clause_text="\uff08\u4e0d\u5c11\u4e8e\u4e24\u4e2a\u6708\uff09\u5b8c\u6210\u751f\u7269\u8d28\u4e13\u7528\u9897\u7c92\u71c3\u6599\u91c7\u8d2d\u3002",
+            raw_start=1,
+            raw_end=5,
+            param_type="duration_threshold_month",
+        )
+        self.assertTrue(weak)
 
     def test_canonicalize_unit_alias(self):
         self.assertEqual(canonicalize_unit_alias("Ԫ/ǧ��ʱ"), "\u5143/\u5343\u74e6\u65f6")

@@ -1,0 +1,167 @@
+{
+  "inputs": {
+    "old": "step5_seq_step2_v2_rebind11_fixabc_parameter_mentions.jsonl",
+    "new": "step5_seq_step2_v2_rebind12_fixabcd_parameter_mentions.jsonl",
+    "clause_source": "step3_clause_corpus.jsonl"
+  },
+  "metrics": {
+    "old": {
+      "mention_total": 1141,
+      "normalization_matched": 1103,
+      "strict_high": 960,
+      "duration_month_context_count": 29,
+      "duration_with_price_or_kwh_conflict": 0,
+      "duration_with_year_like_value": 0,
+      "duration_strict_high": 29,
+      "strict_high_on_weak_parenthetical_duration": 9,
+      "household_as_money": 0,
+      "ratio_colon_ratio_target": 11,
+      "ratio_colon_funding_share_ratio": 0
+    },
+    "new": {
+      "mention_total": 1141,
+      "normalization_matched": 1079,
+      "strict_high": 924,
+      "duration_month_context_count": 7,
+      "duration_with_price_or_kwh_conflict": 0,
+      "duration_with_year_like_value": 0,
+      "duration_strict_high": 1,
+      "strict_high_on_weak_parenthetical_duration": 0,
+      "household_as_money": 0,
+      "ratio_colon_ratio_target": 4,
+      "ratio_colon_funding_share_ratio": 7
+    }
+  },
+  "focus_ids": {
+    "pm_0642d8a0dd09dda47c47": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 6000.0,
+        "strict_high": true,
+        "raw_unit_canonical": "元/千瓦时"
+      },
+      "new": {
+        "normalization_rule": "no_match",
+        "param_type": null,
+        "norm_unit": null,
+        "norm_value": null,
+        "strict_high": false,
+        "raw_unit_canonical": "元/千瓦时"
+      }
+    },
+    "pm_0e9050822c1d12a4c933": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 0.0634,
+        "strict_high": true,
+        "raw_unit_canonical": "元/千瓦时"
+      },
+      "new": {
+        "normalization_rule": "no_match",
+        "param_type": null,
+        "norm_unit": null,
+        "norm_value": null,
+        "strict_high": false,
+        "raw_unit_canonical": "元/千瓦时"
+      }
+    },
+    "pm_296552a3297b9f0030f2": {
+      "old": {
+        "normalization_rule": "yuan_generic",
+        "param_type": "subsidy_amount",
+        "norm_unit": "yuan",
+        "norm_value": 3071.0,
+        "strict_high": false,
+        "raw_unit_canonical": "元"
+      },
+      "new": {
+        "normalization_rule": "no_match",
+        "param_type": null,
+        "norm_unit": null,
+        "norm_value": null,
+        "strict_high": false,
+        "raw_unit_canonical": "元"
+      }
+    },
+    "pm_106b35c73d16a957c011": {
+      "old": {
+        "normalization_rule": "ratio_sequence",
+        "param_type": "ratio_target",
+        "norm_unit": "none",
+        "norm_value": "1:1:1",
+        "strict_high": true,
+        "raw_unit_canonical": "元"
+      },
+      "new": {
+        "normalization_rule": "ratio_sequence",
+        "param_type": "funding_share_ratio",
+        "norm_unit": "none",
+        "norm_value": "1:1:1",
+        "strict_high": true,
+        "raw_unit_canonical": "元"
+      }
+    },
+    "pm_00f41be4f5cef15eaf85": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 2.0,
+        "strict_high": true,
+        "raw_unit_canonical": null
+      },
+      "new": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 2.0,
+        "strict_high": false,
+        "raw_unit_canonical": null
+      }
+    },
+    "pm_152d1770732a3dc52686": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 2018.0,
+        "strict_high": true,
+        "raw_unit_canonical": null
+      },
+      "new": {
+        "normalization_rule": "no_match",
+        "param_type": null,
+        "norm_unit": null,
+        "norm_value": null,
+        "strict_high": false,
+        "raw_unit_canonical": null
+      }
+    }
+  },
+  "manual_spotcheck_ids": [
+    "pm_89e78b60601fd3b209c5",
+    "pm_0f80ab4e67db9afe8c9b",
+    "pm_daedb55902b0e9a7ee0a",
+    "pm_a082dacee89fab4da6bc",
+    "pm_c67ef95c4d0cdf4bd33c",
+    "pm_e9c398a9a11c2e760f70",
+    "pm_2685fd65e7b77888bab4",
+    "pm_47cafb466fb5478c4166",
+    "pm_3fc29c0aecb9b5f37457",
+    "pm_2e9f35af96e691dfd84c",
+    "pm_ac52da0c49d046bfcd7f",
+    "pm_1638f71bcc2aec6f0727",
+    "pm_f6c37c5f32b910751577",
+    "pm_2fc8793e95051fefc725",
+    "pm_0f550b1211947d5141b9",
+    "pm_15ffba52b075d5ad9bc1",
+    "pm_cb99c3f95fe604525915",
+    "pm_82fac7d2d415ee9a59c4",
+    "pm_72410d7b4cb804777da4",
+    "pm_c06613e73ee87362f0e3"
+  ]
+}

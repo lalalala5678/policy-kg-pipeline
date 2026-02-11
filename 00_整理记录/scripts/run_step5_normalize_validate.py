@@ -70,10 +70,12 @@ PARAM_PRIOR: Dict[str, Dict[str, float]] = {
     "consumption_threshold_kwh": {"tiered_pricing": 1.6, "subsidy": 0.6},
     "subsidy_amount": {"subsidy": 1.8},
     "area_subsidy_amount": {"subsidy": 1.8},
+    "funding_share_ratio": {"subsidy": 1.5, "task_assessment": 0.7},
     "ratio_target": {"task_assessment": 1.0, "technology_route": 0.9},
     "capacity_threshold": {"technology_route": 1.2, "task_assessment": 0.8},
     "tonnage_threshold": {"technology_route": 1.2, "task_assessment": 0.8},
     "duration_threshold_month": {"task_assessment": 1.2, "subsidy": 0.8},
+    "duration_threshold_year": {"task_assessment": 1.0, "subsidy": 0.9},
 }
 
 NUMERIC_RE = re.compile(r"\d")
@@ -90,6 +92,8 @@ PRICE_UNIT_HINT_RE = re.compile(r"\u5143/\u5ea6|\u5143/\u5343\u74e6\u65f6|\u5206
 PHYSICAL_UNIT_HINT_RE = re.compile(r"\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6(?!\u7535\u4ef7)|\u5428|MW|mw|kW|kw|W|w|kVA|kva")
 TIER_THRESHOLD_CUE_RE = re.compile(r"\u7b2c\u4e00\u6863|\u7b2c\u4e8c\u6863|\u7b2c\u4e09\u6863|\u5206\u6863|\u9636\u68af|\u6863\u4f4d|\u9608\u503c|\u4e0d\u8d85\u8fc7|\u4ee5\u4e0a|\u4ee5\u5185|\u57fa\u6570")
 TRANSPORT_CONTEXT_RE = re.compile(r"\u6bcf\u767e\u516c\u91cc|\u4e58\u7528\u8f66|\u65b0\u80fd\u6e90\u6c7d\u8f66|\u65b0\u8f66|\u81ea\u52a8\u9a7e\u9a76")
+FUNDING_SHARE_CUE_RE = re.compile(r"\u5206\u62c5|\u627f\u62c5|\u5171\u62c5|\u8d44\u91d1\u7531|\u4e2d\u592e|\u7701|\u5e02|\u53bf|\u533a")
+NON_MONEY_COUNT_UNIT_RE = re.compile(r"\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba")
 LOW_CONF_BIND_REASONS = {"candidate_score", "step4_inherit", "step4_fallback", "time_window_tou_hint"}
 UNIT_ALIAS_MAP = {
     "Ԫ": "\u5143",
@@ -343,6 +347,56 @@ def apply_post_normalization_guards(
             )
             guard_action = "tier_threshold_retyped"
 
+    if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") in {"duration_threshold_month", "duration_threshold_year"}:
+        if PRICE_UNIT_HINT_RE.search(merged_raw) or PHYSICAL_UNIT_HINT_RE.search(merged_raw):
+            adjusted.update(
+                {
+                    "matched": False,
+                    "rule": "duration_context_conflict_filtered",
+                    "param_type": None,
+                    "norm_value": None,
+                    "norm_unit": None,
+                    "norm_start": None,
+                    "norm_end": None,
+                    "range_start": None,
+                    "range_end": None,
+                    "op": None,
+                    "scope_unit": None,
+                }
+            )
+            guard_action = "duration_context_conflict_filtered"
+
+    if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") in {"subsidy_amount", "price_value"}:
+        raw_num = parse_arabic_number(raw_text)
+        raw_escaped = re.escape(raw_text)
+        if (
+            raw_num is not None
+            and re.search(raw_escaped + r"\s*(\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", local_window)
+            and str(adjusted.get("norm_unit") or "") in {"yuan", "yuan_per_kwh"}
+        ):
+            adjusted.update(
+                {
+                    "matched": True,
+                    "rule": "household_count_retyped_from_mismatch_unit",
+                    "param_type": "target_household_count",
+                    "norm_value": float(raw_num),
+                    "norm_unit": "household",
+                    "norm_start": None,
+                    "norm_end": None,
+                    "range_start": None,
+                    "range_end": None,
+                    "op": "threshold" if TIER_THRESHOLD_CUE_RE.search(clause_text) else None,
+                    "scope_unit": None,
+                }
+            )
+            guard_action = "household_count_retyped"
+
+    if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") == "ratio_target":
+        if ":" in raw_text and FUNDING_SHARE_CUE_RE.search(clause_text):
+            adjusted["param_type"] = "funding_share_ratio"
+            adjusted["rule"] = "ratio_sequence_funding_share_retyped"
+            guard_action = "funding_share_ratio_retyped"
+
     return adjusted, guard_action
 
 
@@ -368,10 +422,70 @@ def build_norm_input(
         if re.search(raw_escaped + r"\s*(?:\u5143(?:/\u5ea6|/\u5343\u74e6\u65f6)?|\u5206/\u5343\u74e6\u65f6)", local_window):
             return raw_text, True
     if "\u5143" in unit_text:
+        if re.search(raw_escaped + r"\s*(?:\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", local_window):
+            return raw_text, True
         if re.search(raw_escaped + r"\s*(?:\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6)", local_window):
             return raw_text, True
 
     return f"{raw_text}{unit_text}", False
+
+
+def is_parenthetical_weak_constraint(clause_text: str, raw_start: Optional[int], raw_end: Optional[int], param_type: Optional[str]) -> bool:
+    if param_type not in {"duration_threshold_month", "duration_threshold_year"}:
+        return False
+    if not isinstance(raw_start, int) or not isinstance(raw_end, int):
+        return False
+    left = clause_text.rfind("\uff08", 0, raw_start + 1)
+    right = clause_text.find("\uff09", raw_end)
+    if left == -1 or right == -1:
+        return False
+    # Ignore very long parenthesis ranges to reduce accidental hits.
+    return (right - left) <= 24
+
+
+def is_param_unit_compatible(
+    param_type: Optional[str],
+    raw_value: str,
+    raw_unit: Optional[str],
+    norm_unit: Optional[str],
+    clause_text: str,
+    raw_start: Optional[int],
+    raw_end: Optional[int],
+) -> bool:
+    if not param_type:
+        return False
+    unit_text = (raw_unit or "").strip()
+    merged_raw = f"{raw_value}{unit_text}"
+    local_window = extract_local_window(clause_text, raw_start, raw_end)
+
+    if param_type in {"duration_threshold_month", "duration_threshold_year"}:
+        if PRICE_UNIT_HINT_RE.search(merged_raw) or PHYSICAL_UNIT_HINT_RE.search(merged_raw):
+            return False
+        if param_type == "duration_threshold_year":
+            return bool(re.search(r"\u5e74", merged_raw + local_window))
+        return bool(re.search(r"\u4e2a\u6708|\u6708|\u91c7\u6696\u5b63", merged_raw + local_window))
+
+    if param_type == "price_value":
+        if unit_text and not re.search(r"\u5143|\u5206", unit_text):
+            return False
+        if norm_unit == "yuan_per_kwh":
+            return bool(PRICE_UNIT_HINT_RE.search(merged_raw + local_window))
+        return True
+
+    if param_type in {"subsidy_amount", "area_subsidy_amount"}:
+        if re.search(re.escape(raw_value) + r"\s*(\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", local_window):
+            return False
+        return True
+
+    if param_type == "target_household_count":
+        if unit_text and NON_MONEY_COUNT_UNIT_RE.search(unit_text):
+            return True
+        return bool(re.search(re.escape(raw_value) + r"\s*(\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", local_window))
+
+    if param_type == "funding_share_ratio":
+        return ":" in (raw_value or "")
+
+    return True
 
 
 def format_norm_value(value: object, unit: Optional[str]) -> str:
@@ -611,6 +725,8 @@ def main() -> None:
     full_clause_retry_success_count = 0
     low_confidence_cap_count = 0
     time_window_tou_override_count = 0
+    strict_high_compat_block_count = 0
+    strict_high_weak_constraint_block_count = 0
     skip_reason_counter: Counter = Counter()
 
     for row in clause_pred_rows:
@@ -800,12 +916,33 @@ def main() -> None:
                 mechanism_id = make_id("mechanism", f"{doc_instance_id}|{bind_after}|{clause_id}")
 
             strict_all = bool(draft["span_ok"] and draft["matched"] and bind_after in KNOWN_MECHANISMS_SET)
+            strict_compat_ok = is_param_unit_compatible(
+                param_type=str(draft.get("param_type") or ""),
+                raw_value=str(draft.get("raw_value") or ""),
+                raw_unit=draft.get("raw_unit_norm"),
+                norm_unit=str(draft.get("norm_unit") or "") if draft.get("norm_unit") is not None else None,
+                clause_text=clause_text,
+                raw_start=draft.get("raw_start") if isinstance(draft.get("raw_start"), int) else None,
+                raw_end=draft.get("raw_end") if isinstance(draft.get("raw_end"), int) else None,
+            )
+            weak_constraint = is_parenthetical_weak_constraint(
+                clause_text=clause_text,
+                raw_start=draft.get("raw_start") if isinstance(draft.get("raw_start"), int) else None,
+                raw_end=draft.get("raw_end") if isinstance(draft.get("raw_end"), int) else None,
+                param_type=str(draft.get("param_type") or ""),
+            )
             strict_high = bool(
                 strict_all
                 and bind_reason in HIGH_CONF_BIND_REASONS
                 and float(bind_confidence) >= float(args.strict_high_threshold)
                 and not dropped_by_negative
+                and strict_compat_ok
+                and not weak_constraint
             )
+            if strict_all and not strict_compat_ok:
+                strict_high_compat_block_count += 1
+            if strict_all and weak_constraint:
+                strict_high_weak_constraint_block_count += 1
 
             is_local_supported = bool(
                 bind_after in KNOWN_MECHANISMS_SET
@@ -877,6 +1014,8 @@ def main() -> None:
                 "clause_negative_hits": clause_negative_hits,
                 "strict_all": strict_all,
                 "strict_high": strict_high,
+                "strict_compat_ok": strict_compat_ok,
+                "strict_weak_constraint": weak_constraint,
             }
 
             if draft["matched"] and draft["param_type"] and draft["norm_unit"]:
@@ -1034,6 +1173,8 @@ def main() -> None:
             "post_guard_adjusted_count": sum(post_guard_counter.values()),
             "low_confidence_cap_count": low_confidence_cap_count,
             "time_window_tou_override_count": time_window_tou_override_count,
+            "strict_high_compat_block_count": strict_high_compat_block_count,
+            "strict_high_weak_constraint_block_count": strict_high_weak_constraint_block_count,
         },
         "rates": {
             "span_valid_rate": round(span_valid_rate, 6),

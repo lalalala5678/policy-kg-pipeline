@@ -1,0 +1,112 @@
+{
+  "inputs": {
+    "old": "step6_gold_adjudicated.jsonl",
+    "new": "step6_iter3_fixabcd_gold_adjudicated.jsonl"
+  },
+  "metrics": {
+    "old": {
+      "sample_total": 300,
+      "strict_high_count": 229,
+      "strict_high_true_gold_false": 6,
+      "duration_month_context_count": 15,
+      "duration_month_context_with_raw_unit": 3,
+      "duration_month_context_strict_high": 15,
+      "ratio_colon_ratio_target": 1,
+      "ratio_colon_funding_share_ratio": 0,
+      "candidate_score_strict_high": 0
+    },
+    "new": {
+      "sample_total": 300,
+      "strict_high_count": 223,
+      "strict_high_true_gold_false": 0,
+      "duration_month_context_count": 4,
+      "duration_month_context_with_raw_unit": 0,
+      "duration_month_context_strict_high": 1,
+      "ratio_colon_ratio_target": 1,
+      "ratio_colon_funding_share_ratio": 3,
+      "candidate_score_strict_high": 0
+    }
+  },
+  "focus_ids": {
+    "pm_0642d8a0dd09dda47c47": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 6000.0,
+        "strict_high": true,
+        "gold_strict_high_eligible": true
+      },
+      "new": null
+    },
+    "pm_0e9050822c1d12a4c933": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 0.0634,
+        "strict_high": true,
+        "gold_strict_high_eligible": true
+      },
+      "new": null
+    },
+    "pm_296552a3297b9f0030f2": {
+      "old": {
+        "normalization_rule": "yuan_generic",
+        "param_type": "subsidy_amount",
+        "norm_unit": "yuan",
+        "norm_value": 3071.0,
+        "strict_high": false,
+        "gold_strict_high_eligible": false
+      },
+      "new": {
+        "normalization_rule": "no_match",
+        "param_type": null,
+        "norm_unit": null,
+        "norm_value": null,
+        "strict_high": false,
+        "gold_strict_high_eligible": false
+      }
+    },
+    "pm_106b35c73d16a957c011": {
+      "old": {
+        "normalization_rule": "ratio_sequence",
+        "param_type": "ratio_target",
+        "norm_unit": "none",
+        "norm_value": "1:1:1",
+        "strict_high": true,
+        "gold_strict_high_eligible": true
+      },
+      "new": {
+        "normalization_rule": "ratio_sequence",
+        "param_type": "funding_share_ratio",
+        "norm_unit": "none",
+        "norm_value": "1:1:1",
+        "strict_high": true,
+        "gold_strict_high_eligible": true
+      }
+    },
+    "pm_00f41be4f5cef15eaf85": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 2.0,
+        "strict_high": true,
+        "gold_strict_high_eligible": false
+      },
+      "new": null
+    },
+    "pm_152d1770732a3dc52686": {
+      "old": {
+        "normalization_rule": "duration_month_context",
+        "param_type": "duration_threshold_month",
+        "norm_unit": "month",
+        "norm_value": 2018.0,
+        "strict_high": true,
+        "gold_strict_high_eligible": true
+      },
+      "new": null
+    }
+  }
+}

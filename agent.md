@@ -1,14 +1,14 @@
 ﻿# AGENT.md — 政策三元组抽取与知识图谱推演任务说明
 
-更新时间：2026-02-11（step6 Gold/IAA planning）
+更新时间：2026-02-11（step6 Gold/IAA completed）
 
 ## 当前执行状态
 - Step 1（领域 Schema 设计）：已完成
 - Step 2（样本文档抽样与标注规范）：已完成
 - Step 3（预处理与切分策略）：已完成
 - Step 4（UIE 基线抽取 + 可导入性迭代优化）：已完成（达到良好阈值）
-- Step 5（规则化归一与校验）：已完成（step4_seq_step2 全量）
-- Step 6（Gold/IAA 构建与一致性评测）：待执行（本轮已冻结口径与任务步骤）
+- Step 5（规则化归一与校验）：已完成（最新前缀 `step5_seq_step2_v2_rebind12_fixabcd`）
+- Step 6（Gold/IAA 构建与一致性评测）：已完成（最新前缀 `step6_iter3_fixabcd`，全量门禁达标）
 - 交付文件：
   - `00_整理记录/schema_v1.yaml`（v1.4，已修复枚举冲突并扩展工程参数适配）
   - `00_整理记录/schema_step1_readthrough_report.md`
@@ -56,8 +56,27 @@
   - `00_整理记录/step5_seq_step2_triples_spo.jsonl`
   - `00_整理记录/step5_seq_step2_validation_report.json`
   - `00_整理记录/step5_seq_step2_validation_report.md`
+  - `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_parameter_mentions.jsonl`
+  - `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_parameter_definitions.jsonl`
+  - `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_triples_spo.jsonl`
+  - `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_validation_report.json`
+  - `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_validation_report.md`
+  - `00_整理记录/step5_fixabcd_issueAtoD_eval.json`
   - `00_整理记录/tests/test_step5_normalizer.py`
+  - `00_整理记录/scripts/run_step6_gold_iaa.py`
+  - `00_整理记录/step6_gold_sample_v1.jsonl`
+  - `00_整理记录/step6_gold_passA_labels.jsonl`
+  - `00_整理记录/step6_gold_passB_labels.jsonl`
+  - `00_整理记录/step6_gold_adjudicated.jsonl`
+  - `00_整理记录/step6_iaa_report.json`
+  - `00_整理记录/step6_iaa_report.md`
+  - `00_整理记录/step6_iter3_fixabcd_gold_adjudicated.jsonl`
+  - `00_整理记录/step6_iter3_fixabcd_iaa_report.json`
+  - `00_整理记录/step6_iter3_fixabcd_iaa_report.md`
+  - `00_整理记录/step6_fixabcd_eval.json`
+  - `00_整理记录/step6_测评参数与计算口径.md`
   - `step5.md`
+  - `step6.md`
 - 说明：
   - Step 1 基于全量 151 份政策文本通读统计，不是抽样推断。
   - Step 2 在排除 `02_汇总拼接` 与压缩包目录后，对 147 份独立政策文本做主题抽样；每主题 8 份，去重样本池 38 份。
@@ -117,17 +136,18 @@
 5. 规则化归一与校验
    - 正则/词典/单位解析器
    - 证据对齐（span 回溯）与一致性检查
-   - 当前状态：已完成（mention/definition/triple/validation 报告已产出）
+   - 当前状态：已完成（最新 `rebind12_fixabcd` 已产出并通过门禁）
 
 6. Gold/IAA 构建与一致性评测
    - 冻结 Step5 输入版本、分母口径与样本抽样规则
    - 生成机器辅助金标（双盲两遍）并进行自动仲裁
    - 输出 IAA 指标（kappa/F1/一致率）与误差簇分析
-   - 当前状态：进行中（仅文档冻结，尚未执行全量）
+   - 当前状态：已完成（`step6_iter3_fixabcd_iaa_report.json` 显示 `all_targets_passed=true`）
 
 7. 小样本微调与迭代
    - 基于标注数据微调 UIE
    - 对关键字段（时段/电价/补贴）强化
+   - 当前状态：待开始（以 `step6_gold_adjudicated.jsonl` 为监督数据）
 
 8. 三元组与多跳结构输出
    - 生成 SPO + 机制/条款实体化结构

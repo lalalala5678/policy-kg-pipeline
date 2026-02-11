@@ -80,12 +80,16 @@ PARAM_PRIOR: Dict[str, Dict[str, float]] = {
     "consumption_threshold_kwh": {"tiered_pricing": 1.6, "subsidy": 0.6},
     "subsidy_amount": {"subsidy": 1.8},
     "area_subsidy_amount": {"subsidy": 1.8},
+    "funding_share_ratio": {"subsidy": 1.5, "task_assessment": 0.7},
     "ratio_target": {"task_assessment": 1.1, "technology_route": 0.9},
     "capacity_threshold": {"technology_route": 1.2, "task_assessment": 0.8},
     "tonnage_threshold": {"technology_route": 1.2, "task_assessment": 0.8},
     "duration_threshold_month": {"task_assessment": 1.2, "subsidy": 0.8},
+    "duration_threshold_year": {"task_assessment": 1.0, "subsidy": 0.9},
     "duration_threshold_hour": {"task_assessment": 1.0, "tou_pricing": 0.9},
 }
+FUNDING_SHARE_CUE_RE = re.compile(r"\u5206\u62c5|\u627f\u62c5|\u5171\u62c5|\u8d44\u91d1\u7531|\u4e2d\u592e|\u7701|\u5e02|\u53bf|\u533a")
+NON_MONEY_COUNT_UNIT_RE = re.compile(r"\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba")
 
 
 def read_jsonl(path: Path) -> List[Dict]:
@@ -111,6 +115,13 @@ def write_json(path: Path, payload: object) -> None:
 
 def safe_rate(num: int, den: int) -> float:
     return float(num) / float(den) if den else 0.0
+
+
+def rel_or_posix(path: Path) -> str:
+    try:
+        return path.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def parse_first_number(text: Optional[str]) -> Optional[float]:
@@ -262,8 +273,12 @@ def infer_param_type(row: Dict, clause_text: str, mechanism: Optional[str], vari
         return "time_window"
     if "\u5c0f\u65f6" in raw_unit and parse_first_number(raw) is not None:
         return "duration_threshold_hour"
+    if "\u5e74" in raw_unit and parse_first_number(raw) is not None:
+        return "duration_threshold_year"
     if "\u4e2a\u6708" in raw or "\u6708" in raw_unit:
         return "duration_threshold_month"
+    if ":" in raw and FUNDING_SHARE_CUE_RE.search(text):
+        return "funding_share_ratio"
     if PERCENT_RE.search(raw) or PERCENT_RE.search(raw_unit):
         if mechanism in PRICING_MECHANISMS and re.search(r"\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7", text):
             return "price_delta_pct"
@@ -293,8 +308,12 @@ def infer_norm_unit(row: Dict, param_type: Optional[str], clause_text: str) -> O
         return "time_window"
     if param_type == "duration_threshold_hour":
         return "hour"
+    if param_type == "duration_threshold_year":
+        return "year"
     if param_type == "duration_threshold_month":
         return "month"
+    if param_type == "funding_share_ratio":
+        return "none"
     if param_type in {"ratio_target", "price_delta_pct"}:
         return "percent"
     if param_type == "consumption_threshold_kwh":
@@ -329,6 +348,8 @@ def infer_norm_value(row: Dict, param_type: Optional[str], norm_unit: Optional[s
             return normalize_time_token(token)
     if param_type == "time_point" and TIME_POINT_RE.fullmatch(raw):
         return normalize_time_token(raw)
+    if param_type == "funding_share_ratio" and ":" in raw:
+        return raw.replace(" ", "")
 
     n = parse_first_number(raw)
     if n is None:
@@ -336,6 +357,51 @@ def infer_norm_value(row: Dict, param_type: Optional[str], norm_unit: Optional[s
     if norm_unit == "percent" and n <= 1.0 and "%" in raw:
         return round(n * 100.0, 6)
     return n
+
+
+def is_parenthetical_weak_constraint(clause_text: str, row: Dict, param_type: Optional[str]) -> bool:
+    if param_type not in {"duration_threshold_month", "duration_threshold_year"}:
+        return False
+    start = row.get("evidence_span_start")
+    end = row.get("evidence_span_end")
+    if not isinstance(start, int) or not isinstance(end, int):
+        return False
+    left = clause_text.rfind("\uff08", 0, start + 1)
+    right = clause_text.find("\uff09", end)
+    if left == -1 or right == -1:
+        return False
+    return (right - left) <= 24
+
+
+def is_param_unit_compatible(row: Dict, clause_text: str, param_type: Optional[str], norm_unit: Optional[str]) -> bool:
+    if not param_type:
+        return False
+    raw_value = str(row.get("raw_value") or "")
+    raw_unit = str(row.get("raw_unit") or "")
+    merged_raw = f"{raw_value}{raw_unit}"
+    if param_type in {"duration_threshold_month", "duration_threshold_year"}:
+        if PRICE_UNIT_RE.search(merged_raw) or PHYSICAL_UNIT_RE.search(merged_raw):
+            return False
+        if param_type == "duration_threshold_year":
+            return "\u5e74" in (merged_raw + clause_text)
+        return bool(re.search(r"\u4e2a\u6708|\u6708|\u91c7\u6696\u5b63", merged_raw + clause_text))
+    if param_type == "price_value":
+        if raw_unit and not re.search(r"\u5143|\u5206", raw_unit):
+            return False
+        if norm_unit == "yuan_per_kwh":
+            return bool(PRICE_UNIT_RE.search(merged_raw + clause_text))
+        return True
+    if param_type in {"subsidy_amount", "area_subsidy_amount"}:
+        if re.search(re.escape(raw_value) + r"\s*(\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", clause_text):
+            return False
+        return True
+    if param_type == "target_household_count":
+        if NON_MONEY_COUNT_UNIT_RE.search(raw_unit):
+            return True
+        return bool(re.search(re.escape(raw_value) + r"\s*(\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba)", clause_text))
+    if param_type == "funding_share_ratio":
+        return ":" in raw_value
+    return True
 
 
 def build_label(row: Dict, clause_text: str, variant: str) -> Dict:
@@ -355,6 +421,8 @@ def build_label(row: Dict, clause_text: str, variant: str) -> Dict:
         and pos_hits == 0
         and not bool(POWER_CONTEXT_RE.search(clause_text or ""))
     )
+    compat_ok = is_param_unit_compatible(row, clause_text, param_type, norm_unit)
+    weak_constraint = is_parenthetical_weak_constraint(clause_text, row, param_type)
     strict_high_eligible = bool(
         mechanism in KNOWN_MECHANISMS_SET
         and param_type is not None
@@ -364,6 +432,8 @@ def build_label(row: Dict, clause_text: str, variant: str) -> Dict:
         and bind_reason in HIGH_CONF_BIND_REASONS
         and conf >= 0.60
         and no_neg_conflict
+        and compat_ok
+        and not weak_constraint
     )
     if bind_reason == "candidate_score":
         strict_high_eligible = False
@@ -376,6 +446,8 @@ def build_label(row: Dict, clause_text: str, variant: str) -> Dict:
         "norm_unit": norm_unit,
         "norm_value": norm_value,
         "strict_high_eligible": strict_high_eligible,
+        "compat_ok": compat_ok,
+        "weak_constraint": weak_constraint,
         "support": support,
     }
 
@@ -593,6 +665,8 @@ def adjudicate(sample: Dict, label_a: Dict, label_b: Dict) -> Dict:
         and reason in HIGH_CONF_BIND_REASONS
         and float(sample.get("bind_confidence") or 0.0) >= 0.60
         and not (mech in PRICING_MECHANISMS and NEGATIVE_DOMAIN_PATTERN.search(clause_text) and not POWER_CONTEXT_RE.search(clause_text))
+        and is_param_unit_compatible(sample, clause_text, param, norm)
+        and not is_parenthetical_weak_constraint(clause_text, sample, param)
     )
     if reason == "candidate_score":
         strict_high_eligible = False
@@ -844,8 +918,8 @@ def main() -> None:
 
     report = {
         "config": {
-            "mentions": mentions_path.relative_to(PROJECT_ROOT).as_posix(),
-            "clause_corpus": clause_path.relative_to(PROJECT_ROOT).as_posix(),
+            "mentions": rel_or_posix(mentions_path),
+            "clause_corpus": rel_or_posix(clause_path),
             "sample_size": int(args.sample_size),
             "strict_min": int(args.strict_min),
             "hard_min": int(args.hard_min),

@@ -8,9 +8,9 @@ Updated: 2026-02-11
 - No human annotator is used in this run.
 
 ## Inputs
-- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_parameter_mentions.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_parameter_mentions.jsonl`
 - `00_整理记录/step3_clause_corpus.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind11_fixabc_validation_report.json`
+- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_validation_report.json`
 
 ## Method
 1. Freeze denominators and target thresholds from Step6 spec.
@@ -24,34 +24,43 @@ Updated: 2026-02-11
 ## Iterations
 - `step6_iter1`: all targets passed except normalization precision (0.867857 < 0.90).
 - `step6_iter2`: fixed adjudication policy to keep Step5 values unless hard-error evidence exists.
-- Final frozen run: `step6` prefix, all targets passed.
+- `step6_iter3_fixabcd`: aligned strict eligibility with Step5 compatibility gates and parenthetical weak-constraint filtering.
+- Final frozen run for latest Step5: `step6_iter3_fixabcd`, all targets passed.
 
-## Final Metrics (`00_整理记录/step6_iaa_report.json`)
+## Final Metrics (`00_整理记录/step6_iter3_fixabcd_iaa_report.json`)
 - Sample size: `300` (>= 240)
-- Strict-high in sample: `229` (>= 120)
+- Strict-high in sample: `223` (>= 120)
 - Hard-case in sample: `139` (>= 60)
-- `kappa_mechanism = 0.991943`
+- `kappa_mechanism = 0.987985`
 - `kappa_param_type = 1.000000`
 - `exact_match_norm_unit = 1.000000`
 - `agreement_strict_high_eligible = 1.000000`
-- `mechanism_precision_on_valid_numeric = 265/278 = 0.953237`
-- `normalization_precision_on_valid_numeric = 278/280 = 0.992857`
-- `strict_high_precision = 223/229 = 0.973799`
+- `mechanism_precision_on_valid_numeric = 262/274 = 0.956204`
+- `normalization_precision_on_valid_numeric = 274/277 = 0.989170`
+- `strict_high_precision = 223/223 = 1.000000`
 - Error clusters:
   - `time_raw_not_time_window = 0`
   - `price_value_large_raw_small_norm = 0`
   - `candidate_score_strict_high = 0`
 - `all_targets_passed = true`
 
+## Issue A-D verification (Step6 sample)
+- `strict_high=true && gold_strict_high_eligible=false`: `6 -> 0`
+- `duration_month_context` count: `15 -> 4`
+- `duration_month_context` with raw unit: `3 -> 0`
+- `duration_month_context` in strict-high: `15 -> 1`
+- `1:1:1` mapped as `funding_share_ratio`: `0 -> 3`
+
 ## Main Artifacts
-- `00_整理记录/step6_gold_sampling_plan.json`
-- `00_整理记录/step6_gold_sample_v1.jsonl`
-- `00_整理记录/step6_gold_passA_labels.jsonl`
-- `00_整理记录/step6_gold_passB_labels.jsonl`
-- `00_整理记录/step6_gold_adjudicated.jsonl`
-- `00_整理记录/step6_iaa_report.json`
-- `00_整理记录/step6_iaa_report.md`
-- `00_整理记录/step6_error_clusters.md`
+- `00_整理记录/step6_iter3_fixabcd_gold_sampling_plan.json`
+- `00_整理记录/step6_iter3_fixabcd_gold_sample_v1.jsonl`
+- `00_整理记录/step6_iter3_fixabcd_gold_passA_labels.jsonl`
+- `00_整理记录/step6_iter3_fixabcd_gold_passB_labels.jsonl`
+- `00_整理记录/step6_iter3_fixabcd_gold_adjudicated.jsonl`
+- `00_整理记录/step6_iter3_fixabcd_iaa_report.json`
+- `00_整理记录/step6_iter3_fixabcd_iaa_report.md`
+- `00_整理记录/step6_iter3_fixabcd_error_clusters.md`
+- `00_整理记录/step6_fixabcd_eval.json`
 
 ## Implementation
 - `00_整理记录/scripts/run_step6_gold_iaa.py`

@@ -3,6 +3,11 @@
 更新时间：2026-02-11  
 输入基线：`step5_seq_step2_v2_rebind11_fixabc`
 
+## 执行状态（最新）
+- Step6 已执行完成，且达标通过。
+- 最终报告：`00_整理记录/step6_iaa_report.json`
+- 结论：`all_targets_passed = true`
+
 ## 1. Step6 定位
 - Step6 的目标不是继续调规则提分，而是构建可复核的 Gold/IAA 基准集。
 - Step6 完成后，Step7 才开始小样本微调；避免在噪声标签上训练。

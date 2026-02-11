@@ -66,6 +66,22 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["norm_unit"], "none")
         self.assertEqual(result["norm_value"], "1.5:1:0.5")
 
+    def test_ratio_sequence_funding_share(self):
+        clause = "补贴资金由中央、市、区按照1:1:1比例分担。"
+        result = normalize_parameter("1:1:1", clause)
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["rule"], "ratio_sequence")
+        self.assertEqual(result["param_type"], "funding_share_ratio")
+        self.assertEqual(result["norm_unit"], "none")
+
+    def test_duration_context_does_not_swallow_price_value(self):
+        clause = "其余月份为0.0634元/千瓦时。"
+        result = normalize_parameter("0.0634", clause)
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["param_type"], "price_value")
+        self.assertEqual(result["norm_unit"], "yuan_per_kwh")
+        self.assertNotEqual(result["rule"], "duration_month_context")
+
     def test_no_context_leakage_for_yuan(self):
         clause = "\u7b2c\u4e00\u6863\u7535\u91cf\u4e3a351\u5343\u74e6\u65f6\u53ca\u4ee5\u4e0b\uff0c\u8d85\u51fa\u90e8\u5206\u6bcf\u5343\u74e6\u65f6\u52a0\u4ef70.3\u5143\u3002"
         result = normalize_parameter("0.3\u5143", clause)
@@ -106,6 +122,14 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["param_type"], "duration_threshold_month")
         self.assertEqual(result["norm_unit"], "month")
         self.assertEqual(result["norm_value"], 2.0)
+
+    def test_duration_year(self):
+        result = normalize_parameter("不低于3年")
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["rule"], "duration_month")
+        self.assertEqual(result["param_type"], "duration_threshold_year")
+        self.assertEqual(result["norm_unit"], "year")
+        self.assertEqual(result["norm_value"], 3.0)
 
     def test_duration_hour(self):
         result = normalize_parameter("8\u5c0f\u65f6")

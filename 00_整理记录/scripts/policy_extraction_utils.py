@@ -444,10 +444,19 @@ TIME_POINT_VALUE_RE = re.compile(r"^(?P<point>[0-2]?\d[:\uFF1A][0-5]\d)$")
 RATIO_VALUE_RE = re.compile(r"(?P<value>\d+(?:\.\d+)?\s*:\s*\d+(?:\.\d+)?(?:\s*:\s*\d+(?:\.\d+)?)?)")
 SUBSIDY_CUES_RE = re.compile(r"\u8865\u8d34|\u8865\u52a9|\u5956\u52b1|\u5956\u8865|\u8d44\u52a9|\u8865\u507f")
 PRICE_CUES_RE = re.compile(r"\u7535\u4ef7|\u4ef7\u5dee|\u5206\u65f6|\u5cf0\u8c37|\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7")
+FUNDING_SHARE_CUES_RE = re.compile(
+    r"\u5206\u62c5|\u627f\u62c5|\u5171\u62c5|\u8d44\u91d1\u7531|\u4e2d\u592e|\u7701(?:\u7ea7)?|\u5e02(?:\u7ea7)?|\u53bf(?:\u7ea7)?|\u533a(?:\u7ea7)?"
+)
 PRICE_UNIT_VALUE_RE = re.compile(r"\u5143/\u5ea6|\u5143/\u5343\u74e6\u65f6|\u5206/\u5343\u74e6\u65f6")
 PHYSICAL_UNIT_VALUE_RE = re.compile(r"\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6(?!\u7535\u4ef7)|\u5428|MW|mw|kW|kw|W|w|kVA|kva")
 THRESHOLD_CUES_RE = re.compile(
     r"\u4e0d\u8d85\u8fc7|\u4e0d\u9ad8\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u5c11\u4e8e|\u4ee5\u4e0a|\u4ee5\u4e0b|\u4ee5\u5185|\u81f3\u5c11|\u6700\u9ad8|\u6700\u4f4e|\u8fbe\u5230|\u8d85\u8fc7"
+)
+DURATION_CONTEXT_CUES_RE = re.compile(r"\u4e2a\u6708|\u6708|\u5e74|\u91c7\u6696\u5b63")
+DURATION_IMPLICIT_PREFIX_RE = re.compile(
+    r"^\s*(?P<cue>\u4e0d\u5c11\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u8d85\u8fc7|\u81f3\u5c11|\u6700\u591a|\u6700\u5c11|\u7ea6|\u7ea6\u4e3a|\u4e0d\u5f97\u8d85\u8fc7|\u4e0d\u77ed\u4e8e|\u8d85\u8fc7|\u4f4e\u4e8e|\u9ad8\u4e8e)(?P<value>["
+    + CN_NUM_BODY
+    + r"\d\.]+)\s*$"
 )
 PREFIX_FILTER_RE = re.compile(
     r"^\s*(?:\u4e0d\u8d85\u8fc7|\u4e0d\u9ad8\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u5c11\u4e8e|\u4e0d\u5f97\u4f4e\u4e8e|\u4ee5\u4e0a|\u4ee5\u4e0b|\u4ee5\u5185|\u81f3\u5c11|\u6700\u9ad8|\u6700\u4f4e|\u7ea6|\u5927\u7ea6|\u7ea6\u4e3a|\u8fbe\u5230)\s*"
@@ -712,7 +721,10 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
     m = RATIO_VALUE_RE.search(primary_space)
     if m:
         out = _base_normalize_result("ratio_sequence")
-        out["param_type"] = "ratio_target"
+        if FUNDING_SHARE_CUES_RE.search(merged):
+            out["param_type"] = "funding_share_ratio"
+        else:
+            out["param_type"] = "ratio_target"
         out["norm_value"] = m.group("value").replace(" ", "")
         out["norm_unit"] = "none"
         return out
@@ -843,27 +855,48 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
         return out
 
     m = re.search(
-        r"(?:(?:\u4e0d\u5c11\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u8d85\u8fc7|\u81f3\u5c11)\s*)?(?P<value>[0-9]+(?:\.[0-9]+)?|[" + CN_NUM_BODY + r"]+)\s*(?P<unit>\u4e2a\u6708|\u6708)",
+        r"(?:(?:\u4e0d\u5c11\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u8d85\u8fc7|\u81f3\u5c11)\s*)?(?P<value>[0-9]+(?:\.[0-9]+)?|["
+        + CN_NUM_BODY
+        + r"]+)\s*(?P<unit>\u4e2a\u6708|\u6708|\u5e74|\u91c7\u6696\u5b63)",
         primary_space,
     )
     if m:
         val = _parse_number_token(m.group("value"))
         if val is not None:
             out = _base_normalize_result("duration_month")
-            out["param_type"] = "duration_threshold_month"
+            unit_token = m.group("unit")
+            if unit_token == "\u5e74":
+                out["param_type"] = "duration_threshold_year"
+                out["norm_unit"] = "year"
+            else:
+                out["param_type"] = "duration_threshold_month"
+                out["norm_unit"] = "month"
             out["norm_value"] = val
-            out["norm_unit"] = "month"
             out["op"] = "threshold"
             return out
 
-    m = re.search(r"(?:(?:\u4e0d\u5c11\u4e8e|\u4e0d\u4f4e\u4e8e|\u4e0d\u8d85\u8fc7|\u81f3\u5c11)\s*)?(?P<value>[" + CN_NUM_BODY + r"\d\.]+)$", primary_space)
-    if m and re.search(r"\u6708|\u5e74|\u91c7\u6696\u5b63", merged):
-        val = _parse_number_token(m.group("value"))
-        if val is not None:
+    # Context-only duration fallback is intentionally strict to avoid swallowing price/kWh/year values.
+    m = DURATION_IMPLICIT_PREFIX_RE.search(primary_space)
+    if m and DURATION_CONTEXT_CUES_RE.search(merged):
+        value_token = m.group("value")
+        val = _parse_number_token(value_token)
+        has_price_or_physical = bool(PRICE_UNIT_VALUE_RE.search(merged) or PHYSICAL_UNIT_VALUE_RE.search(merged))
+        if (
+            val is not None
+            and not TIME_POINT_VALUE_RE.fullmatch(primary_space)
+            and "." not in value_token
+            and (val < 1900 or val > 2100)
+            and (val <= 120)
+            and not has_price_or_physical
+        ):
             out = _base_normalize_result("duration_month_context")
-            out["param_type"] = "duration_threshold_month"
+            if "\u5e74" in merged and "\u6708" not in merged:
+                out["param_type"] = "duration_threshold_year"
+                out["norm_unit"] = "year"
+            else:
+                out["param_type"] = "duration_threshold_month"
+                out["norm_unit"] = "month"
             out["norm_value"] = val
-            out["norm_unit"] = "month"
             out["op"] = "threshold"
             return out
 
