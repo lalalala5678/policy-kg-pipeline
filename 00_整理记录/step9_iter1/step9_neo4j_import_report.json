@@ -1,0 +1,175 @@
+{
+  "actual": {
+    "constraint_total": 5,
+    "edge_signal_attached_total": 4868,
+    "edge_total": 10610,
+    "index_total": 11,
+    "node_label_distribution": [
+      {
+        "cnt": 599,
+        "label": "Clause"
+      },
+      {
+        "cnt": 613,
+        "label": "Mechanism"
+      },
+      {
+        "cnt": 356,
+        "label": "ParameterDefinition"
+      },
+      {
+        "cnt": 1122,
+        "label": "ParameterMention"
+      },
+      {
+        "cnt": 202,
+        "label": "PolicyDocument"
+      }
+    ],
+    "node_total": 2892,
+    "predicate_track_distribution": [
+      {
+        "count": 1122,
+        "predicate": "clause_has_parameter_mention",
+        "track": "strict_all"
+      },
+      {
+        "count": 955,
+        "predicate": "clause_has_parameter_mention",
+        "track": "strict_high"
+      },
+      {
+        "count": 613,
+        "predicate": "clause_supports_mechanism",
+        "track": "strict_all"
+      },
+      {
+        "count": 513,
+        "predicate": "clause_supports_mechanism",
+        "track": "strict_high"
+      },
+      {
+        "count": 599,
+        "predicate": "contains_clause",
+        "track": "strict_all"
+      },
+      {
+        "count": 509,
+        "predicate": "contains_clause",
+        "track": "strict_high"
+      },
+      {
+        "count": 613,
+        "predicate": "contains_mechanism",
+        "track": "strict_all"
+      },
+      {
+        "count": 513,
+        "predicate": "contains_mechanism",
+        "track": "strict_high"
+      },
+      {
+        "count": 613,
+        "predicate": "mechanism_anchor_clause",
+        "track": "strict_all"
+      },
+      {
+        "count": 513,
+        "predicate": "mechanism_anchor_clause",
+        "track": "strict_high"
+      },
+      {
+        "count": 1060,
+        "predicate": "mechanism_has_parameter_definition",
+        "track": "strict_all"
+      },
+      {
+        "count": 910,
+        "predicate": "mechanism_has_parameter_definition",
+        "track": "strict_high"
+      },
+      {
+        "count": 1122,
+        "predicate": "parameter_mention_refers_to_definition",
+        "track": "strict_all"
+      },
+      {
+        "count": 955,
+        "predicate": "parameter_mention_refers_to_definition",
+        "track": "strict_high"
+      }
+    ],
+    "trace_total": 10610,
+    "traceability_rate": 1.0,
+    "traceable": 10610
+  },
+  "all_targets_passed": true,
+  "checks": {
+    "constraints_created_ge_5": true,
+    "edge_total_match_expected": true,
+    "indexes_created_ge_4": true,
+    "node_total_match_expected": true,
+    "predicate_track_count_match": true,
+    "risk_signal_attached_on_strict_high_edges": true,
+    "traceability_rate_100": true
+  },
+  "expected": {
+    "edge_signal_total": 4868,
+    "edge_total": 10610,
+    "node_total": 2892,
+    "predicate_track_distribution": {
+      "clause_has_parameter_mention|strict_all": 1122,
+      "clause_has_parameter_mention|strict_high": 955,
+      "clause_supports_mechanism|strict_all": 613,
+      "clause_supports_mechanism|strict_high": 513,
+      "contains_clause|strict_all": 599,
+      "contains_clause|strict_high": 509,
+      "contains_mechanism|strict_all": 613,
+      "contains_mechanism|strict_high": 513,
+      "mechanism_anchor_clause|strict_all": 613,
+      "mechanism_anchor_clause|strict_high": 513,
+      "mechanism_has_parameter_definition|strict_all": 1060,
+      "mechanism_has_parameter_definition|strict_high": 910,
+      "parameter_mention_refers_to_definition|strict_all": 1122,
+      "parameter_mention_refers_to_definition|strict_high": 955
+    }
+  },
+  "input": {
+    "edge_signals_csv": "结果文件夹/step8_2_iter1/edge_signals.csv",
+    "step8_2_dir": "结果文件夹/step8_2_iter1",
+    "step8_dir": "结果文件夹/step8_iter1",
+    "strict_all_edges_csv": "结果文件夹/step8_iter1/strict_all/edges.csv",
+    "strict_all_nodes_csv": "结果文件夹/step8_iter1/strict_all/nodes.csv",
+    "strict_high_edges_csv": "结果文件夹/step8_iter1/strict_high/edges.csv"
+  },
+  "neo4j": {
+    "bolt_port": 17687,
+    "container_name": "policy-kg-step9-neo4j",
+    "docker": {
+      "created": false,
+      "status_after": "running",
+      "status_before": "running"
+    },
+    "http_port": 17474,
+    "image": "neo4j:5.26.0-community",
+    "url": "http://127.0.0.1:17474"
+  },
+  "staged_files": [
+    {
+      "dest": "/var/lib/neo4j/import/step9/nodes_strict_all.csv",
+      "source": "结果文件夹/step8_iter1/strict_all/nodes.csv"
+    },
+    {
+      "dest": "/var/lib/neo4j/import/step9/edges_strict_high.csv",
+      "source": "结果文件夹/step8_iter1/strict_high/edges.csv"
+    },
+    {
+      "dest": "/var/lib/neo4j/import/step9/edges_strict_all.csv",
+      "source": "结果文件夹/step8_iter1/strict_all/edges.csv"
+    },
+    {
+      "dest": "/var/lib/neo4j/import/step9/edge_signals.csv",
+      "source": "结果文件夹/step8_2_iter1/edge_signals.csv"
+    }
+  ]
+}

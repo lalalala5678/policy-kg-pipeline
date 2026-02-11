@@ -1,6 +1,6 @@
 # AGENT.md - 政策知识图谱项目执行状态
 
-更新时间：2026-02-11
+更新时间：2026-02-12
 
 ## 1. 当前阶段状态
 - Step1（领域 Schema 设计）：已完成
@@ -13,7 +13,7 @@
 - Step7b（固定 Gold 门禁增益实验）：已完成并通过
 - Step8（图包导出与工程验收）：已完成并通过
 - Step8.2（查询样例包与冲突信号化）：已完成并通过
-- Step9（评测与推演准备）：待执行
+- Step9（评测与推演落地）：已完成并通过
 
 ## 2. 交付物主目录（最新）
 - `结果文件夹/`
@@ -22,6 +22,7 @@
 - Step8 图包：`结果文件夹/step8_iter1`
 - Step8 重放包：`结果文件夹/step8_iter1_replay`
 - Step8.2 查询与信号包：`结果文件夹/step8_2_iter1`
+- Step9 评测与推演报告：`00_整理记录/step9_iter1`
 - Schema：`结果文件夹/schema_v1.yaml`
 - 使用说明：`结果文件夹/README_使用指南.md`
 
@@ -55,14 +56,25 @@
 - `deterministic_pack_rebuild_match = true`
 - `all_targets_passed = true`
 
+### 3.4 Step9 门禁（Neo4j 实跑）
+来源：`00_整理记录/step9_iter1/step9_gate_report.json`
+- `all_targets_passed = true`
+- `node_total = 2892`
+- `edge_total = 10610`
+- `traceability_rate = 1.0`
+- `query_template_count = 12`
+- `query_execution_success_rate = 1.0`
+- `core_path_coverage = 1.0`
+- `risk_aware_rerank_non_regression = true`
+
 ## 4. Neo4j 导入建议
 - 生产主图：`结果文件夹/step8_iter1/strict_high/nodes.csv` + `结果文件夹/step8_iter1/strict_high/edges.csv`
 - 扩展召回：`结果文件夹/step8_iter1/strict_all/nodes.csv` + `结果文件夹/step8_iter1/strict_all/edges.csv`
 - 冲突风险信号：`结果文件夹/step8_2_iter1/edge_signals.csv`
 - 查询模板：`结果文件夹/step8_2_iter1/query_pack.cql`
 
-## 5. Step9 建议入口
-1. 建库与导入验收（PK/FK/索引/约束/导入日志）。
-2. 运行固定查询模板并记录成功率与多跳覆盖。
-3. 基于 `edge_signals.csv` 做风险加权检索与冲突分析。
-4. 输出 Step9 评测报告与推演样例包。
+## 5. Step9 执行产物
+1. 导入与验收：`00_整理记录/step9_iter1/step9_neo4j_import_report.json`
+2. 查询评测：`00_整理记录/step9_iter1/step9_query_exec_report.json`
+3. 推演案例：`00_整理记录/step9_iter1/step9_simulation_casebook.json`
+4. 总门禁：`00_整理记录/step9_iter1/step9_gate_report.json`

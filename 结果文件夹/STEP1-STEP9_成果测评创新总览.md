@@ -178,18 +178,30 @@
   - 将冲突日志转为可消费的边级风险特征（可直接用于检索排序与推演降权）。
   - 固化多跳查询模板，形成可复跑的推演评测入口。
 
-## Step9 评测与推演准备（当前状态）
-- 当前状态：待执行
-- 建议输入：
-  - 主图：`结果文件夹/step8_iter1/strict_high/nodes.csv` + `结果文件夹/step8_iter1/strict_high/edges.csv`
-  - 扩展图：`结果文件夹/step8_iter1/strict_all/nodes.csv` + `结果文件夹/step8_iter1/strict_all/edges.csv`
-  - 查询模板：`结果文件夹/step8_2_iter1/query_pack.cql`
-  - 风险信号：`结果文件夹/step8_2_iter1/edge_signals.csv`
-- 目标指标建议：
-  - 导入成功率 `=100%`
-  - 查询模板执行成功率 `=100%`
-  - 核心多跳路径覆盖率 `=100%`
-  - 结果可追溯率 `=100%`
+## Step9 评测与推演落地（已完成）
+- 主要产出：
+  - `00_整理记录/scripts/run_step9_neo4j_eval.py`
+  - `00_整理记录/scripts/run_step9_query_eval.py`
+  - `00_整理记录/scripts/run_step9_simulation.py`
+  - `00_整理记录/scripts/eval_step9_gate.py`
+  - `00_整理记录/step9_iter1/step9_neo4j_import_report.json`
+  - `00_整理记录/step9_iter1/step9_query_exec_report.json`
+  - `00_整理记录/step9_iter1/step9_simulation_casebook.json`
+  - `00_整理记录/step9_iter1/step9_gate_report.json`
+- 核心测评数据（来自 `step9_gate_report.json` / `step9_neo4j_import_report.json`）：
+  - `all_targets_passed = true`
+  - `node_total = 2892`
+  - `edge_total = 10610`
+  - `edge_signal_attached_total = 4868`
+  - `traceability_rate = 1.0`
+  - `query_template_count = 12`
+  - `query_execution_success_rate = 1.0`
+  - `core_path_coverage = 1.0`
+  - `risk_aware_rerank_non_regression = true`
+- 创新点：
+  - 完成“图包 -> Neo4j -> 查询模板 -> 风险感知推演 -> 门禁”闭环实跑。
+  - 将冲突信号直接挂载到边属性，支持风险降权与冲突解释同源输出。
+  - 输出可复跑脚本与结构化门禁报告，便于论文复现实验与审计。
 
 ## 附：当前交付主入口
 - `结果文件夹/README_使用指南.md`

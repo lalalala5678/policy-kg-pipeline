@@ -1,0 +1,391 @@
+{
+  "all_targets_passed": true,
+  "checks": {
+    "core_path_coverage_100": true,
+    "non_empty_query_rate_ge_95": true,
+    "parameterized_example_coverage_100": true,
+    "query_execution_success_rate_100": true,
+    "query_template_count_10_20": true,
+    "risk_signal_query_coverage_ge_95": true
+  },
+  "input": {
+    "query_examples": "结果文件夹/step8_2_iter1/query_examples.json",
+    "query_pack": "结果文件夹/step8_2_iter1/query_pack.cql",
+    "step8_2_eval_report": "结果文件夹/step8_2_iter1/step8_2_eval_report.json"
+  },
+  "metrics": {
+    "core_path_coverage": 1.0,
+    "non_empty_query_rate": 1.0,
+    "parameterized_example_coverage": 1.0,
+    "query_execution_success_rate": 1.0,
+    "query_template_count": 12,
+    "risk_signal_query_coverage": 1.0
+  },
+  "neo4j": {
+    "url": "http://127.0.0.1:17474"
+  },
+  "query_eval": [
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "policy_id": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec"
+      },
+      "path_tag": "forward_main",
+      "query_id": "Q01",
+      "result_count": 8,
+      "result_preview": [
+        {
+          "c.id": "Clause:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0000",
+          "m.id": "Mechanism:mechanism_04962c40a9d41dc13aea",
+          "m.mechanism_type": "task_assessment",
+          "p.id": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec"
+        },
+        {
+          "c.id": "Clause:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0000",
+          "m.id": "Mechanism:mechanism_04962c40a9d41dc13aea",
+          "m.mechanism_type": "task_assessment",
+          "p.id": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec"
+        },
+        {
+          "c.id": "Clause:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0001",
+          "m.id": "Mechanism:mechanism_4f0f2ebab9dc78254ad0",
+          "m.mechanism_type": "task_assessment",
+          "p.id": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec"
+        }
+      ],
+      "title": "policy_to_mechanism_path"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "mechanism_id": "Mechanism:mechanism_001af6c12cbeeea0013f"
+      },
+      "path_tag": "reverse_main",
+      "query_id": "Q02",
+      "result_count": 4,
+      "result_preview": [
+        {
+          "c.id": "Clause:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8#clause_0005",
+          "m.id": "Mechanism:mechanism_001af6c12cbeeea0013f",
+          "p.id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+        },
+        {
+          "c.id": "Clause:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8#clause_0005",
+          "m.id": "Mechanism:mechanism_001af6c12cbeeea0013f",
+          "p.id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+        },
+        {
+          "c.id": "Clause:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8#clause_0005",
+          "m.id": "Mechanism:mechanism_001af6c12cbeeea0013f",
+          "p.id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+        }
+      ],
+      "title": "mechanism_reverse_to_policy"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "mechanism_id": "Mechanism:mechanism_001af6c12cbeeea0013f"
+      },
+      "path_tag": "forward_main",
+      "query_id": "Q03",
+      "result_count": 2,
+      "result_preview": [
+        {
+          "d.id": "ParameterDefinition:pd_8ac00f0dcf4e20b172df",
+          "d.norm_unit": "percent",
+          "d.norm_value": "20.0",
+          "d.param_type": "price_delta_pct",
+          "m.id": "Mechanism:mechanism_001af6c12cbeeea0013f"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_8ac00f0dcf4e20b172df",
+          "d.norm_unit": "percent",
+          "d.norm_value": "20.0",
+          "d.param_type": "price_delta_pct",
+          "m.id": "Mechanism:mechanism_001af6c12cbeeea0013f"
+        }
+      ],
+      "title": "mechanism_to_definitions"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "definition_id": "ParameterDefinition:pd_001ecda849d68a57ab32",
+        "limit": 10
+      },
+      "path_tag": "reverse_main",
+      "query_id": "Q04",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "c.id": "Clause:6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a#clause_0009",
+          "d.id": "ParameterDefinition:pd_001ecda849d68a57ab32",
+          "p.id": "PolicyDocument:6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a",
+          "pm.id": "ParameterMention:pm_ecc769d5802c9f838983"
+        },
+        {
+          "c.id": "Clause:6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a#clause_0009",
+          "d.id": "ParameterDefinition:pd_001ecda849d68a57ab32",
+          "p.id": "PolicyDocument:6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a",
+          "pm.id": "ParameterMention:pm_ecc769d5802c9f838983"
+        },
+        {
+          "c.id": "Clause:6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a#clause_0009",
+          "d.id": "ParameterDefinition:pd_001ecda849d68a57ab32",
+          "p.id": "PolicyDocument:6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a",
+          "pm.id": "ParameterMention:pm_ecc769d5802c9f838983"
+        }
+      ],
+      "title": "definition_reverse_to_policy"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "policy_id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+      },
+      "path_tag": "forward_main",
+      "query_id": "Q05",
+      "result_count": 7,
+      "result_preview": [
+        {
+          "d.id": "ParameterDefinition:pd_fa9d1c22b4a56bb008b3",
+          "m.id": "Mechanism:mechanism_ba113fab235698330be1",
+          "p.id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_33d729b051e248048b95",
+          "m.id": "Mechanism:mechanism_ba113fab235698330be1",
+          "p.id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_b9cd2caf8b914338fb85",
+          "m.id": "Mechanism:mechanism_e17accc3e828aad00c7c",
+          "p.id": "PolicyDocument:15d322df36604ef5082b3cbb152c1ae45bda6ad3f5d941b024f5371b4210c4d8"
+        }
+      ],
+      "title": "time_window_mechanisms_by_policy"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "min_value": 0,
+        "param_type": "area_subsidy_amount"
+      },
+      "path_tag": "forward_main",
+      "query_id": "Q06",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "d.id": "ParameterDefinition:pd_149e98b2a5b780b26003",
+          "m.id": "Mechanism:mechanism_bb423bb678ae0743a3f8",
+          "p.id": "PolicyDocument:41eed2fc03a95dc30af898124e00962d37f00dd998abb5da87c6e10e209db169"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_149e98b2a5b780b26003",
+          "m.id": "Mechanism:mechanism_b2f264ae7bed8d36d571",
+          "p.id": "PolicyDocument:3c1392fd897f1d095efaa1ae2a1eaa5c0c3df313cd5a9a185aacffe05575b886"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_149e98b2a5b780b26003",
+          "m.id": "Mechanism:mechanism_2faa916caf15250492b6",
+          "p.id": "PolicyDocument:a63aaa1b99aae78cd58b5beb8c271e538c4b10b43ff4aff7312d6e081dd79eed"
+        }
+      ],
+      "title": "threshold_filter_by_param_type"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "region_keyword": "上海"
+      },
+      "path_tag": "forward_main",
+      "query_id": "Q07",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "clause_count": 4,
+          "m.id": "Mechanism:mechanism_9cd9ab8742ecdffff267",
+          "p.id": "PolicyDocument:cc7addf8ff4efe3409afac8915cc6b8df3283617d08af2da6658e58933736301"
+        },
+        {
+          "clause_count": 4,
+          "m.id": "Mechanism:mechanism_f142d4328f8ce0de1045",
+          "p.id": "PolicyDocument:cc7addf8ff4efe3409afac8915cc6b8df3283617d08af2da6658e58933736301"
+        },
+        {
+          "clause_count": 4,
+          "m.id": "Mechanism:mechanism_1cbaef9a4c85f0cae388",
+          "p.id": "PolicyDocument:cc7addf8ff4efe3409afac8915cc6b8df3283617d08af2da6658e58933736301"
+        }
+      ],
+      "title": "region_proxy_filter"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "param_type": "area_subsidy_amount"
+      },
+      "path_tag": "forward_main",
+      "query_id": "Q08",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "d.id": "ParameterDefinition:pd_149e98b2a5b780b26003",
+          "d.norm_unit": "yuan_per_sqm",
+          "d.norm_value": "0.0",
+          "m.id": "Mechanism:mechanism_bb423bb678ae0743a3f8"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_149e98b2a5b780b26003",
+          "d.norm_unit": "yuan_per_sqm",
+          "d.norm_value": "0.0",
+          "m.id": "Mechanism:mechanism_b2f264ae7bed8d36d571"
+        },
+        {
+          "d.id": "ParameterDefinition:pd_149e98b2a5b780b26003",
+          "d.norm_unit": "yuan_per_sqm",
+          "d.norm_value": "0.0",
+          "m.id": "Mechanism:mechanism_2faa916caf15250492b6"
+        }
+      ],
+      "title": "target_group_proxy_filter"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10
+      },
+      "path_tag": "risk_signal",
+      "query_id": "Q09",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "m.id": "Mechanism:mechanism_610817c963c7fad38960",
+          "total_conflict": 2
+        },
+        {
+          "m.id": "Mechanism:mechanism_1e6ce495b7147017cf8b",
+          "total_conflict": 2
+        },
+        {
+          "m.id": "Mechanism:mechanism_ea7ac7fff0dc22d4630d",
+          "total_conflict": 2
+        }
+      ],
+      "title": "mechanism_conflict_rank"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10
+      },
+      "path_tag": "risk_signal",
+      "query_id": "Q10",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "r.alt_candidates_count": 1,
+          "r.conflict_count": 0,
+          "r.edge_id": "edge_a737cf194a9f613f4104ba3c",
+          "r.predicate": "contains_mechanism",
+          "r.source": "PolicyDocument:10695560c26cc67b7a3e26b8dbcd7b856b0b17ef49c31ba529efd3caf059a1de",
+          "r.target": "Mechanism:mechanism_d83fd96b9b6e54c2e6d8"
+        },
+        {
+          "r.alt_candidates_count": 1,
+          "r.conflict_count": 0,
+          "r.edge_id": "edge_881dc1d5baa3dfc2c7f48e38",
+          "r.predicate": "contains_mechanism",
+          "r.source": "PolicyDocument:693f3a55fe86330e400962dd0b43476d41023ad39e89f0254b4f9e2651efaca2",
+          "r.target": "Mechanism:mechanism_3f524bc2b4e81cae9234"
+        },
+        {
+          "r.alt_candidates_count": 1,
+          "r.conflict_count": 0,
+          "r.edge_id": "edge_2669e613bb8a50a463da1031",
+          "r.predicate": "contains_mechanism",
+          "r.source": "PolicyDocument:693f3a55fe86330e400962dd0b43476d41023ad39e89f0254b4f9e2651efaca2",
+          "r.target": "Mechanism:mechanism_9c7e0f03846f9d46fa6f"
+        }
+      ],
+      "title": "high_risk_facts"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10,
+        "mechanism_type": "differential_penalty_pricing"
+      },
+      "path_tag": "risk_signal",
+      "query_id": "Q11",
+      "result_count": 2,
+      "result_preview": [
+        {
+          "d.id": "ParameterDefinition:pd_f71e04834c4336b777e3",
+          "m.id": "Mechanism:mechanism_6c3977c1687f0f3b09cd",
+          "r.clause_id": "ead750f28a3326778e25ebd3928e8e4ad3b65d0bfdec89dc61d743d7585fbf58#clause_0002",
+          "r.conflict_type": null,
+          "r.risk_level": null
+        },
+        {
+          "d.id": "ParameterDefinition:pd_f71e04834c4336b777e3",
+          "m.id": "Mechanism:mechanism_6c3977c1687f0f3b09cd",
+          "r.clause_id": "ead750f28a3326778e25ebd3928e8e4ad3b65d0bfdec89dc61d743d7585fbf58#clause_0002",
+          "r.conflict_type": "none",
+          "r.risk_level": "low"
+        }
+      ],
+      "title": "cross_clause_conflict_by_mechanism_type"
+    },
+    {
+      "error": "",
+      "executed_successfully": true,
+      "params": {
+        "limit": 10
+      },
+      "path_tag": "risk_signal",
+      "query_id": "Q12",
+      "result_count": 10,
+      "result_preview": [
+        {
+          "ra.clause_id": "00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0001",
+          "ra.predicate": "contains_clause",
+          "ra.source": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec",
+          "ra.target": "Clause:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0001"
+        },
+        {
+          "ra.clause_id": "00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0002",
+          "ra.predicate": "contains_clause",
+          "ra.source": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec",
+          "ra.target": "Clause:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0002"
+        },
+        {
+          "ra.clause_id": "00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0003",
+          "ra.predicate": "contains_clause",
+          "ra.source": "PolicyDocument:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec",
+          "ra.target": "Clause:00a12958eaee9a105dcc89c19bd002fa5ac8761a4154324faee32237e8364fec#clause_0003"
+        }
+      ],
+      "title": "strict_all_backfill_candidates"
+    }
+  ]
+}
