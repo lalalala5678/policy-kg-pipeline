@@ -1,0 +1,59 @@
+{
+  "strict_all": {
+    "edge_count": 5742,
+    "label_distribution": {
+      "Clause": 599,
+      "Mechanism": 613,
+      "ParameterDefinition": 356,
+      "ParameterMention": 1122,
+      "PolicyDocument": 202
+    },
+    "mention_accepted": 1122,
+    "mention_total_input": 1141,
+    "node_count": 2892,
+    "predicate_distribution": {
+      "clause_has_parameter_mention": 1122,
+      "clause_supports_mechanism": 613,
+      "contains_clause": 599,
+      "contains_mechanism": 613,
+      "mechanism_anchor_clause": 613,
+      "mechanism_has_parameter_definition": 1060,
+      "parameter_mention_refers_to_definition": 1122
+    },
+    "reject_count": 19,
+    "reject_reason_distribution": {
+      "E_FK_MISSING": 19
+    },
+    "track": "strict_all",
+    "triple_count": 5742
+  },
+  "strict_high": {
+    "edge_count": 4868,
+    "label_distribution": {
+      "Clause": 509,
+      "Mechanism": 513,
+      "ParameterDefinition": 330,
+      "ParameterMention": 955,
+      "PolicyDocument": 187
+    },
+    "mention_accepted": 955,
+    "mention_total_input": 1141,
+    "node_count": 2494,
+    "predicate_distribution": {
+      "clause_has_parameter_mention": 955,
+      "clause_supports_mechanism": 513,
+      "contains_clause": 509,
+      "contains_mechanism": 513,
+      "mechanism_anchor_clause": 513,
+      "mechanism_has_parameter_definition": 910,
+      "parameter_mention_refers_to_definition": 955
+    },
+    "reject_count": 186,
+    "reject_reason_distribution": {
+      "E_FK_MISSING": 19,
+      "E_STRICT_FILTER": 167
+    },
+    "track": "strict_high",
+    "triple_count": 4868
+  }
+}

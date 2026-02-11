@@ -1,0 +1,323 @@
+{
+  "all_targets_passed": true,
+  "checks": {
+    "conflict_explainability": true,
+    "deterministic_replay_match": true,
+    "manifest_file_integrity": true,
+    "strict_all:dry_run_simulated": true,
+    "strict_all:edge_unit_legal_strict_high": true,
+    "strict_all:evidence_traceability_strict_high": true,
+    "strict_all:fk_integrity": true,
+    "strict_all:node_unit_legal_strict_high": true,
+    "strict_all:pk_edges_unique": true,
+    "strict_all:pk_nodes_unique": true,
+    "strict_all:schema_integrity": true,
+    "strict_high:dry_run_simulated": true,
+    "strict_high:edge_unit_legal_strict_high": true,
+    "strict_high:evidence_traceability_strict_high": true,
+    "strict_high:fk_integrity": true,
+    "strict_high:node_unit_legal_strict_high": true,
+    "strict_high:pk_edges_unique": true,
+    "strict_high:pk_nodes_unique": true,
+    "strict_high:schema_integrity": true
+  },
+  "config": {
+    "canonical_units": [
+      "hour",
+      "household",
+      "kva",
+      "kw",
+      "kwh",
+      "month",
+      "mw",
+      "none",
+      "percent",
+      "ten_thousand_yuan",
+      "time_window",
+      "ton",
+      "year",
+      "yuan",
+      "yuan_per_kwh",
+      "yuan_per_sqm",
+      "yuan_per_ton",
+      "yuan_per_watt"
+    ],
+    "edge_schema": {
+      "clause_has_parameter_mention": [
+        "Clause",
+        "ParameterMention"
+      ],
+      "clause_supports_mechanism": [
+        "Clause",
+        "Mechanism"
+      ],
+      "contains_clause": [
+        "PolicyDocument",
+        "Clause"
+      ],
+      "contains_mechanism": [
+        "PolicyDocument",
+        "Mechanism"
+      ],
+      "mechanism_anchor_clause": [
+        "Mechanism",
+        "Clause"
+      ],
+      "mechanism_has_parameter_definition": [
+        "Mechanism",
+        "ParameterDefinition"
+      ],
+      "parameter_mention_refers_to_definition": [
+        "ParameterMention",
+        "ParameterDefinition"
+      ]
+    },
+    "extraction_version": "step7b_iterB_rulefix",
+    "git_commit": "78de16a3ec07cce26cb43d0ab6a1f554cb9f0ad9",
+    "input": {
+      "clause_corpus": "00_整理记录\\step3_clause_corpus.jsonl",
+      "definitions": "00_整理记录\\step7b_iterB_rulefix_parameter_definitions.jsonl",
+      "mentions": "00_整理记录\\step7b_iterB_rulefix_parameter_mentions.jsonl"
+    },
+    "known_mechanisms": [
+      "differential_penalty_pricing",
+      "general_price_adjustment",
+      "subsidy",
+      "task_assessment",
+      "technology_route",
+      "tiered_pricing",
+      "tou_pricing"
+    ],
+    "run_id": "step8_iter1",
+    "schema_version": "schema_v1.4",
+    "strict_all_topk": 5,
+    "timestamp_utc": "2026-02-11T09:41:30.185315+00:00",
+    "tracks": [
+      "strict_high",
+      "strict_all"
+    ]
+  },
+  "conflict_count": 3929,
+  "conflict_explainability_ok": true,
+  "deterministic_check": {
+    "enabled": true,
+    "mismatches": [],
+    "passed": true
+  },
+  "extraction_version": "step7b_iterB_rulefix",
+  "file_integrity_checks": [
+    {
+      "actual_sha256": "caf4f99f7b6cb72c9bf6f9f218fba907b5baeced0b35e2ea3024d996a7c729f9",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": null,
+      "manifest_sha256": "caf4f99f7b6cb72c9bf6f9f218fba907b5baeced0b35e2ea3024d996a7c729f9",
+      "path": "config.json"
+    },
+    {
+      "actual_sha256": "2beefeabb0043d0864a403e5a9b1104e5cfb3d2f9e4004d05ac2d2a902c6fa97",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 3929,
+      "manifest_sha256": "2beefeabb0043d0864a403e5a9b1104e5cfb3d2f9e4004d05ac2d2a902c6fa97",
+      "path": "conflicts.jsonl"
+    },
+    {
+      "actual_sha256": "4505e23e7c914c256bc6bb0850f4f0cf03dff9fd7076446d92b4d441259e91ab",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 205,
+      "manifest_sha256": "4505e23e7c914c256bc6bb0850f4f0cf03dff9fd7076446d92b4d441259e91ab",
+      "path": "rejects.jsonl"
+    },
+    {
+      "actual_sha256": "472d8ccacee43d928337323d418a157f5da8d994c173c1a837395cb41f061a5e",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": null,
+      "manifest_sha256": "472d8ccacee43d928337323d418a157f5da8d994c173c1a837395cb41f061a5e",
+      "path": "stats.json"
+    },
+    {
+      "actual_sha256": "4ab46c2be99049db7e27c2b97578a807d57effb5383a24c04da1939abbc1d7cf",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 5742,
+      "manifest_sha256": "4ab46c2be99049db7e27c2b97578a807d57effb5383a24c04da1939abbc1d7cf",
+      "path": "strict_all/edges.csv"
+    },
+    {
+      "actual_sha256": "8fb514afd73da28f3dcaec42b6af7a872c2189726a92f636745fe3bf6240dcd8",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 2892,
+      "manifest_sha256": "8fb514afd73da28f3dcaec42b6af7a872c2189726a92f636745fe3bf6240dcd8",
+      "path": "strict_all/nodes.csv"
+    },
+    {
+      "actual_sha256": "b48280cfd599d2b6b037da3c7299b49f3035fea1b198c2a511c410600e8d1200",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 5742,
+      "manifest_sha256": "b48280cfd599d2b6b037da3c7299b49f3035fea1b198c2a511c410600e8d1200",
+      "path": "strict_all/triples_spo.jsonl"
+    },
+    {
+      "actual_sha256": "270c1caf24682a54625a7292d28304a58409aa32b8e6980e3cbbafa41a808681",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 4868,
+      "manifest_sha256": "270c1caf24682a54625a7292d28304a58409aa32b8e6980e3cbbafa41a808681",
+      "path": "strict_high/edges.csv"
+    },
+    {
+      "actual_sha256": "957191766f42190e0991a03af88b4d8e3f34bbd405215875d9d1db4850a78577",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 2494,
+      "manifest_sha256": "957191766f42190e0991a03af88b4d8e3f34bbd405215875d9d1db4850a78577",
+      "path": "strict_high/nodes.csv"
+    },
+    {
+      "actual_sha256": "34fc7712c2fc265213b551cdb910efe915c96a80569df36003bb4f62a4eca0c0",
+      "exists": true,
+      "hash_match": true,
+      "manifest_row_count": 4868,
+      "manifest_sha256": "34fc7712c2fc265213b551cdb910efe915c96a80569df36003bb4f62a4eca0c0",
+      "path": "strict_high/triples_spo.jsonl"
+    }
+  ],
+  "package_dir": "00_整理记录\\graph_pkg\\step8_iter1",
+  "run_id": "step8_iter1",
+  "schema_version": "schema_v1.4",
+  "stats_snapshot": {
+    "strict_all": {
+      "edge_count": 5742,
+      "label_distribution": {
+        "Clause": 599,
+        "Mechanism": 613,
+        "ParameterDefinition": 356,
+        "ParameterMention": 1122,
+        "PolicyDocument": 202
+      },
+      "mention_accepted": 1122,
+      "mention_total_input": 1141,
+      "node_count": 2892,
+      "predicate_distribution": {
+        "clause_has_parameter_mention": 1122,
+        "clause_supports_mechanism": 613,
+        "contains_clause": 599,
+        "contains_mechanism": 613,
+        "mechanism_anchor_clause": 613,
+        "mechanism_has_parameter_definition": 1060,
+        "parameter_mention_refers_to_definition": 1122
+      },
+      "reject_count": 19,
+      "reject_reason_distribution": {
+        "E_FK_MISSING": 19
+      },
+      "track": "strict_all",
+      "triple_count": 5742
+    },
+    "strict_high": {
+      "edge_count": 4868,
+      "label_distribution": {
+        "Clause": 509,
+        "Mechanism": 513,
+        "ParameterDefinition": 330,
+        "ParameterMention": 955,
+        "PolicyDocument": 187
+      },
+      "mention_accepted": 955,
+      "mention_total_input": 1141,
+      "node_count": 2494,
+      "predicate_distribution": {
+        "clause_has_parameter_mention": 955,
+        "clause_supports_mechanism": 513,
+        "contains_clause": 509,
+        "contains_mechanism": 513,
+        "mechanism_anchor_clause": 513,
+        "mechanism_has_parameter_definition": 910,
+        "parameter_mention_refers_to_definition": 955
+      },
+      "reject_count": 186,
+      "reject_reason_distribution": {
+        "E_FK_MISSING": 19,
+        "E_STRICT_FILTER": 167
+      },
+      "track": "strict_high",
+      "triple_count": 4868
+    }
+  },
+  "track_reports": {
+    "strict_all": {
+      "all_checks_passed": true,
+      "checks": {
+        "dry_run_simulated": true,
+        "edge_unit_legal_strict_high": true,
+        "evidence_traceability_strict_high": true,
+        "fk_integrity": true,
+        "node_unit_legal_strict_high": true,
+        "pk_edges_unique": true,
+        "pk_nodes_unique": true,
+        "schema_integrity": true
+      },
+      "counts": {
+        "edges": 5742,
+        "nodes": 2892,
+        "predicates": {
+          "clause_has_parameter_mention": 1122,
+          "clause_supports_mechanism": 613,
+          "contains_clause": 599,
+          "contains_mechanism": 613,
+          "mechanism_anchor_clause": 613,
+          "mechanism_has_parameter_definition": 1060,
+          "parameter_mention_refers_to_definition": 1122
+        }
+      },
+      "errors": {
+        "evidence_bad": 0,
+        "fk_missing": 0,
+        "node_def_unit_bad": 0,
+        "schema_violations": 0,
+        "unit_bad": 0,
+        "unit_missing": 0
+      }
+    },
+    "strict_high": {
+      "all_checks_passed": true,
+      "checks": {
+        "dry_run_simulated": true,
+        "edge_unit_legal_strict_high": true,
+        "evidence_traceability_strict_high": true,
+        "fk_integrity": true,
+        "node_unit_legal_strict_high": true,
+        "pk_edges_unique": true,
+        "pk_nodes_unique": true,
+        "schema_integrity": true
+      },
+      "counts": {
+        "edges": 4868,
+        "nodes": 2494,
+        "predicates": {
+          "clause_has_parameter_mention": 955,
+          "clause_supports_mechanism": 513,
+          "contains_clause": 509,
+          "contains_mechanism": 513,
+          "mechanism_anchor_clause": 513,
+          "mechanism_has_parameter_definition": 910,
+          "parameter_mention_refers_to_definition": 955
+        }
+      },
+      "errors": {
+        "evidence_bad": 0,
+        "fk_missing": 0,
+        "node_def_unit_bad": 0,
+        "schema_violations": 0,
+        "unit_bad": 0,
+        "unit_missing": 0
+      }
+    }
+  },
+  "warnings": []
+}
