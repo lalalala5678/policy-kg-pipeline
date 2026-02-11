@@ -1,0 +1,10 @@
+{
+  "target_total": 300,
+  "actual_total": 0,
+  "strict_high_count": 0,
+  "hard_case_count": 0,
+  "mechanism_distribution": {},
+  "param_type_distribution": {},
+  "bind_group_distribution": {},
+  "hard_tag_distribution": {}
+}

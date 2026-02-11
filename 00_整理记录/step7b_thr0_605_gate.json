@@ -1,0 +1,62 @@
+{
+  "input": {
+    "baseline_step5_report": "00_整理记录/step7_iter3_unitfix_timeunit_thr060_validation_report.json",
+    "baseline_step6_report": "00_整理记录/step7_iter3b_unitfix_timeunit_thr060_iaa_report.json",
+    "candidate_step5_report": "00_整理记录/step7b_thr0_605_validation_report.json",
+    "candidate_step6_report": "00_整理记录/step7b_thr0_605_iaa_report.json",
+    "gold_adjudicated": "00_整理记录/step7_iter3b_unitfix_timeunit_thr060_gold_adjudicated.jsonl",
+    "candidate_mentions": "00_整理记录/step7b_thr0_605_parameter_mentions.jsonl"
+  },
+  "thresholds": {
+    "precision_tol_pp": 0.005,
+    "mechanism_floor": 0.952597,
+    "normalization_floor": 0.995,
+    "strict_high_floor": 0.990475,
+    "gain_keyfield_hit": 1,
+    "gain_strict_tp": 1
+  },
+  "baseline_snapshot": {
+    "step6_mechanism_precision": 0.957597,
+    "step6_normalization_precision": 1.0,
+    "step6_strict_high_precision": 0.995475,
+    "keyfield_recall": 0.9911504424778761,
+    "strict_high_tp_on_gold": 220
+  },
+  "candidate_snapshot": {
+    "step6_mechanism_precision": 0.957597,
+    "step6_normalization_precision": 1.0,
+    "step6_strict_high_precision": 0.995475,
+    "keyfield_recall": 0.9911504424778761,
+    "strict_high_tp_on_gold": 220,
+    "candidate_match_count_on_gold": 300
+  },
+  "gain": {
+    "keyfield_gold_den": 226,
+    "strict_high_gold_den": 222,
+    "keyfield_hit_baseline": 224,
+    "keyfield_hit_candidate": 224,
+    "keyfield_hit_delta": 0,
+    "keyfield_recall_delta": 0.0,
+    "strict_high_tp_delta": 0
+  },
+  "hard_checks": {
+    "step5_normalization_matched_rate_ge_0_95": true,
+    "step5_mechanism_bound_rate_valid_numeric_eq_1_0": true,
+    "step5_local_supported_rate_valid_numeric_ge_0_85": true,
+    "step6_kappa_mechanism_ge_0_90": true,
+    "step6_kappa_param_type_ge_0_95": true,
+    "step6_mechanism_precision_rel_floor": true,
+    "step6_normalization_precision_rel_floor": true,
+    "step6_strict_high_precision_rel_floor": true,
+    "step6_hard_error_time_raw_not_time_window_eq_0": true,
+    "step6_hard_error_price_value_large_raw_small_norm_eq_0": true,
+    "step6_hard_error_candidate_score_strict_high_eq_0": true
+  },
+  "hard_pass": true,
+  "gain_checks": {
+    "gold_keyfield_hit_delta_ge_threshold": false,
+    "gold_strict_high_tp_delta_ge_threshold": false
+  },
+  "gain_pass": false,
+  "all_targets_passed": false
+}

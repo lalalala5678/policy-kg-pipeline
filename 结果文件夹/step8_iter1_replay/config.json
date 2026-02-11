@@ -1,0 +1,76 @@
+{
+  "canonical_units": [
+    "hour",
+    "household",
+    "kva",
+    "kw",
+    "kwh",
+    "month",
+    "mw",
+    "none",
+    "percent",
+    "ten_thousand_yuan",
+    "time_window",
+    "ton",
+    "year",
+    "yuan",
+    "yuan_per_kwh",
+    "yuan_per_sqm",
+    "yuan_per_ton",
+    "yuan_per_watt"
+  ],
+  "edge_schema": {
+    "clause_has_parameter_mention": [
+      "Clause",
+      "ParameterMention"
+    ],
+    "clause_supports_mechanism": [
+      "Clause",
+      "Mechanism"
+    ],
+    "contains_clause": [
+      "PolicyDocument",
+      "Clause"
+    ],
+    "contains_mechanism": [
+      "PolicyDocument",
+      "Mechanism"
+    ],
+    "mechanism_anchor_clause": [
+      "Mechanism",
+      "Clause"
+    ],
+    "mechanism_has_parameter_definition": [
+      "Mechanism",
+      "ParameterDefinition"
+    ],
+    "parameter_mention_refers_to_definition": [
+      "ParameterMention",
+      "ParameterDefinition"
+    ]
+  },
+  "extraction_version": "step7b_iterB_rulefix",
+  "git_commit": "78de16a3ec07cce26cb43d0ab6a1f554cb9f0ad9",
+  "input": {
+    "clause_corpus": "00_整理记录\\step3_clause_corpus.jsonl",
+    "definitions": "00_整理记录\\step7b_iterB_rulefix_parameter_definitions.jsonl",
+    "mentions": "00_整理记录\\step7b_iterB_rulefix_parameter_mentions.jsonl"
+  },
+  "known_mechanisms": [
+    "differential_penalty_pricing",
+    "general_price_adjustment",
+    "subsidy",
+    "task_assessment",
+    "technology_route",
+    "tiered_pricing",
+    "tou_pricing"
+  ],
+  "run_id": "step8_iter1_replay",
+  "schema_version": "schema_v1.4",
+  "strict_all_topk": 5,
+  "timestamp_utc": "2026-02-11T09:41:56.151028+00:00",
+  "tracks": [
+    "strict_high",
+    "strict_all"
+  ]
+}

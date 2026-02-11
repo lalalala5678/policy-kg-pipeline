@@ -1,0 +1,46 @@
+{
+  "target_total": 300,
+  "actual_total": 300,
+  "strict_high_count": 226,
+  "hard_case_count": 153,
+  "mechanism_distribution": {
+    "task_assessment": 74,
+    "technology_route": 47,
+    "tou_pricing": 53,
+    "subsidy": 53,
+    "general_price_adjustment": 30,
+    "tiered_pricing": 41,
+    "differential_penalty_pricing": 1,
+    "None": 1
+  },
+  "param_type_distribution": {
+    "duration_threshold_month": 3,
+    "ratio_target": 102,
+    "subsidy_amount": 19,
+    "price_value": 26,
+    "target_household_count": 19,
+    "consumption_threshold_kwh": 34,
+    "None": 11,
+    "price_delta_pct": 38,
+    "duration_threshold_hour": 7,
+    "time_window": 27,
+    "area_subsidy_amount": 4,
+    "tonnage_threshold": 2,
+    "funding_share_ratio": 3,
+    "other": 3,
+    "duration_threshold_year": 2
+  },
+  "bind_group_distribution": {
+    "high_conf": 245,
+    "candidate_score": 32,
+    "fallback": 22,
+    "other": 1
+  },
+  "hard_tag_distribution": {
+    "negative_domain": 44,
+    "candidate_score": 32,
+    "task_clause": 42,
+    "threshold_price_same_clause": 24,
+    "time_token": 27
+  }
+}

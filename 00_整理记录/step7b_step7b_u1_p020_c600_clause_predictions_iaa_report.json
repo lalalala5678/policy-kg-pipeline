@@ -1,0 +1,70 @@
+{
+  "config": {
+    "mentions": "00_整理记录/step7b_step7b_u1_p020_c600_clause_predictions_parameter_mentions.jsonl",
+    "clause_corpus": "00_整理记录/step3_clause_corpus.jsonl",
+    "sample_size": 300,
+    "strict_min": 140,
+    "hard_min": 80,
+    "seed": 20260211
+  },
+  "sampling": {
+    "target_total": 300,
+    "actual_total": 0,
+    "strict_high_count": 0,
+    "hard_case_count": 0,
+    "mechanism_distribution": {},
+    "param_type_distribution": {},
+    "bind_group_distribution": {},
+    "hard_tag_distribution": {}
+  },
+  "iaa": {
+    "kappa_mechanism": 0.0,
+    "kappa_param_type": 0.0,
+    "exact_match_norm_unit": 0.0,
+    "agreement_strict_high_eligible": 0.0
+  },
+  "quality": {
+    "denominators": {
+      "all_clause": 2022,
+      "sample_total": 0,
+      "valid_all": 0,
+      "valid_numeric": 0
+    },
+    "mechanism_precision_on_valid_numeric": {
+      "num": 0,
+      "den": 0,
+      "rate": 0.0
+    },
+    "normalization_precision_on_valid_numeric": {
+      "num": 0,
+      "den": 0,
+      "rate": 0.0
+    },
+    "strict_high_precision": {
+      "num": 0,
+      "den": 0,
+      "rate": 0.0
+    }
+  },
+  "error_clusters": {
+    "time_raw_not_time_window": 0,
+    "price_value_large_raw_small_norm": 0,
+    "candidate_score_strict_high": 0
+  },
+  "target_pass": {
+    "kappa_mechanism_ge_0_80": false,
+    "kappa_param_type_ge_0_80": false,
+    "exact_match_norm_unit_ge_0_90": false,
+    "agreement_strict_high_eligible_ge_0_90": false,
+    "mechanism_precision_ge_0_90": false,
+    "normalization_precision_ge_0_90": false,
+    "strict_high_precision_ge_0_92": false,
+    "time_raw_not_time_window_eq_0": true,
+    "price_value_large_raw_small_norm_eq_0": true,
+    "candidate_score_strict_high_eq_0": true,
+    "sample_size_ge_240": false,
+    "sample_strict_ge_120": false,
+    "sample_hard_ge_60": false
+  },
+  "all_targets_passed": false
+}

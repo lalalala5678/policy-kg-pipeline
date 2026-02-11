@@ -1,12 +1,12 @@
-# Step 1: Domain Schema Definition and Full-Corpus Readthrough
+﻿# Step 1: Domain Schema Definition and Full-Corpus Readthrough
 
 ## 1. Objective
 The objective of Step 1 is to define a controllable and evaluable domain schema for downstream extraction and policy graph construction. The schema must be evidence-driven and compatible with later UIE extraction, normalization, and graph reasoning stages.
 
 ## 2. Data Scope
 - Input corpus: all policy `.txt` files under:
-- `01_电价政策`
-- `02_电能替代与清洁取暖`
+- `01_鐢典环鏀跨瓥`
+- `02_鐢佃兘鏇夸唬涓庢竻娲佸彇鏆朻
 - Total files processed: 151
 - Sampling policy: no sampling; full-corpus processing only.
 
@@ -21,8 +21,8 @@ The objective of Step 1 is to define a controllable and evaluable domain schema 
 ### 3.2 Corpus profiling
 - A per-file extraction profile was generated for metadata, mechanism, and hard-parameter signals.
 - Artifacts:
-- `00_整理记录/policy_readthrough_profile.json`
-- `00_整理记录/policy_readthrough_summary.json`
+- `00_鏁寸悊璁板綍/policy_readthrough_profile.json`
+- `00_鏁寸悊璁板綍/policy_readthrough_summary.json`
 
 ### 3.3 Evidence-driven schema construction
 - Schema fields were introduced only when supported by corpus evidence.
@@ -35,16 +35,16 @@ The objective of Step 1 is to define a controllable and evaluable domain schema 
 - Verified with full-text matches:
 - Time windows (for example `08:00-11:00`, `23:00-07:00`)
 - Percentage forms (for example directional and plain `%`)
-- Monetary forms (for example `元/千瓦时`, `元/户`, `万元`)
+- Monetary forms (for example `鍏?鍗冪摝鏃禶, `鍏?鎴穈, `涓囧厓`)
 - Threshold forms (tier labels and kWh thresholds)
 
 ## 4. Outputs
-- Schema: `00_整理记录/schema_v1.yaml` (current version: 1.4)
-- Step report: `00_整理记录/schema_step1_readthrough_report.md`
-- Change log: `00_整理记录/schema_change_log.md`
+- Schema: `结果文件夹/schema_v1.yaml` (current version: 1.4)
+- Step report: `00_鏁寸悊璁板綍/schema_step1_readthrough_report.md`
+- Change log: `00_鏁寸悊璁板綍/schema_change_log.md`
 - Profiling data:
-- `00_整理记录/policy_readthrough_profile.json`
-- `00_整理记录/policy_readthrough_summary.json`
+- `00_鏁寸悊璁板綍/policy_readthrough_profile.json`
+- `00_鏁寸悊璁板綍/policy_readthrough_summary.json`
 
 ## 5. Key Summary Statistics
 - docs_with_policy_meta_org: 72
@@ -95,10 +95,10 @@ The objective of Step 1 is to define a controllable and evaluable domain schema 
 ## 9. v1.4 Adaptation Fixes
 - Resolved clause enum conflict by adding `table_row_clause` to `Clause.clause_type`.
 - Added compiled-text preprocessing contract:
-- split `02_电能替代与清洁取暖/02_汇总拼接/*.txt` by `<h2>file:` before extraction.
+- split `02_鐢佃兘鏇夸唬涓庢竻娲佸彇鏆?02_姹囨€绘嫾鎺?*.txt` by `<h2>file:` before extraction.
 - Expanded mechanism typing:
 - added `general_price_adjustment` for generic price reduction/adjustment policies.
 - Expanded parameter typing and normalization for policy-engineering content:
 - `area_subsidy_amount`, `capacity_threshold`, `tonnage_threshold`.
-- Added unit normalization for `元/平方米`, `元/度`, `千伏安/千瓦/兆瓦`, `蒸吨/载重吨/总吨/吨级`.
+- Added unit normalization for `鍏?骞虫柟绫砢, `鍏?搴, `鍗冧紡瀹?鍗冪摝/鍏嗙摝`, `钂稿惃/杞介噸鍚?鎬诲惃/鍚ㄧ骇`.
 - Added deterministic postprocessing rule block `parameter_type_mapping_rules`.

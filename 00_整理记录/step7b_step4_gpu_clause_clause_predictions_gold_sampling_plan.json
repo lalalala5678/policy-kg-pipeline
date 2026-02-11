@@ -1,0 +1,19 @@
+{
+  "target_total": 300,
+  "actual_total": 7,
+  "strict_high_count": 3,
+  "hard_case_count": 0,
+  "mechanism_distribution": {
+    "None": 4,
+    "tiered_pricing": 3
+  },
+  "param_type_distribution": {
+    "other": 4,
+    "consumption_threshold_kwh": 3
+  },
+  "bind_group_distribution": {
+    "other": 4,
+    "high_conf": 3
+  },
+  "hard_tag_distribution": {}
+}

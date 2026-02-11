@@ -1,0 +1,106 @@
+{
+  "config": {
+    "mentions": "00_整理记录/step7b_iterA_t0_64_parameter_mentions.jsonl",
+    "clause_corpus": "00_整理记录/step3_clause_corpus.jsonl",
+    "sample_size": 300,
+    "strict_min": 140,
+    "hard_min": 80,
+    "seed": 20260211
+  },
+  "sampling": {
+    "target_total": 300,
+    "actual_total": 300,
+    "strict_high_count": 225,
+    "hard_case_count": 151,
+    "mechanism_distribution": {
+      "general_price_adjustment": 30,
+      "task_assessment": 74,
+      "technology_route": 46,
+      "subsidy": 54,
+      "tiered_pricing": 41,
+      "tou_pricing": 53,
+      "differential_penalty_pricing": 1,
+      "None": 1
+    },
+    "param_type_distribution": {
+      "price_value": 33,
+      "duration_threshold_month": 3,
+      "ratio_target": 102,
+      "area_subsidy_amount": 5,
+      "subsidy_amount": 19,
+      "consumption_threshold_kwh": 33,
+      "None": 11,
+      "target_household_count": 16,
+      "time_window": 26,
+      "price_delta_pct": 31,
+      "duration_threshold_hour": 9,
+      "funding_share_ratio": 5,
+      "tonnage_threshold": 2,
+      "other": 3,
+      "duration_threshold_year": 2
+    },
+    "bind_group_distribution": {
+      "high_conf": 245,
+      "candidate_score": 32,
+      "fallback": 22,
+      "other": 1
+    },
+    "hard_tag_distribution": {
+      "negative_domain": 42,
+      "candidate_score": 32,
+      "task_clause": 43,
+      "time_token": 26,
+      "threshold_price_same_clause": 22
+    }
+  },
+  "iaa": {
+    "kappa_mechanism": 0.991957,
+    "kappa_param_type": 1.0,
+    "exact_match_norm_unit": 1.0,
+    "agreement_strict_high_eligible": 1.0
+  },
+  "quality": {
+    "denominators": {
+      "all_clause": 2022,
+      "sample_total": 300,
+      "valid_all": 300,
+      "valid_numeric": 289
+    },
+    "mechanism_precision_on_valid_numeric": {
+      "num": 270,
+      "den": 285,
+      "rate": 0.947368
+    },
+    "normalization_precision_on_valid_numeric": {
+      "num": 289,
+      "den": 289,
+      "rate": 1.0
+    },
+    "strict_high_precision": {
+      "num": 224,
+      "den": 225,
+      "rate": 0.995556
+    }
+  },
+  "error_clusters": {
+    "time_raw_not_time_window": 0,
+    "price_value_large_raw_small_norm": 0,
+    "candidate_score_strict_high": 0
+  },
+  "target_pass": {
+    "kappa_mechanism_ge_0_80": true,
+    "kappa_param_type_ge_0_80": true,
+    "exact_match_norm_unit_ge_0_90": true,
+    "agreement_strict_high_eligible_ge_0_90": true,
+    "mechanism_precision_ge_0_90": true,
+    "normalization_precision_ge_0_90": true,
+    "strict_high_precision_ge_0_92": true,
+    "time_raw_not_time_window_eq_0": true,
+    "price_value_large_raw_small_norm_eq_0": true,
+    "candidate_score_strict_high_eq_0": true,
+    "sample_size_ge_240": true,
+    "sample_strict_ge_120": true,
+    "sample_hard_ge_60": true
+  },
+  "all_targets_passed": true
+}

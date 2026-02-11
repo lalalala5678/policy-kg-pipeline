@@ -1,0 +1,138 @@
+{
+  "input": {
+    "clause_pred_file": "00_整理记录/step4_gpu_clause_clause_predictions.jsonl",
+    "clause_source_file": "00_整理记录/step3_clause_corpus.jsonl",
+    "clause_total": 2022,
+    "known_mechanisms": [
+      "tou_pricing",
+      "tiered_pricing",
+      "differential_penalty_pricing",
+      "general_price_adjustment",
+      "subsidy",
+      "task_assessment",
+      "technology_route"
+    ],
+    "strict_high_threshold": 0.6,
+    "bind_min_score": 1.0
+  },
+  "frozen_denominators": {
+    "all_clause": 2022,
+    "valid_all": 7,
+    "valid_numeric": 7,
+    "mention_total": 7
+  },
+  "counts": {
+    "mention_total": 7,
+    "definition_total": 4,
+    "triple_total": 17,
+    "parse_error_count": 0,
+    "span_valid_count": 7,
+    "normalization_attempted_count": 7,
+    "normalization_matched_count": 7,
+    "canonical_key_count": 7,
+    "mechanism_bound_count": 3,
+    "ready_with_mechanism_count": 3,
+    "strict_all_count": 3,
+    "strict_high_count": 3,
+    "mechanism_bound_valid_all_count": 3,
+    "mechanism_bound_valid_numeric_count": 3,
+    "local_supported_count": 3,
+    "pricing_negative_conflict_count": 0,
+    "unit_conflict_group_count": 0,
+    "clause_candidate_non_empty_count": 1427,
+    "clause_negative_count": 56,
+    "raw_value_filtered_non_value_count": 88,
+    "raw_value_filtered_by_rule_count": 4,
+    "unit_pairing_dropped_count": 4,
+    "unit_alias_applied_count": 0,
+    "full_clause_retry_success_count": 0,
+    "post_guard_adjusted_count": 0,
+    "low_confidence_cap_count": 0,
+    "time_window_tou_override_count": 0,
+    "strict_high_compat_block_count": 0,
+    "strict_high_weak_constraint_block_count": 0
+  },
+  "rates": {
+    "span_valid_rate": 1.0,
+    "normalization_matched_rate": 1.0,
+    "canonical_key_rate": 1.0,
+    "mechanism_bound_rate": 0.428571,
+    "ready_with_mechanism_rate": 0.428571,
+    "mechanism_bound_rate_valid_all": 0.428571,
+    "mechanism_bound_rate_valid_numeric": 0.428571,
+    "strict_all_rate_valid_numeric": 0.428571,
+    "strict_high_rate_valid_numeric": 0.428571,
+    "local_supported_rate_valid_numeric": 0.428571,
+    "pricing_negative_conflict_rate_valid_numeric": 0.0,
+    "clause_candidate_non_empty_rate": 0.705737,
+    "clause_negative_rate": 0.027695
+  },
+  "metrics_with_denominator": {
+    "normalization_matched_on_mentions": {
+      "num": 7,
+      "den": 7,
+      "rate": 1.0
+    },
+    "mechanism_bound_on_valid_all": {
+      "num": 3,
+      "den": 7,
+      "rate": 0.428571
+    },
+    "mechanism_bound_on_valid_numeric": {
+      "num": 3,
+      "den": 7,
+      "rate": 0.428571
+    },
+    "strict_all_on_valid_numeric": {
+      "num": 3,
+      "den": 7,
+      "rate": 0.428571
+    },
+    "strict_high_on_valid_numeric": {
+      "num": 3,
+      "den": 7,
+      "rate": 0.428571
+    }
+  },
+  "targets": {
+    "normalization_matched_rate": 0.9,
+    "mechanism_bound_rate_valid_numeric": 0.85,
+    "strict_high_rate_valid_numeric": 0.65,
+    "local_supported_rate_valid_numeric": 0.85
+  },
+  "target_pass": {
+    "normalization_matched_rate": true,
+    "mechanism_bound_rate_valid_numeric": false,
+    "strict_high_rate_valid_numeric": false,
+    "local_supported_rate_valid_numeric": false
+  },
+  "all_targets_passed": false,
+  "distribution": {
+    "param_type_top20": {
+      "other": 4,
+      "consumption_threshold_kwh": 3
+    },
+    "norm_unit_top20": {
+      "kw": 4,
+      "kwh": 3
+    },
+    "rule_top20": {
+      "capacity_value": 4,
+      "kwh_threshold_range": 3
+    },
+    "filtered_rule_counts": {},
+    "bind_reason_top20": {
+      "no_candidate": 4,
+      "keyword_plus_prior": 3
+    },
+    "bind_transition_top20": {
+      "None->None": 4,
+      "None->tiered_pricing": 3
+    },
+    "skip_reason_top20": {
+      "pollutant_unit_filtered": 4
+    },
+    "post_guard_top20": {}
+  },
+  "unit_conflicts_top20": []
+}

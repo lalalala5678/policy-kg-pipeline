@@ -1,0 +1,17 @@
+{"subject": "Clause:6f9e11a2d7c04d1e2e70825dcb404052e1219052d6c99430f5f25ebd988c1a72#clause_0002", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_de3c720d272f1028fb06"}
+{"subject": "ParameterMention:pm_de3c720d272f1028fb06", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_4a318a88a088efc6a56c"}
+{"subject": "Mechanism:mechanism_51d6f5954f051674f6fe", "predicate": "mechanism_has_parameter_definition", "object": "ParameterDefinition:pd_4a318a88a088efc6a56c"}
+{"subject": "Clause:ec04d88813b018d570d36f88e39cafafcdea9a884900156145f7f25c3149ea28#clause_0002", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_c52ce844bdc2c3495bdd"}
+{"subject": "ParameterMention:pm_c52ce844bdc2c3495bdd", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_f616bc2413d5a98869d1"}
+{"subject": "Mechanism:mechanism_254c0623af6cc109e8dd", "predicate": "mechanism_has_parameter_definition", "object": "ParameterDefinition:pd_f616bc2413d5a98869d1"}
+{"subject": "Clause:37057c32932e956503eb1ad05c772ba2cd53e2bba30c2a5b23eb9c15e6a785de#clause_0002", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_6328a7a684e02381af22"}
+{"subject": "ParameterMention:pm_6328a7a684e02381af22", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_64b745436126bdd5ebc8"}
+{"subject": "Mechanism:mechanism_5b691b31369b66412eee", "predicate": "mechanism_has_parameter_definition", "object": "ParameterDefinition:pd_64b745436126bdd5ebc8"}
+{"subject": "Clause:cfc5659b83ee4ad1d1f2661e5333bd1e0c3dd1876428b74b183b3a6d310c4184#clause_0006", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_621e3598cd93190dc47a"}
+{"subject": "ParameterMention:pm_621e3598cd93190dc47a", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_8e026df3d74fbe54de78"}
+{"subject": "Clause:264f74e1e9077c0e94590da482db92ebc125f4c14559852d89ad14b209d7e41f#clause_0006", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_7911719a73eb4a9d020f"}
+{"subject": "ParameterMention:pm_7911719a73eb4a9d020f", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_8e026df3d74fbe54de78"}
+{"subject": "Clause:68cf8b47055553fd101877102c4de7301c148b4dfe2101a20a960809ffb02d3e#clause_0006", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_67e2a66db0e3ef84a2cb"}
+{"subject": "ParameterMention:pm_67e2a66db0e3ef84a2cb", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_8e026df3d74fbe54de78"}
+{"subject": "Clause:d30af01520d50ba7d996b79b99121ed0cc0e9b34bb66761144c9c1d2f0cd1ba5#clause_0006", "predicate": "clause_has_parameter_mention", "object": "ParameterMention:pm_ef88c9aebbd44ea75c2f"}
+{"subject": "ParameterMention:pm_ef88c9aebbd44ea75c2f", "predicate": "parameter_mention_refers_to_definition", "object": "ParameterDefinition:pd_8e026df3d74fbe54de78"}
