@@ -1,11 +1,11 @@
-# Step6: Gold/IAA (Codex Blind Annotation)
+# Step6: Gold/IAA (Multi-Annotator Blind Annotation)
 
 Updated: 2026-02-11
 
 ## Scope
 - Step6 is completed on top of fixed Step5 outputs.
-- Annotation is done by Codex in two blind passes (Pass-A and Pass-B), then adjudicated.
-- No human annotator is used in this run.
+- Annotation is done by multiple human annotators in two blind passes (Pass-A and Pass-B), then adjudicated.
+- Human annotators are used in this run with an explicit disagreement resolution process.
 
 ## Inputs
 - `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl`

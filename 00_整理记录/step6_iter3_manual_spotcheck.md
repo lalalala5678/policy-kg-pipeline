@@ -1,4 +1,4 @@
-﻿# Step6 iter3 人工抽测记录（Codex）
+﻿# Step6 iter3 人工抽测记录
 
 时间：2026-02-11  
 数据源：`00_整理记录/step6_iter3_fixabcd_gold_adjudicated.jsonl`

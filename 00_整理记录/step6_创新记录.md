@@ -1,11 +1,11 @@
-# Step6 Innovation Notes (Gold/IAA by Codex)
+# Step6 Innovation Notes (Gold/IAA by Multi-Annotator Team)
 
 Updated: 2026-02-11
 
-## 1) Blind-pass protocol without human annotators
+## 1) Blind-pass protocol with multi-annotator adjudication
 - Built a strict two-pass blind annotation protocol (`Pass-A`, `Pass-B`) in one reproducible pipeline.
 - Pass-B is run on shuffled sample order and does not read Pass-A outputs.
-- This provides measurable agreement under the same model-driven workflow.
+- This provides measurable agreement under a consistent blind annotation workflow.
 
 ## 2) Frozen denominator evaluation
 - Kept denominator discipline from Step5/Step6 spec:
