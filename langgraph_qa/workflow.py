@@ -92,10 +92,13 @@ Return STRICT JSON only:
 
 Rules:
 1) If current evidence is enough to answer, choose "stop".
-2) If evidence is insufficient but graph may still provide useful support, choose "continue" and provide ONE short Chinese subquestion.
+2) If evidence is insufficient but graph may still provide useful support, choose "continue" and provide ONE short Chinese internal task.
 3) Subquestion must be answerable from current schema. Never invent non-existing entities/relations.
 4) If repeated empty/error rounds indicate no additional graph evidence is likely, choose "stop".
 5) If current_round >= max_rounds, decision must be "stop".
+6) "subquestion" is an internal task for the agent itself, NOT a question to the user.
+7) Never use second-person wording such as: 你, 您, 请问, 是否希望, 还是.
+8) Prefer imperative internal style like: "检索...", "定位...", "统计...", "验证...".
 """
 
 
@@ -338,6 +341,48 @@ class LangGraphPolicyQA:
             )
         return out
 
+    def _fallback_internal_subquestion(self, question: str, steps: List[QueryStep]) -> str:
+        if not steps:
+            return (
+                "检索与用户问题最相关的机制链路证据，"
+                "优先返回risk_level、confidence、clause_id、doc_instance_id等字段。"
+            )
+        return (
+            "基于已有查询结果补充一条可验证证据链，"
+            "聚焦高风险关系、参数定义映射与来源条款信息。"
+        )
+
+    def _sanitize_internal_subquestion(
+        self,
+        *,
+        question: str,
+        subquestion: str,
+        steps: List[QueryStep],
+    ) -> str:
+        s = (subquestion or "").strip()
+        if not s:
+            return self._fallback_internal_subquestion(question, steps)
+
+        # Convert any user-facing clarification style into an internal task style.
+        interactive_markers = [
+            "你",
+            "您",
+            "请问",
+            "是否希望",
+            "还是",
+            "吗",
+            "?",
+            "？",
+        ]
+        if any(tok in s for tok in interactive_markers):
+            return self._fallback_internal_subquestion(question, steps)
+
+        # Avoid trailing punctuation that looks like asking the user.
+        s = s.rstrip(" ?？")
+        if not s:
+            return self._fallback_internal_subquestion(question, steps)
+        return s
+
     def _decide_next_query(self, state: QAState) -> Dict[str, Any]:
         current_round = int(state.get("current_round", 0))
         question = state["question"].strip()
@@ -382,11 +427,11 @@ class LangGraphPolicyQA:
                 "next_subquestion": "",
             }
 
-        if not subquestion:
-            if not steps:
-                subquestion = question
-            else:
-                subquestion = f"围绕该问题补充可在当前图谱中验证的关键证据：{question}"
+        subquestion = self._sanitize_internal_subquestion(
+            question=question,
+            subquestion=subquestion,
+            steps=steps,
+        )
 
         return {
             "should_stop": False,
