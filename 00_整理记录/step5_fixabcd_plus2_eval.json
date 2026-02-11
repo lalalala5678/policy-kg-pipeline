@@ -1,0 +1,30 @@
+{
+  "inputs": {
+    "old": "step5_seq_step2_v2_rebind12_fixabcd_parameter_mentions.jsonl",
+    "new": "step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl"
+  },
+  "metrics": {
+    "old": {
+      "strict_high": 924,
+      "strict_high_rate_valid_numeric": 0.856348,
+      "strict_high_price_value_large_ge10": 3,
+      "strict_high_ratio_target_with_local_price_cue": 54,
+      "strict_high_price_delta_without_local_price_cue": 6,
+      "strict_high_amount_param_non_subsidy_mechanism": 2,
+      "duration_month_context": 7,
+      "duration_strict_high": 1,
+      "weak_parenthetical_duration_strict_high": 0
+    },
+    "new": {
+      "strict_high": 916,
+      "strict_high_rate_valid_numeric": 0.848934,
+      "strict_high_price_value_large_ge10": 0,
+      "strict_high_ratio_target_with_local_price_cue": 0,
+      "strict_high_price_delta_without_local_price_cue": 1,
+      "strict_high_amount_param_non_subsidy_mechanism": 0,
+      "duration_month_context": 7,
+      "duration_strict_high": 1,
+      "weak_parenthetical_duration_strict_high": 0
+    }
+  }
+}

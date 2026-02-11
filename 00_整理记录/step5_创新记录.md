@@ -62,3 +62,21 @@
 - `00_整理记录/tests/test_step5_binding_rules.py`
 - `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_*.jsonl/json/md`
 - `00_整理记录/step5_fixabcd_issueAtoD_eval.json`
+
+## 7. rebind14（plus2）进一步优化结论
+- 对比基线：`rebind12_fixabcd`。
+- 新增优化：
+  - 大额 `price_value(yuan)` 在补贴语境下回收为 `subsidy_amount`；
+  - 百分比分型使用更严格价格变动触发词（`上浮/下浮/加价/降价/调价/提高/降低`）。
+- 量化变化（strict_high）：
+  - `price_value >= 10`：`3 -> 0`
+  - `ratio_target + 局部价格变动词`：`54 -> 0`
+  - `price_delta_pct + 局部无价格变动词`：`6 -> 1`
+  - `amount_param + non_subsidy mechanism`：`2 -> 0`
+- 主指标仍达标：
+  - `strict_high_rate_valid_numeric = 0.848934`
+  - `all_targets_passed = true`
+- 对应文件：
+  - `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_validation_report.json`
+  - `00_整理记录/step5_fixabcd_plus2_eval.json`
+  - `00_整理记录/step6_iter4_fixabcd_plus_iaa_report.json`

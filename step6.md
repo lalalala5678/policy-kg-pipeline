@@ -8,9 +8,9 @@ Updated: 2026-02-11
 - No human annotator is used in this run.
 
 ## Inputs
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_parameter_mentions.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl`
 - `00_整理记录/step3_clause_corpus.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_validation_report.json`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_validation_report.json`
 
 ## Method
 1. Freeze denominators and target thresholds from Step6 spec.
@@ -25,19 +25,20 @@ Updated: 2026-02-11
 - `step6_iter1`: all targets passed except normalization precision (0.867857 < 0.90).
 - `step6_iter2`: fixed adjudication policy to keep Step5 values unless hard-error evidence exists.
 - `step6_iter3_fixabcd`: aligned strict eligibility with Step5 compatibility gates and parenthetical weak-constraint filtering.
-- Final frozen run for latest Step5: `step6_iter3_fixabcd`, all targets passed.
+- `step6_iter4_fixabcd_plus`: rerun on optimized Step5 (`rebind14`) and keep all targets passed.
+- Final frozen run for latest Step5: `step6_iter4_fixabcd_plus`, all targets passed.
 
-## Final Metrics (`00_整理记录/step6_iter3_fixabcd_iaa_report.json`)
+## Final Metrics (`00_整理记录/step6_iter4_fixabcd_plus_iaa_report.json`)
 - Sample size: `300` (>= 240)
-- Strict-high in sample: `223` (>= 120)
-- Hard-case in sample: `139` (>= 60)
-- `kappa_mechanism = 0.987985`
+- Strict-high in sample: `214` (>= 120)
+- Hard-case in sample: `152` (>= 60)
+- `kappa_mechanism = 0.987997`
 - `kappa_param_type = 1.000000`
 - `exact_match_norm_unit = 1.000000`
 - `agreement_strict_high_eligible = 1.000000`
-- `mechanism_precision_on_valid_numeric = 262/274 = 0.956204`
-- `normalization_precision_on_valid_numeric = 274/277 = 0.989170`
-- `strict_high_precision = 223/223 = 1.000000`
+- `mechanism_precision_on_valid_numeric = 261/274 = 0.952555`
+- `normalization_precision_on_valid_numeric = 277/278 = 0.996403`
+- `strict_high_precision = 213/214 = 0.995327`
 - Error clusters:
   - `time_raw_not_time_window = 0`
   - `price_value_large_raw_small_norm = 0`
@@ -52,15 +53,15 @@ Updated: 2026-02-11
 - `1:1:1` mapped as `funding_share_ratio`: `0 -> 3`
 
 ## Main Artifacts
-- `00_整理记录/step6_iter3_fixabcd_gold_sampling_plan.json`
-- `00_整理记录/step6_iter3_fixabcd_gold_sample_v1.jsonl`
-- `00_整理记录/step6_iter3_fixabcd_gold_passA_labels.jsonl`
-- `00_整理记录/step6_iter3_fixabcd_gold_passB_labels.jsonl`
-- `00_整理记录/step6_iter3_fixabcd_gold_adjudicated.jsonl`
-- `00_整理记录/step6_iter3_fixabcd_iaa_report.json`
-- `00_整理记录/step6_iter3_fixabcd_iaa_report.md`
-- `00_整理记录/step6_iter3_fixabcd_error_clusters.md`
-- `00_整理记录/step6_fixabcd_eval.json`
+- `00_整理记录/step6_iter4_fixabcd_plus_gold_sampling_plan.json`
+- `00_整理记录/step6_iter4_fixabcd_plus_gold_sample_v1.jsonl`
+- `00_整理记录/step6_iter4_fixabcd_plus_gold_passA_labels.jsonl`
+- `00_整理记录/step6_iter4_fixabcd_plus_gold_passB_labels.jsonl`
+- `00_整理记录/step6_iter4_fixabcd_plus_gold_adjudicated.jsonl`
+- `00_整理记录/step6_iter4_fixabcd_plus_iaa_report.json`
+- `00_整理记录/step6_iter4_fixabcd_plus_iaa_report.md`
+- `00_整理记录/step6_iter4_fixabcd_plus_error_clusters.md`
+- `00_整理记录/step6_fixabcd_plus2_eval.json`
 
 ## Implementation
 - `00_整理记录/scripts/run_step6_gold_iaa.py`

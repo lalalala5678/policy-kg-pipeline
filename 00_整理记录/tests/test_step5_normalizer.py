@@ -25,6 +25,18 @@ class TestStep5Normalizer(unittest.TestCase):
         self.assertEqual(result["norm_unit"], "percent")
         self.assertAlmostEqual(result["norm_value"], 30.0, places=6)
 
+    def test_percent_without_delta_cue_is_ratio_target(self):
+        result = normalize_parameter("覆盖率达到80%")
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["norm_unit"], "percent")
+        self.assertEqual(result["param_type"], "ratio_target")
+
+    def test_percent_with_delta_cue_is_price_delta_pct(self):
+        result = normalize_parameter("峰段电价上浮25%")
+        self.assertTrue(result["matched"])
+        self.assertEqual(result["norm_unit"], "percent")
+        self.assertEqual(result["param_type"], "price_delta_pct")
+
     def test_time_window(self):
         result = normalize_parameter("10:00-12:30")
         self.assertTrue(result["matched"])

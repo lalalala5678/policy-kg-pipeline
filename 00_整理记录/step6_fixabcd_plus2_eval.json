@@ -1,0 +1,42 @@
+{
+  "old": {
+    "kappa_mechanism": 0.987985,
+    "kappa_param_type": 1.0,
+    "normalization_precision": {
+      "num": 274,
+      "den": 277,
+      "rate": 0.98917
+    },
+    "mechanism_precision": {
+      "num": 262,
+      "den": 274,
+      "rate": 0.956204
+    },
+    "strict_high_precision": {
+      "num": 223,
+      "den": 223,
+      "rate": 1.0
+    },
+    "all_targets_passed": true
+  },
+  "new": {
+    "kappa_mechanism": 0.987997,
+    "kappa_param_type": 1.0,
+    "normalization_precision": {
+      "num": 276,
+      "den": 278,
+      "rate": 0.992806
+    },
+    "mechanism_precision": {
+      "num": 261,
+      "den": 274,
+      "rate": 0.952555
+    },
+    "strict_high_precision": {
+      "num": 212,
+      "den": 213,
+      "rate": 0.995305
+    },
+    "all_targets_passed": true
+  }
+}

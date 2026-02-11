@@ -444,6 +444,7 @@ TIME_POINT_VALUE_RE = re.compile(r"^(?P<point>[0-2]?\d[:\uFF1A][0-5]\d)$")
 RATIO_VALUE_RE = re.compile(r"(?P<value>\d+(?:\.\d+)?\s*:\s*\d+(?:\.\d+)?(?:\s*:\s*\d+(?:\.\d+)?)?)")
 SUBSIDY_CUES_RE = re.compile(r"\u8865\u8d34|\u8865\u52a9|\u5956\u52b1|\u5956\u8865|\u8d44\u52a9|\u8865\u507f")
 PRICE_CUES_RE = re.compile(r"\u7535\u4ef7|\u4ef7\u5dee|\u5206\u65f6|\u5cf0\u8c37|\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7")
+PRICE_DELTA_CUES_RE = re.compile(r"\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7|\u8c03\u4ef7|\u63d0\u9ad8|\u964d\u4f4e|\u6da8\u4ef7|\u964d\u5e45")
 FUNDING_SHARE_CUES_RE = re.compile(
     r"\u5206\u62c5|\u627f\u62c5|\u5171\u62c5|\u8d44\u91d1\u7531|\u4e2d\u592e|\u7701(?:\u7ea7)?|\u5e02(?:\u7ea7)?|\u53bf(?:\u7ea7)?|\u533a(?:\u7ea7)?"
 )
@@ -703,7 +704,7 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
     m = re.search(r"(?P<value>\d+(?:\.\d+)?)\s*[%\uFF05]", primary_space)
     if m:
         out = _base_normalize_result("percent_numeric")
-        out["param_type"] = "price_delta_pct" if PRICE_CUES_RE.search(merged) else "ratio_target"
+        out["param_type"] = "price_delta_pct" if PRICE_DELTA_CUES_RE.search(merged) else "ratio_target"
         out["norm_value"] = float(m.group("value"))
         out["norm_unit"] = "percent"
         return out
@@ -713,7 +714,7 @@ def normalize_parameter(raw_text: str, context_text: str = "") -> Dict[str, obje
         pct = _parse_number_token(m.group("value"))
         if pct is not None:
             out = _base_normalize_result("percent_chinese")
-            out["param_type"] = "price_delta_pct" if PRICE_CUES_RE.search(merged) else "ratio_target"
+            out["param_type"] = "price_delta_pct" if PRICE_DELTA_CUES_RE.search(merged) else "ratio_target"
             out["norm_value"] = pct
             out["norm_unit"] = "percent"
             return out

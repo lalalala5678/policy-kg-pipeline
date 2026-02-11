@@ -92,6 +92,7 @@ PRICE_UNIT_HINT_RE = re.compile(r"\u5143/\u5ea6|\u5143/\u5343\u74e6\u65f6|\u5206
 PHYSICAL_UNIT_HINT_RE = re.compile(r"\u5343\u74e6\u65f6|kWh|KWH|kwh|\u5ea6(?!\u7535\u4ef7)|\u5428|MW|mw|kW|kw|W|w|kVA|kva")
 TIER_THRESHOLD_CUE_RE = re.compile(r"\u7b2c\u4e00\u6863|\u7b2c\u4e8c\u6863|\u7b2c\u4e09\u6863|\u5206\u6863|\u9636\u68af|\u6863\u4f4d|\u9608\u503c|\u4e0d\u8d85\u8fc7|\u4ee5\u4e0a|\u4ee5\u5185|\u57fa\u6570")
 TRANSPORT_CONTEXT_RE = re.compile(r"\u6bcf\u767e\u516c\u91cc|\u4e58\u7528\u8f66|\u65b0\u80fd\u6e90\u6c7d\u8f66|\u65b0\u8f66|\u81ea\u52a8\u9a7e\u9a76")
+PRICE_DELTA_CUE_RE = re.compile(r"\u4e0a\u6d6e|\u4e0b\u6d6e|\u52a0\u4ef7|\u964d\u4ef7|\u8c03\u4ef7|\u63d0\u9ad8|\u964d\u4f4e|\u6da8\u4ef7|\u964d\u5e45")
 FUNDING_SHARE_CUE_RE = re.compile(r"\u5206\u62c5|\u627f\u62c5|\u5171\u62c5|\u8d44\u91d1\u7531|\u4e2d\u592e|\u7701|\u5e02|\u53bf|\u533a")
 NON_MONEY_COUNT_UNIT_RE = re.compile(r"\u6237|\u5bb6|\u53f0|\u4e2a|\u4eba")
 LOW_CONF_BIND_REASONS = {"candidate_score", "step4_inherit", "step4_fallback", "time_window_tou_hint"}
@@ -265,6 +266,7 @@ def apply_post_normalization_guards(
     unit_text = (raw_unit or "").strip()
     merged_raw = f"{raw_text}{unit_text}"
     local_window = extract_local_window(clause_text, raw_start, raw_end)
+    narrow_window = extract_local_window(clause_text, raw_start, raw_end, radius=10)
 
     if TIME_POINT_RE.fullmatch(raw_text):
         if not bool(adjusted.get("matched")) or str(adjusted.get("param_type") or "") == "ratio_target":
@@ -390,6 +392,56 @@ def apply_post_normalization_guards(
                 }
             )
             guard_action = "household_count_retyped"
+
+    if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") == "price_value":
+        raw_num = parse_arabic_number(raw_text)
+        local_has_price_per_unit = bool(re.search(r"(?:\u6bcf\u5343\u74e6\u65f6|\u6bcf\u5ea6|/\u5343\u74e6\u65f6|/\u5ea6)", narrow_window))
+        local_has_subsidy_cue = bool(re.search(r"\u8865\u8d34|\u8865\u52a9|\u5956\u8865|\u8d44\u91d1", clause_text))
+        if (
+            raw_num is not None
+            and raw_num >= 100
+            and str(adjusted.get("norm_unit") or "") == "yuan"
+            and local_has_subsidy_cue
+            and not local_has_price_per_unit
+        ):
+            adjusted.update(
+                {
+                    "matched": True,
+                    "rule": "price_value_retyped_to_subsidy_amount_context",
+                    "param_type": "subsidy_amount",
+                    "norm_value": float(raw_num),
+                    "norm_unit": "yuan",
+                    "norm_start": None,
+                    "norm_end": None,
+                    "range_start": None,
+                    "range_end": None,
+                    "op": None,
+                    "scope_unit": None,
+                }
+            )
+            guard_action = "price_value_retyped_to_subsidy_amount"
+
+    if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") == "subsidy_amount":
+        raw_num = parse_arabic_number(raw_text)
+        local_has_price_per_unit = bool(re.search(r"(?:\u6bcf\u5343\u74e6\u65f6|\u6bcf\u5ea6)", local_window))
+        local_has_delta_cue = bool(PRICE_DELTA_CUE_RE.search(local_window))
+        if raw_num is not None and raw_num <= 5 and local_has_price_per_unit and local_has_delta_cue:
+            adjusted.update(
+                {
+                    "matched": True,
+                    "rule": "subsidy_amount_retyped_to_price_value_context",
+                    "param_type": "price_value",
+                    "norm_value": float(raw_num),
+                    "norm_unit": "yuan_per_kwh",
+                    "norm_start": None,
+                    "norm_end": None,
+                    "range_start": None,
+                    "range_end": None,
+                    "op": None,
+                    "scope_unit": None,
+                }
+            )
+            guard_action = "subsidy_amount_retyped_to_price_value"
 
     if bool(adjusted.get("matched")) and str(adjusted.get("param_type") or "") == "ratio_target":
         if ":" in raw_text and FUNDING_SHARE_CUE_RE.search(clause_text):

@@ -46,37 +46,32 @@ Updated: 2026-02-11
 - `00_整理记录/tests/test_step5_binding_rules.py`
 
 ## Output (final iteration)
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_parameter_mentions.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_parameter_definitions.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_triples_spo.jsonl`
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_validation_report.json`
-- `00_整理记录/step5_seq_step2_v2_rebind12_fixabcd_validation_report.md`
-- `00_整理记录/step5_fixabcd_issueAtoD_eval.json`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_definitions.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_triples_spo.jsonl`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_validation_report.json`
+- `00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_validation_report.md`
+- `00_整理记录/step5_fixabcd_plus2_eval.json`
 
-## Key results (v2_rebind12_fixabcd)
+## Key results (v2_rebind14_fixabcd_plus2)
 - mention_total: 1141
-- definition_total: 341
+- definition_total: 339
 - triple_total: 3176
 - span_valid_rate: 1.000000
 - normalization_matched_rate: 0.945662
 - mechanism_bound_rate_valid_numeric: 1.000000
-- strict_high_rate_valid_numeric: 0.856348
-- local_supported_rate_valid_numeric: 0.889713
+- strict_high_rate_valid_numeric: 0.848934
+- local_supported_rate_valid_numeric: 0.895273
 - pricing_negative_conflict_rate_valid_numeric: 0.000000
 - all_targets_passed: true
 
-## A/B/C/D issue delta (rebind11_fixabc -> rebind12_fixabcd)
-- `duration_month_context` count: `29 -> 7`
-- `duration_month_context` with raw unit: `13 -> 0`
-- duration entries in `strict_high`: `29 -> 1`
-- weak parenthetical duration in `strict_high`: `9 -> 0`
-- `1:1:1`-style ratio mapped as `funding_share_ratio`: `0 -> 7`
-- `1:1:1`-style ratio still mapped as `ratio_target`: `11 -> 4`
-- Focus case `pm_0642...` (`6000`): `duration_threshold_month -> no_match`
-- Focus case `pm_0e905...` (`0.0634`): `duration_threshold_month -> no_match`
-- Focus case `pm_296552...` (`3071`): `subsidy_amount -> no_match`
-- Focus case `pm_106b35...` (`1:1:1`): `ratio_target -> funding_share_ratio`
-- Focus case `pm_00f41...` (`不少于两`): `strict_high true -> false`
+## A/B/C/D issue delta (rebind12_fixabcd -> rebind14_fixabcd_plus2)
+- strict `price_value >= 10` residuals: `3 -> 0`
+- strict `ratio_target` with local strong price cue: `54 -> 0`
+- strict `price_delta_pct` without local strong price cue: `6 -> 1`
+- strict amount-param on non-subsidy mechanism: `2 -> 0`
+- weak-parenthetical duration in strict_high: `0 -> 0` (kept clean)
+- duration `month_context` and unit-conflict guards remain stable (`7`, `0`)
 
 ## Target thresholds and status
 - normalization_matched_rate >= 0.90: pass
@@ -85,7 +80,7 @@ Updated: 2026-02-11
 - local_supported_rate_valid_numeric >= 0.85: pass
 
 ## Handoff to Step6 (Gold/IAA)
-- Step6 does not modify Step5 outputs in-place; it builds a frozen Gold/IAA benchmark on top of `v2_rebind11_fixabc`.
+- Step6 does not modify Step5 outputs in-place; it builds a frozen Gold/IAA benchmark on top of `v2_rebind14_fixabcd_plus2`.
 - Frozen input and denominator definitions are documented in `00_整理记录/step6_性能指标目标.md`.
 - Step7 fine-tuning can start only after Step6 IAA/Gold thresholds are met.
-- Current status: Step6 has been completed and passed all thresholds (`00_整理记录/step6_iaa_report.json`).
+- Current status: Step6 has been completed and passed all thresholds (`00_整理记录/step6_iter4_fixabcd_plus_iaa_report.json`).

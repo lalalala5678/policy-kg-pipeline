@@ -114,6 +114,62 @@ class TestStep5BindingRules(unittest.TestCase):
         self.assertEqual(adjusted["norm_value"], "22:00")
         self.assertEqual(action, "time_point_retyped")
 
+    def test_guard_retypes_subsidy_amount_to_price_value_by_context(self):
+        norm = {
+            "matched": True,
+            "rule": "yuan_generic",
+            "param_type": "subsidy_amount",
+            "norm_value": 0.3,
+            "norm_unit": "yuan",
+            "norm_start": None,
+            "norm_end": None,
+            "range_start": None,
+            "range_end": None,
+            "op": None,
+            "scope_unit": None,
+        }
+        adjusted, action = apply_post_normalization_guards(
+            raw_value="0.3",
+            raw_unit="元",
+            clause_text="第三档价格在第一档基础上每千瓦时加价0.3元。",
+            raw_start=15,
+            raw_end=18,
+            norm=norm,
+        )
+        self.assertTrue(adjusted["matched"])
+        self.assertEqual(adjusted["param_type"], "price_value")
+        self.assertEqual(adjusted["norm_unit"], "yuan_per_kwh")
+        self.assertEqual(adjusted["norm_value"], 0.3)
+        self.assertEqual(action, "subsidy_amount_retyped_to_price_value")
+
+    def test_guard_retypes_price_value_to_subsidy_amount_by_context(self):
+        norm = {
+            "matched": True,
+            "rule": "yuan_generic",
+            "param_type": "price_value",
+            "norm_value": 1200.0,
+            "norm_unit": "yuan",
+            "norm_start": None,
+            "norm_end": None,
+            "range_start": None,
+            "range_end": None,
+            "op": None,
+            "scope_unit": None,
+        }
+        adjusted, action = apply_post_normalization_guards(
+            raw_value="1200",
+            raw_unit="元",
+            clause_text="同时每度电补贴0.2元，每个采暖期补贴金额上限1200元。",
+            raw_start=20,
+            raw_end=24,
+            norm=norm,
+        )
+        self.assertTrue(adjusted["matched"])
+        self.assertEqual(adjusted["param_type"], "subsidy_amount")
+        self.assertEqual(adjusted["norm_unit"], "yuan")
+        self.assertEqual(adjusted["norm_value"], 1200.0)
+        self.assertEqual(action, "price_value_retyped_to_subsidy_amount")
+
     def test_build_norm_input_drops_mispair_for_price_value(self):
         merged, dropped = build_norm_input(
             raw_value="0.507",
