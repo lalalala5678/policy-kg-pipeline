@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import json
 import re
+from contextvars import ContextVar
 from pathlib import Path
-from typing import Any, Dict, List, Set, TypedDict
+from typing import Any, Callable, Dict, List, Optional, Set, TypedDict
 
 from langgraph.graph import END, START, StateGraph
 from neo4j import GraphDatabase
@@ -24,9 +25,18 @@ class QueryStep(TypedDict):
 class QAState(TypedDict):
     question: str
     subquestions: List[str]
-    current_index: int
+    current_round: int
+    next_subquestion: str
+    should_stop: bool
+    stop_reason: str
     steps: List[QueryStep]
     final_answer: str
+
+
+ProgressCallback = Callable[[Dict[str, Any]], None]
+_PROGRESS_CALLBACK: ContextVar[Optional[ProgressCallback]] = ContextVar(
+    "progress_callback", default=None
+)
 
 
 TEXT2CYPHER_STRICT_PROMPT = """
@@ -58,6 +68,37 @@ Cypher:
 """
 
 
+NEXT_ACTION_PROMPT = """
+You are the controller of a multi-round Neo4j analysis workflow.
+
+Authoritative graph capability:
+{capability_hint}
+
+User question:
+{question}
+
+Completed rounds: {current_round}
+Max rounds: {max_rounds}
+
+History (JSON):
+{history_json}
+
+Return STRICT JSON only:
+{{
+  "decision": "continue" | "stop",
+  "subquestion": "...",
+  "reason": "..."
+}}
+
+Rules:
+1) If current evidence is enough to answer, choose "stop".
+2) If evidence is insufficient but graph may still provide useful support, choose "continue" and provide ONE short Chinese subquestion.
+3) Subquestion must be answerable from current schema. Never invent non-existing entities/relations.
+4) If repeated empty/error rounds indicate no additional graph evidence is likely, choose "stop".
+5) If current_round >= max_rounds, decision must be "stop".
+"""
+
+
 WRITE_KEYWORD_RE = re.compile(
     r"\b(create|merge|delete|detach|set|remove|drop|load\s+csv|call\s+dbms|call\s+apoc)\b",
     flags=re.IGNORECASE,
@@ -86,7 +127,7 @@ class LangGraphPolicyQA:
         deepseek_api_key: str,
         deepseek_model: str,
         deepseek_base_url: str,
-        max_rounds: int = 3,
+        max_rounds: int = 9,
         max_rows: int = 20,
         max_t2c_retries: int = 3,
     ) -> None:
@@ -118,6 +159,15 @@ class LangGraphPolicyQA:
 
     def close(self) -> None:
         self.driver.close()
+
+    def _emit_progress(self, payload: Dict[str, Any]) -> None:
+        cb = _PROGRESS_CALLBACK.get()
+        if cb is None:
+            return
+        try:
+            cb(payload)
+        except Exception:
+            return
 
     def _load_query_examples(self) -> List[str]:
         query_pack = Path("结果文件夹/step8_2_iter1/query_pack.cql")
@@ -221,20 +271,20 @@ class LangGraphPolicyQA:
 
     def _build_graph(self):
         graph = StateGraph(QAState)
-        graph.add_node("plan_subquestions", self._plan_subquestions)
+        graph.add_node("decide_next_query", self._decide_next_query)
         graph.add_node("run_query", self._run_query)
         graph.add_node("synthesize_answer", self._synthesize_answer)
 
-        graph.add_edge(START, "plan_subquestions")
-        graph.add_edge("plan_subquestions", "run_query")
+        graph.add_edge(START, "decide_next_query")
         graph.add_conditional_edges(
-            "run_query",
-            self._route_after_query,
+            "decide_next_query",
+            self._route_after_decision,
             {
                 "run_query": "run_query",
                 "synthesize_answer": "synthesize_answer",
             },
         )
+        graph.add_edge("run_query", "decide_next_query")
         graph.add_edge("synthesize_answer", END)
         return graph.compile()
 
@@ -244,7 +294,10 @@ class LangGraphPolicyQA:
         if fenced:
             raw = fenced.group(1)
         if raw.startswith("{") and raw.endswith("}"):
-            return json.loads(raw)
+            try:
+                return json.loads(raw)
+            except Exception:
+                pass
         start = raw.find("{")
         while start != -1:
             depth = 0
@@ -262,26 +315,84 @@ class LangGraphPolicyQA:
             start = raw.find("{", start + 1)
         return {}
 
-    def _plan_subquestions(self, state: QAState) -> Dict[str, Any]:
+    def _planner_history_view(self, steps: List[QueryStep]) -> List[Dict[str, Any]]:
+        out: List[Dict[str, Any]] = []
+        for s in steps[-6:]:
+            sample_rows: List[Dict[str, Any]] = []
+            for row in s.get("rows", [])[:2]:
+                sample_rows.append(
+                    {
+                        str(k): (str(v)[:120] + "..." if len(str(v)) > 120 else str(v))
+                        for k, v in row.items()
+                    }
+                )
+            out.append(
+                {
+                    "round": s.get("round"),
+                    "subquestion": s.get("subquestion"),
+                    "cypher": s.get("cypher"),
+                    "row_count": s.get("row_count"),
+                    "error": s.get("error"),
+                    "sample_rows": sample_rows,
+                }
+            )
+        return out
+
+    def _decide_next_query(self, state: QAState) -> Dict[str, Any]:
+        current_round = int(state.get("current_round", 0))
         question = state["question"].strip()
-        prompt = (
-            "You are planning multi-step policy graph analysis. "
-            "Return strict JSON with key `subquestions` as an array of 2-3 short Chinese questions. "
-            "Each subquestion MUST be answerable from current graph schema. "
-            "Do not invent non-existing labels/relationships/fields.\n"
-            f"Graph capability: {self.capability_hint}\n"
-            f"User question: {question}"
+        steps = list(state.get("steps", []))
+
+        if current_round >= self.max_rounds:
+            return {
+                "should_stop": True,
+                "stop_reason": f"达到最大轮次上限({self.max_rounds})",
+                "next_subquestion": "",
+            }
+
+        history_payload = self._planner_history_view(steps)
+        prompt = NEXT_ACTION_PROMPT.format(
+            capability_hint=self.capability_hint,
+            question=question,
+            current_round=current_round,
+            max_rounds=self.max_rounds,
+            history_json=json.dumps(history_payload, ensure_ascii=False),
         )
-        raw = self.llm.invoke(prompt, temperature=0.0).content
-        obj = self._safe_json_extract(raw)
-        subquestions = obj.get("subquestions", [])
-        cleaned: List[str] = _dedupe_keep_order([str(x) for x in subquestions]) if isinstance(subquestions, list) else []
-        if not cleaned:
-            cleaned = [question, f"请补充与该问题相关的关键证据和高风险因素：{question}"]
-        if len(cleaned) == 1:
-            cleaned.append(f"请补充与该问题相关的关键证据和高风险因素：{question}")
-        cleaned = cleaned[: self.max_rounds]
-        return {"subquestions": cleaned, "current_index": 0, "steps": []}
+
+        decision = "continue"
+        subquestion = ""
+        reason = ""
+        try:
+            raw = self.llm.invoke(prompt, temperature=0.0).content
+            obj = self._safe_json_extract(raw)
+            decision = str(obj.get("decision", "continue")).strip().lower()
+            subquestion = str(obj.get("subquestion", "")).strip()
+            reason = str(obj.get("reason", "")).strip()
+        except Exception:
+            decision = "continue"
+
+        if decision not in {"continue", "stop"}:
+            decision = "continue"
+
+        if decision == "stop":
+            stop_reason = reason or "模型判定证据已足够或继续查询收益较低"
+            return {
+                "should_stop": True,
+                "stop_reason": stop_reason,
+                "next_subquestion": "",
+            }
+
+        if not subquestion:
+            if not steps:
+                subquestion = question
+            else:
+                subquestion = f"围绕该问题补充可在当前图谱中验证的关键证据：{question}"
+
+        return {
+            "should_stop": False,
+            "stop_reason": "",
+            "next_subquestion": subquestion,
+        }
 
     def _extract_query_labels(self, cypher: str) -> Set[str]:
         labels: Set[str] = set()
@@ -354,13 +465,19 @@ class LangGraphPolicyQA:
         return str(value)
 
     def _run_query(self, state: QAState) -> Dict[str, Any]:
-        idx = int(state.get("current_index", 0))
-        subquestions = state.get("subquestions", [])
+        current_round = int(state.get("current_round", 0))
+        question = state["question"]
         steps = list(state.get("steps", []))
-        if idx >= len(subquestions):
-            return {"current_index": idx, "steps": steps}
+        subquestions = list(state.get("subquestions", []))
 
-        subquestion = subquestions[idx]
+        if state.get("should_stop", False):
+            return {
+                "current_round": current_round,
+                "steps": steps,
+                "subquestions": subquestions,
+            }
+
+        subquestion = str(state.get("next_subquestion", "")).strip() or question.strip()
         cypher = ""
         rows: List[Dict[str, Any]] = []
         error = ""
@@ -394,52 +511,97 @@ class LangGraphPolicyQA:
                 error = str(exc)
                 feedback = f"Unexpected error: {error}. Please correct it."
 
-        steps.append(
+        step: QueryStep = {
+            "round": current_round + 1,
+            "subquestion": subquestion,
+            "cypher": cypher,
+            "row_count": len(rows),
+            "rows": rows,
+            "error": error,
+        }
+        steps.append(step)
+        subquestions.append(subquestion)
+
+        self._emit_progress(
             {
-                "round": idx + 1,
-                "subquestion": subquestion,
-                "cypher": cypher,
-                "row_count": len(rows),
-                "rows": rows,
-                "error": error,
+                "type": "round_complete",
+                "current_round": current_round + 1,
+                "max_rounds": self.max_rounds,
+                "step": step,
             }
         )
-        return {"current_index": idx + 1, "steps": steps}
 
-    def _route_after_query(self, state: QAState) -> str:
-        idx = int(state.get("current_index", 0))
-        total = len(state.get("subquestions", []))
-        if idx < total:
-            return "run_query"
-        return "synthesize_answer"
+        return {
+            "current_round": current_round + 1,
+            "steps": steps,
+            "subquestions": subquestions,
+            "next_subquestion": "",
+        }
+
+    def _route_after_decision(self, state: QAState) -> str:
+        if bool(state.get("should_stop", False)):
+            return "synthesize_answer"
+        return "run_query"
 
     def _synthesize_answer(self, state: QAState) -> Dict[str, Any]:
         question = state["question"]
         steps = state.get("steps", [])
+        stop_reason = state.get("stop_reason", "")
         prompt = (
             "You are an energy policy analyst. "
             "Use query outputs to answer the user question. "
             "If evidence is insufficient, explicitly say uncertainty. "
             "Output concise Chinese answer with sections: 结论, 依据, 风险与不确定性.\n"
             f"Graph capability: {self.capability_hint}\n"
+            f"停止原因: {stop_reason}\n"
             f"用户问题: {question}\n"
             f"查询轨迹(JSON): {json.dumps(steps, ensure_ascii=False)}"
         )
         answer = self.llm.invoke(prompt, temperature=0.1).content.strip()
         return {"final_answer": answer}
 
-    def ask(self, question: str) -> Dict[str, Any]:
+    def ask(
+        self,
+        question: str,
+        progress_callback: Optional[ProgressCallback] = None,
+    ) -> Dict[str, Any]:
         initial_state: QAState = {
             "question": question,
             "subquestions": [],
-            "current_index": 0,
+            "current_round": 0,
+            "next_subquestion": "",
+            "should_stop": False,
+            "stop_reason": "",
             "steps": [],
             "final_answer": "",
         }
-        result = self.graph.invoke(initial_state)
+
+        token = _PROGRESS_CALLBACK.set(progress_callback)
+        try:
+            self._emit_progress(
+                {
+                    "type": "started",
+                    "current_round": 0,
+                    "max_rounds": self.max_rounds,
+                }
+            )
+            result = self.graph.invoke(initial_state)
+            self._emit_progress(
+                {
+                    "type": "finished",
+                    "current_round": len(result.get("steps", [])),
+                    "max_rounds": self.max_rounds,
+                }
+            )
+        finally:
+            _PROGRESS_CALLBACK.reset(token)
+
+        steps = result.get("steps", [])
+        subquestions = _dedupe_keep_order([str(s.get("subquestion", "")) for s in steps])
         return {
             "question": question,
-            "subquestions": result.get("subquestions", []),
-            "steps": result.get("steps", []),
+            "subquestions": subquestions,
+            "steps": steps,
+            "stop_reason": result.get("stop_reason", ""),
             "final_answer": result.get("final_answer", ""),
         }

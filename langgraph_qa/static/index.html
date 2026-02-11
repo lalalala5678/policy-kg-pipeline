@@ -13,6 +13,7 @@
       --line: #d6deea;
       --accent: #0b67d1;
       --danger: #bc1f2d;
+      --ok: #1a7f37;
     }
     body {
       margin: 0;
@@ -71,6 +72,10 @@
       border-color: var(--accent);
       cursor: pointer;
     }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
     button.secondary {
       background: #fff;
       color: var(--ink);
@@ -89,6 +94,12 @@
       color: var(--danger);
       white-space: pre-wrap;
     }
+    .ok {
+      color: var(--ok);
+      white-space: pre-wrap;
+      font-size: 13px;
+      margin-top: 8px;
+    }
     pre {
       background: #f7f9fc;
       border: 1px solid var(--line);
@@ -99,13 +110,40 @@
       font-size: 12px;
     }
     .hidden { display: none; }
+    .progress-wrap {
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fbff;
+    }
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      height: 12px;
+      background: #e7edf7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-inner {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #0b67d1, #23a4ff);
+      transition: width 0.35s ease;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <h1 class="title">LangGraph Policy QA</h1>
-      <p class="sub">登录后输入问题，系统将执行多轮图谱查询并返回推演答案。</p>
+      <p class="sub">登录后输入问题，系统将执行由模型自决的多轮图谱查询（最多9轮）并返回推演答案。</p>
     </div>
 
     <div id="loginCard" class="card">
@@ -128,7 +166,19 @@
       <div class="row">
         <button id="askBtn">开始推演</button>
       </div>
+
+      <div id="progressWrap" class="progress-wrap hidden">
+        <div class="progress-head">
+          <span id="progressText">第 0 / 9 轮</span>
+          <span id="progressState">待开始</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progressInner" class="progress-inner"></div>
+        </div>
+      </div>
+
       <p id="askMsg" class="error"></p>
+      <p id="jobMsg" class="ok"></p>
     </div>
 
     <div id="resultCard" class="card hidden">
@@ -140,6 +190,8 @@
   </div>
 
   <script>
+    let polling = false;
+
     async function api(path, method, body) {
       const resp = await fetch(path, {
         method,
@@ -153,6 +205,10 @@
       return data;
     }
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     function setLoggedIn(username) {
       document.getElementById("loginCard").classList.add("hidden");
       document.getElementById("qaCard").classList.remove("hidden");
@@ -163,8 +219,22 @@
       document.getElementById("loginCard").classList.remove("hidden");
       document.getElementById("qaCard").classList.add("hidden");
       document.getElementById("resultCard").classList.add("hidden");
+      document.getElementById("progressWrap").classList.add("hidden");
       document.getElementById("loginMsg").textContent = "";
       document.getElementById("askMsg").textContent = "";
+      document.getElementById("jobMsg").textContent = "";
+      polling = false;
+    }
+
+    function setProgress(currentRound, maxRounds, status, percent) {
+      const pWrap = document.getElementById("progressWrap");
+      const pText = document.getElementById("progressText");
+      const pState = document.getElementById("progressState");
+      const pInner = document.getElementById("progressInner");
+      pWrap.classList.remove("hidden");
+      pText.textContent = `第 ${currentRound} / ${maxRounds} 轮`;
+      pState.textContent = status;
+      pInner.style.width = `${Math.max(0, Math.min(100, percent))}%`;
     }
 
     async function refreshHealth() {
@@ -194,32 +264,93 @@
       setLoggedOut();
     });
 
-    document.getElementById("askBtn").addEventListener("click", async () => {
-      const question = document.getElementById("question").value.trim();
-      const msg = document.getElementById("askMsg");
+    async function pollJob(jobId) {
+      const askMsg = document.getElementById("askMsg");
+      const jobMsg = document.getElementById("jobMsg");
       const answerBox = document.getElementById("answerBox");
       const traceBox = document.getElementById("traceBox");
-      msg.textContent = "";
+      const askBtn = document.getElementById("askBtn");
+
+      while (polling) {
+        try {
+          const status = await api(`/api/ask/status/${jobId}`, "GET");
+          const stateText = status.status === "running" ? "运行中" : (status.status === "completed" ? "已完成" : "失败");
+          setProgress(status.current_round || 0, status.max_rounds || 9, stateText, status.progress || 0);
+
+          traceBox.textContent = JSON.stringify(
+            {
+              status: status.status,
+              current_round: status.current_round,
+              max_rounds: status.max_rounds,
+              stop_reason: status.stop_reason,
+              steps: status.steps
+            },
+            null,
+            2
+          );
+
+          if (status.status === "completed") {
+            polling = false;
+            askBtn.disabled = false;
+            jobMsg.textContent = `任务完成，执行到第 ${status.current_round} 轮。`;
+            document.getElementById("resultCard").classList.remove("hidden");
+            answerBox.textContent = status.final_answer || "(无返回)";
+            askMsg.textContent = "";
+            setProgress(status.current_round || 0, status.max_rounds || 9, "已完成", 100);
+            return;
+          }
+
+          if (status.status === "failed") {
+            polling = false;
+            askBtn.disabled = false;
+            askMsg.textContent = status.error || "任务失败";
+            jobMsg.textContent = "";
+            return;
+          }
+        } catch (e) {
+          polling = false;
+          askBtn.disabled = false;
+          askMsg.textContent = e.message;
+          return;
+        }
+
+        await sleep(1200);
+      }
+    }
+
+    document.getElementById("askBtn").addEventListener("click", async () => {
+      const question = document.getElementById("question").value.trim();
+      const askMsg = document.getElementById("askMsg");
+      const jobMsg = document.getElementById("jobMsg");
+      const answerBox = document.getElementById("answerBox");
+      const traceBox = document.getElementById("traceBox");
+      const askBtn = document.getElementById("askBtn");
+
+      askMsg.textContent = "";
+      jobMsg.textContent = "";
       answerBox.textContent = "";
       traceBox.textContent = "";
+      document.getElementById("resultCard").classList.remove("hidden");
+
       if (!question) {
-        msg.textContent = "问题不能为空";
+        askMsg.textContent = "问题不能为空";
         return;
       }
+      if (polling) {
+        askMsg.textContent = "已有任务在运行，请等待完成";
+        return;
+      }
+
+      askBtn.disabled = true;
       try {
-        const data = await api("/api/ask", "POST", { question });
-        document.getElementById("resultCard").classList.remove("hidden");
-        answerBox.textContent = data.result.final_answer || "(无返回)";
-        traceBox.textContent = JSON.stringify(
-          {
-            subquestions: data.result.subquestions,
-            steps: data.result.steps
-          },
-          null,
-          2
-        );
+        const started = await api("/api/ask/start", "POST", { question });
+        polling = true;
+        setProgress(0, started.max_rounds || 9, "已启动", 0);
+        jobMsg.textContent = `任务已启动，ID: ${started.job_id}`;
+        await pollJob(started.job_id);
       } catch (e) {
-        msg.textContent = e.message;
+        askBtn.disabled = false;
+        askMsg.textContent = e.message;
       }
     });
 
@@ -227,4 +358,3 @@
   </script>
 </body>
 </html>
-
