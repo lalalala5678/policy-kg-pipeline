@@ -5,6 +5,8 @@
 
 建议先读：
 - `STEP1-STEP9_成果测评创新总览.md`（按步骤查看产出、测评数据、创新点）
+- 仓库根目录 `README.md`（项目总览、快速启动与部署入口）
+- 仓库根目录 `docs/DEPLOYMENT.md`（Step11 服务部署细节）
 
 当前主要包含 4 组内容：
 - `step8_iter1`：主导出包（strict_high + strict_all）

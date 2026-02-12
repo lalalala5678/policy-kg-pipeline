@@ -2,6 +2,17 @@ __pycache__/
 *.pyc
 .env
 .env.*
+!.env.example
 secrets/
 .venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+*.pid
+.DS_Store
+.idea/
+.vscode/
+build/
+dist/
 00_整理记录/step10_iter1/

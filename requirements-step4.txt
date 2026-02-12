@@ -1,0 +1,2 @@
+paddlepaddle>=2.6.0
+paddlenlp>=2.8.0
