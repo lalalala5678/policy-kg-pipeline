@@ -1,0 +1,14 @@
+category,item,value
+hard_error_bucket,time_raw_not_time_window,0
+hard_error_bucket,price_value_large_raw_small_norm,0
+hard_error_bucket,candidate_score_strict_high,0
+conflict_type_distribution,dedup_aggregation,3875
+conflict_type_distribution,semantic_collision,54
+threshold_margin,normalization_matched_rate_margin,0.030719
+threshold_margin,strict_high_rate_valid_numeric_margin,0.00076
+threshold_margin,local_supported_rate_valid_numeric_margin,0.049017
+threshold_margin,kappa_mechanism_margin,0.091969
+threshold_margin,kappa_param_type_margin,0.05
+threshold_margin,mechanism_precision_margin,0.007597
+threshold_margin,normalization_precision_margin,0.005
+threshold_margin,strict_high_precision_margin,0.003475

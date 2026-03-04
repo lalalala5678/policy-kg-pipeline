@@ -1,0 +1,6 @@
+benchmark_id,elapsed_sec,return_code,command
+step5_normalize_validate_costprobe,0.469,0,python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --output-prefix step5_costprofile --bind-min-score 1.0 --strict-high-threshold 0.6
+step6_gold_iaa_costprobe,0.189,0,python3 00_整理记录/scripts/run_step6_gold_iaa.py --mentions 00_整理记录/step5_costprofile_parameter_mentions.jsonl --clause-corpus 00_整理记录/step3_clause_corpus.jsonl --sample-size 300 --strict-min 140 --hard-min 80 --seed 20260211 --output-prefix step6_costprofile
+step8_2_query_pack_costprobe,0.343,0,python3 00_整理记录/scripts/run_step8_2_query_pack.py --step8-dir 结果文件夹/step8_iter1 --output-dir 00_整理记录/step8_2_costprofile --overwrite
+step9_query_eval,0.342,0,python3 00_整理记录/scripts/run_step9_query_eval.py
+step9_gate_eval,0.042,0,python3 00_整理记录/scripts/eval_step9_gate.py

@@ -1,0 +1,5 @@
+iteration,total_score,structure_score,evidence_score,doc_score,clause_score,strict_triplet_ready_rate,param_bind_rate,is_good
+iter0_baseline,39.482,20.0,10.0,8.418,1.064,0.0,0.0,False
+iter1_v1,56.896,20.0,10.0,10.959,15.937,0.001484,0.5,False
+iter2_v2,72.817,20.0,20.0,10.959,21.858,0.200297,0.698467,False
+iter3_v2plus,76.332,20.0,20.0,10.959,25.373,0.251731,0.88075,True

@@ -1,0 +1,11 @@
+metric,value,source
+strict_high_nodes,2494,step8_iter1/stats.json
+strict_high_edges,4868,step8_iter1/stats.json
+strict_all_nodes,2892,step8_iter1/stats.json
+strict_all_edges,5742,step8_iter1/stats.json
+deterministic_replay_match,True,step8_iter1/validation_report.json
+query_template_count,12,step8_2_iter1/step8_2_eval_report.json
+query_execution_success_rate,1.0,step8_2_iter1/step8_2_eval_report.json
+core_path_coverage,1.0,step9_iter1/step9_gate_report.json
+neo4j_node_total,2892,step9_iter1/step9_gate_report.json
+neo4j_edge_total,10610,step9_iter1/step9_gate_report.json

@@ -1,0 +1,98 @@
+{
+  "input": {
+    "step5_report": "00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_validation_report.json",
+    "step6_report": "00_整理记录/step6_iter4_fixabcd_plus_iaa_report.json",
+    "step7_gate_report": "00_整理记录/step7_gate_iter3_final.json",
+    "step8_2_eval_report": "结果文件夹/step8_2_iter1/step8_2_eval_report.json",
+    "cross_year_report": "00_整理记录/step7_cross_year_robustness_report.json"
+  },
+  "hard_error_buckets": {
+    "time_raw_not_time_window": 0,
+    "price_value_large_raw_small_norm": 0,
+    "candidate_score_strict_high": 0
+  },
+  "hard_error_pass": {
+    "time_raw_not_time_window": true,
+    "price_value_large_raw_small_norm": true,
+    "candidate_score_strict_high": true
+  },
+  "conflict_summary": {
+    "conflict_total": 3929,
+    "conflict_type_distribution": {
+      "dedup_aggregation": 3875,
+      "semantic_collision": 54
+    },
+    "conflict_type_ratio": {
+      "dedup_aggregation": 0.986256,
+      "semantic_collision": 0.013744
+    }
+  },
+  "guard_profile": {
+    "raw_value_filtered_non_value_count": 69,
+    "raw_value_filtered_by_rule_count": 147,
+    "unit_pairing_dropped_count": 98,
+    "strict_high_compat_block_count": 11,
+    "strict_high_weak_constraint_block_count": 5,
+    "clause_negative_count": 56,
+    "low_confidence_cap_count": 23
+  },
+  "bind_reason_top20": {
+    "keyword_plus_prior": 674,
+    "keyword_hit": 194,
+    "param_type_map": 147,
+    "candidate_score": 91,
+    "step4_inherit": 22,
+    "step4_fallback": 12,
+    "no_candidate": 1
+  },
+  "threshold_margins": {
+    "normalization_matched_rate_margin": 0.030719,
+    "strict_high_rate_valid_numeric_margin": 0.00076,
+    "local_supported_rate_valid_numeric_margin": 0.049017,
+    "kappa_mechanism_margin": 0.091969,
+    "kappa_param_type_margin": 0.05,
+    "mechanism_precision_margin": 0.007597,
+    "normalization_precision_margin": 0.005,
+    "strict_high_precision_margin": 0.003475
+  },
+  "weakest_years_by_strict_high": [
+    {
+      "year": 2017,
+      "mention_total": 36,
+      "valid_all": 36,
+      "valid_numeric": 35,
+      "normalization_matched_rate_on_valid_all": 0.972222,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.5,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.514286
+    },
+    {
+      "year": 2019,
+      "mention_total": 51,
+      "valid_all": 51,
+      "valid_numeric": 41,
+      "normalization_matched_rate_on_valid_all": 0.803922,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.666667,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.829268
+    },
+    {
+      "year": 2021,
+      "mention_total": 85,
+      "valid_all": 85,
+      "valid_numeric": 80,
+      "normalization_matched_rate_on_valid_all": 0.941176,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.823529,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.875
+    }
+  ],
+  "risk_findings": [
+    "Hard-error buckets are all zero in current gate report; current risk is dominated by soft conflicts and threshold sensitivity.",
+    "strict_high_rate_valid_numeric is close to threshold (small positive margin), indicating potential regression risk under domain shift.",
+    "Cross-year strict_high variability is significantly larger than mechanism binding variability, suggesting expression-style sensitivity."
+  ]
+}

@@ -648,6 +648,7 @@ def build_clause_candidates(
     step4_mechanism: Optional[str],
     step4_source: Optional[str],
     clause_param_types: List[str],
+    enable_step4_inherit: bool = True,
 ) -> Tuple[List[Dict], int]:
     negative_hits = count_hits(NEGATIVE_DOMAIN_PATTERN, clause_text)
     transport_hits = count_hits(TRANSPORT_CONTEXT_RE, clause_text)
@@ -657,7 +658,7 @@ def build_clause_candidates(
         neg_hits = negative_hits if mechanism in PRICING_MECHANISMS else 0
         prior = max((param_prior_weight(pt, mechanism) for pt in clause_param_types), default=0.0)
 
-        if step4_mechanism == mechanism:
+        if enable_step4_inherit and step4_mechanism == mechanism:
             if str(step4_source or "") in LOW_CONF_SOURCES:
                 inherit_bonus = 0.2
             else:
@@ -764,6 +765,18 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=0.6,
         help="Confidence threshold for strict_high.",
+    )
+    parser.add_argument(
+        "--binding-mode",
+        type=str,
+        default="full",
+        choices=["full", "uie_only", "rule_only"],
+        help="Binding mode: full (default), uie_only (direct Step4 mechanism), rule_only (candidate rules only).",
+    )
+    parser.add_argument(
+        "--disable-strict-high-guards",
+        action="store_true",
+        help="Disable strict_high guards and set strict_high=strict_all (for ablation).",
     )
     return parser.parse_args()
 
@@ -978,9 +991,10 @@ def main() -> None:
 
         clause_candidates, clause_negative_hits = build_clause_candidates(
             clause_text=clause_text,
-            step4_mechanism=mechanism_before,
-            step4_source=mechanism_before_source,
+            step4_mechanism=mechanism_before if args.binding_mode != "rule_only" else None,
+            step4_source=mechanism_before_source if args.binding_mode != "rule_only" else None,
             clause_param_types=clause_param_types,
+            enable_step4_inherit=(args.binding_mode == "full"),
         )
         if clause_candidates:
             clause_candidate_non_empty += 1
@@ -988,44 +1002,65 @@ def main() -> None:
             clause_negative_count += 1
 
         for draft in draft_mentions:
-            bind_after, bind_reason, bind_confidence, bind_support, dropped_by_negative = choose_binding_for_mention(
-                candidates=clause_candidates,
-                mention_param_type=str(draft.get("param_type") or ""),
-                step4_mechanism=mechanism_before,
-                bind_min_score=float(args.bind_min_score),
-            )
-
-            if bind_after is None and mechanism_before in KNOWN_MECHANISMS_SET:
-                skip_pricing_fallback = bool(
-                    mechanism_before in PRICING_MECHANISMS
-                    and count_hits(TRANSPORT_CONTEXT_RE, clause_text) > 0
-                    and count_hits(MECHANISM_POSITIVE_PATTERNS[mechanism_before], clause_text) == 0
-                )
-                if not (clause_negative_hits > 0 and mechanism_before in PRICING_MECHANISMS) and not skip_pricing_fallback:
+            if args.binding_mode == "uie_only":
+                if mechanism_before in KNOWN_MECHANISMS_SET:
                     bind_after = mechanism_before
-                    bind_reason = "step4_fallback"
-                    bind_confidence = max(bind_confidence, 0.45)
+                    bind_reason = "step4_direct"
+                    bind_confidence = 0.75 if str(mechanism_before_source or "") not in LOW_CONF_SOURCES else 0.55
                     bind_support = {
                         "mechanism": mechanism_before,
                         "score": 0.0,
                         "pos_hits": 0,
-                        "neg_hits": clause_negative_hits if mechanism_before in PRICING_MECHANISMS else 0,
+                        "neg_hits": 0,
+                        "prior": 0.0,
+                        "inherit_bonus": 0.0,
+                        "forced_drop": False,
                     }
+                else:
+                    bind_after = None
+                    bind_reason = "step4_unknown"
+                    bind_confidence = 0.0
+                    bind_support = None
+                dropped_by_negative = False
+            else:
+                bind_after, bind_reason, bind_confidence, bind_support, dropped_by_negative = choose_binding_for_mention(
+                    candidates=clause_candidates,
+                    mention_param_type=str(draft.get("param_type") or ""),
+                    step4_mechanism=mechanism_before if args.binding_mode == "full" else None,
+                    bind_min_score=float(args.bind_min_score),
+                )
 
-            # Time expressions are clause-local anchors for TOU and should not drift to ratio/task buckets.
-            if str(draft.get("param_type") or "") == "time_window":
-                tou_candidate = next((c for c in clause_candidates if c.get("mechanism") == "tou_pricing"), None)
-                if tou_candidate is not None and int(tou_candidate.get("pos_hits", 0)) > 0 and bind_after != "tou_pricing":
-                    bind_after = "tou_pricing"
-                    bind_reason = "time_window_tou_hint"
-                    bind_support = tou_candidate
-                    bind_confidence = max(float(bind_confidence), 0.59)
-                    dropped_by_negative = False
-                    time_window_tou_override_count += 1
+                if args.binding_mode == "full" and bind_after is None and mechanism_before in KNOWN_MECHANISMS_SET:
+                    skip_pricing_fallback = bool(
+                        mechanism_before in PRICING_MECHANISMS
+                        and count_hits(TRANSPORT_CONTEXT_RE, clause_text) > 0
+                        and count_hits(MECHANISM_POSITIVE_PATTERNS[mechanism_before], clause_text) == 0
+                    )
+                    if not (clause_negative_hits > 0 and mechanism_before in PRICING_MECHANISMS) and not skip_pricing_fallback:
+                        bind_after = mechanism_before
+                        bind_reason = "step4_fallback"
+                        bind_confidence = max(bind_confidence, 0.45)
+                        bind_support = {
+                            "mechanism": mechanism_before,
+                            "score": 0.0,
+                            "pos_hits": 0,
+                            "neg_hits": clause_negative_hits if mechanism_before in PRICING_MECHANISMS else 0,
+                        }
 
-            if bind_reason in LOW_CONF_BIND_REASONS and float(bind_confidence) > 0.59:
-                bind_confidence = 0.59
-                low_confidence_cap_count += 1
+                # Time expressions are clause-local anchors for TOU and should not drift to ratio/task buckets.
+                if str(draft.get("param_type") or "") == "time_window":
+                    tou_candidate = next((c for c in clause_candidates if c.get("mechanism") == "tou_pricing"), None)
+                    if tou_candidate is not None and int(tou_candidate.get("pos_hits", 0)) > 0 and bind_after != "tou_pricing":
+                        bind_after = "tou_pricing"
+                        bind_reason = "time_window_tou_hint"
+                        bind_support = tou_candidate
+                        bind_confidence = max(float(bind_confidence), 0.59)
+                        dropped_by_negative = False
+                        time_window_tou_override_count += 1
+
+                if bind_reason in LOW_CONF_BIND_REASONS and float(bind_confidence) > 0.59:
+                    bind_confidence = 0.59
+                    low_confidence_cap_count += 1
 
             bind_reason_counter[bind_reason] += 1
             bind_transition_counter[f"{mechanism_before or 'None'}->{bind_after or 'None'}"] += 1
@@ -1050,14 +1085,17 @@ def main() -> None:
                 raw_end=draft.get("raw_end") if isinstance(draft.get("raw_end"), int) else None,
                 param_type=str(draft.get("param_type") or ""),
             )
-            strict_high = bool(
-                strict_all
-                and bind_reason in HIGH_CONF_BIND_REASONS
-                and float(bind_confidence) >= float(args.strict_high_threshold)
-                and not dropped_by_negative
-                and strict_compat_ok
-                and not weak_constraint
-            )
+            if args.disable_strict_high_guards:
+                strict_high = strict_all
+            else:
+                strict_high = bool(
+                    strict_all
+                    and bind_reason in HIGH_CONF_BIND_REASONS
+                    and float(bind_confidence) >= float(args.strict_high_threshold)
+                    and not dropped_by_negative
+                    and strict_compat_ok
+                    and not weak_constraint
+                )
             if strict_all and not strict_compat_ok:
                 strict_high_compat_block_count += 1
             if strict_all and weak_constraint:
@@ -1257,6 +1295,8 @@ def main() -> None:
             "known_mechanisms": KNOWN_MECHANISMS,
             "strict_high_threshold": args.strict_high_threshold,
             "bind_min_score": args.bind_min_score,
+            "binding_mode": args.binding_mode,
+            "disable_strict_high_guards": bool(args.disable_strict_high_guards),
         },
         "frozen_denominators": {
             "all_clause": all_clause_den,
@@ -1374,6 +1414,8 @@ def main() -> None:
         f"- clause_total: {all_clause_den}",
         f"- strict_high_threshold: {args.strict_high_threshold}",
         f"- bind_min_score: {args.bind_min_score}",
+        f"- binding_mode: {args.binding_mode}",
+        f"- disable_strict_high_guards: {bool(args.disable_strict_high_guards)}",
         "",
         "## Frozen Denominators",
         f"- all_clause: {all_clause_den}",

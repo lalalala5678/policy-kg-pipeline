@@ -1,0 +1,313 @@
+{
+  "input": {
+    "clause_pred_file": "00_整理记录/step4_seq_step2_clause_predictions.jsonl",
+    "clause_source_file": "00_整理记录/step3_clause_corpus.jsonl",
+    "clause_total": 2022,
+    "known_mechanisms": [
+      "tou_pricing",
+      "tiered_pricing",
+      "differential_penalty_pricing",
+      "general_price_adjustment",
+      "subsidy",
+      "task_assessment",
+      "technology_route"
+    ],
+    "strict_high_threshold": 0.6,
+    "bind_min_score": 1.0,
+    "binding_mode": "full",
+    "disable_strict_high_guards": true
+  },
+  "frozen_denominators": {
+    "all_clause": 2022,
+    "valid_all": 1141,
+    "valid_numeric": 1122,
+    "mention_total": 1141
+  },
+  "counts": {
+    "mention_total": 1141,
+    "definition_total": 356,
+    "triple_total": 3304,
+    "parse_error_count": 0,
+    "span_valid_count": 1141,
+    "normalization_attempted_count": 1141,
+    "normalization_matched_count": 1122,
+    "canonical_key_count": 1122,
+    "mechanism_bound_count": 1140,
+    "ready_with_mechanism_count": 1122,
+    "strict_all_count": 1122,
+    "strict_high_count": 1122,
+    "mechanism_bound_valid_all_count": 1140,
+    "mechanism_bound_valid_numeric_count": 1122,
+    "local_supported_count": 1009,
+    "pricing_negative_conflict_count": 0,
+    "unit_conflict_group_count": 11,
+    "clause_candidate_non_empty_count": 1701,
+    "clause_negative_count": 56,
+    "raw_value_filtered_non_value_count": 69,
+    "raw_value_filtered_by_rule_count": 147,
+    "unit_pairing_dropped_count": 101,
+    "unit_alias_applied_count": 0,
+    "full_clause_retry_success_count": 0,
+    "post_guard_adjusted_count": 7,
+    "low_confidence_cap_count": 21,
+    "time_window_tou_override_count": 0,
+    "strict_high_compat_block_count": 14,
+    "strict_high_weak_constraint_block_count": 5
+  },
+  "rates": {
+    "span_valid_rate": 1.0,
+    "normalization_matched_rate": 0.983348,
+    "canonical_key_rate": 0.983348,
+    "mechanism_bound_rate": 0.999124,
+    "ready_with_mechanism_rate": 0.983348,
+    "mechanism_bound_rate_valid_all": 0.999124,
+    "mechanism_bound_rate_valid_numeric": 1.0,
+    "strict_all_rate_valid_numeric": 1.0,
+    "strict_high_rate_valid_numeric": 1.0,
+    "local_supported_rate_valid_numeric": 0.899287,
+    "pricing_negative_conflict_rate_valid_numeric": 0.0,
+    "clause_candidate_non_empty_rate": 0.841246,
+    "clause_negative_rate": 0.027695
+  },
+  "metrics_with_denominator": {
+    "normalization_matched_on_mentions": {
+      "num": 1122,
+      "den": 1141,
+      "rate": 0.983348
+    },
+    "mechanism_bound_on_valid_all": {
+      "num": 1140,
+      "den": 1141,
+      "rate": 0.999124
+    },
+    "mechanism_bound_on_valid_numeric": {
+      "num": 1122,
+      "den": 1122,
+      "rate": 1.0
+    },
+    "strict_all_on_valid_numeric": {
+      "num": 1122,
+      "den": 1122,
+      "rate": 1.0
+    },
+    "strict_high_on_valid_numeric": {
+      "num": 1122,
+      "den": 1122,
+      "rate": 1.0
+    }
+  },
+  "targets": {
+    "normalization_matched_rate": 0.9,
+    "mechanism_bound_rate_valid_numeric": 0.85,
+    "strict_high_rate_valid_numeric": 0.65,
+    "local_supported_rate_valid_numeric": 0.85
+  },
+  "target_pass": {
+    "normalization_matched_rate": true,
+    "mechanism_bound_rate_valid_numeric": true,
+    "strict_high_rate_valid_numeric": true,
+    "local_supported_rate_valid_numeric": true
+  },
+  "all_targets_passed": true,
+  "distribution": {
+    "param_type_top20": {
+      "ratio_target": 275,
+      "subsidy_amount": 247,
+      "consumption_threshold_kwh": 137,
+      "time_window": 128,
+      "price_delta_pct": 127,
+      "price_value": 119,
+      "target_household_count": 29,
+      "area_subsidy_amount": 24,
+      "duration_threshold_hour": 14,
+      "funding_share_ratio": 9,
+      "duration_threshold_month": 5,
+      "other": 4,
+      "duration_threshold_year": 2,
+      "tonnage_threshold": 2
+    },
+    "norm_unit_top20": {
+      "percent": 397,
+      "yuan": 195,
+      "kwh": 137,
+      "time_window": 128,
+      "ten_thousand_yuan": 92,
+      "yuan_per_kwh": 73,
+      "household": 29,
+      "yuan_per_sqm": 24,
+      "hour": 14,
+      "none": 14,
+      "month": 5,
+      "kw": 4,
+      "yuan_per_ton": 3,
+      "yuan_per_watt": 3,
+      "year": 2,
+      "ton": 2
+    },
+    "rule_top20": {
+      "percent_numeric": 397,
+      "yuan_generic": 192,
+      "kwh_threshold": 124,
+      "time_window": 118,
+      "ten_thousand_yuan_generic": 65,
+      "yuan_per_kwh": 43,
+      "household_count": 29,
+      "yuan_per_degree_to_yuan_per_kwh": 28,
+      "ten_thousand_yuan_per_village": 27,
+      "yuan_per_sqm": 24,
+      "no_match": 19,
+      "duration_hour": 14,
+      "ratio_sequence": 14,
+      "kwh_threshold_range": 11,
+      "time_point": 10,
+      "duration_month_context": 7,
+      "capacity_value": 4,
+      "yuan_per_ton": 3,
+      "yuan_per_watt": 3,
+      "price_value_retyped_to_subsidy_amount_context": 3
+    },
+    "filtered_rule_counts": {},
+    "bind_reason_top20": {
+      "keyword_plus_prior": 705,
+      "keyword_hit": 163,
+      "param_type_map": 152,
+      "candidate_score": 90,
+      "step4_inherit": 18,
+      "step4_fallback": 12,
+      "no_candidate": 1
+    },
+    "bind_transition_top20": {
+      "subsidy->subsidy": 364,
+      "tou_pricing->tou_pricing": 245,
+      "tiered_pricing->tiered_pricing": 148,
+      "tou_pricing->task_assessment": 102,
+      "task_assessment->technology_route": 48,
+      "technology_route->tou_pricing": 42,
+      "tou_pricing->subsidy": 29,
+      "general_price_adjustment->general_price_adjustment": 27,
+      "technology_route->technology_route": 27,
+      "task_assessment->task_assessment": 21,
+      "tou_pricing->general_price_adjustment": 16,
+      "tou_pricing->tiered_pricing": 12,
+      "general_price_adjustment->tiered_pricing": 11,
+      "subsidy->tiered_pricing": 11,
+      "None->task_assessment": 10,
+      "subsidy->technology_route": 10,
+      "general_price_adjustment->tou_pricing": 7,
+      "task_assessment->tou_pricing": 3,
+      "task_assessment->subsidy": 2,
+      "general_price_adjustment->subsidy": 1
+    },
+    "skip_reason_top20": {
+      "time_meta_filtered": 117,
+      "label_only_filtered": 17,
+      "pollutant_unit_filtered": 13
+    },
+    "post_guard_top20": {
+      "price_value_retyped_to_subsidy_amount": 3,
+      "subsidy_amount_retyped_to_price_value": 2,
+      "price_conflict_retyped_to_kwh": 2
+    }
+  },
+  "unit_conflicts_top20": [
+    {
+      "doc_instance_id": "10695560c26cc67b7a3e26b8dbcd7b856b0b17ef49c31ba529efd3caf059a1de",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "17b169c01d0fd11691f3014066bc982e9d5aae3ef301b3d897d2a4b986dac45b",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "3c1392fd897f1d095efaa1ae2a1eaa5c0c3df313cd5a9a185aacffe05575b886",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "41eed2fc03a95dc30af898124e00962d37f00dd998abb5da87c6e10e209db169",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "6618b31ad2d2553801e75f1d42256338782cda332eb141a7fea6466fee1dccfd",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "6970500b879273b0b83bb7a489716ace3a254448e313c9392b1c8d699aa8443a",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "6ca5d9d44b93a3440cc8f24b4feda441563e6841021017b2c5db628a6976c9f5",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "a63aaa1b99aae78cd58b5beb8c271e538c4b10b43ff4aff7312d6e081dd79eed",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan"
+      ]
+    },
+    {
+      "doc_instance_id": "c32ed07b1f8848d45dcf196616c7064ebdf5a10f0ce328b277c662ee5197f29b",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "ten_thousand_yuan",
+        "yuan_per_ton"
+      ]
+    },
+    {
+      "doc_instance_id": "cd86e3487ec66701c2d41c1399f9a453338981c169b847ab9321c78351d62988",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "yuan",
+        "yuan_per_watt"
+      ]
+    },
+    {
+      "doc_instance_id": "f6f8d5f9847c1fe31624cb64353d12b61bebca40113c37e445b63a2d226db18d",
+      "mechanism_type": "subsidy",
+      "param_type": "subsidy_amount",
+      "norm_units": [
+        "yuan",
+        "yuan_per_watt"
+      ]
+    }
+  ]
+}

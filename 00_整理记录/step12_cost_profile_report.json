@@ -1,0 +1,115 @@
+{
+  "environment": {
+    "hostname": "VM-0-17-ubuntu",
+    "os": "Linux-6.8.0-71-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpu_cores": 2,
+    "mem_total_gib": 1.922,
+    "timestamp_utc": "2026-03-04T08:25:13Z"
+  },
+  "data_scale": {
+    "file_total": 151,
+    "char_total": 128968,
+    "document_units": 317,
+    "clause_total": 2022
+  },
+  "graph_scale": {
+    "strict_high_nodes": 2494,
+    "strict_high_edges": 4868,
+    "strict_all_nodes": 2892,
+    "strict_all_edges": 5742,
+    "neo4j_node_total": 2892,
+    "neo4j_edge_total": 10610,
+    "query_template_count": 12
+  },
+  "artifact_sizes_mb": {
+    "step8_iter1_mb": 12.049,
+    "step8_2_iter1_mb": 1.634,
+    "step9_iter1_mb": 0.098,
+    "step5_mentions_mb": 1.689,
+    "step5_definitions_mb": 0.137,
+    "step5_triples_mb": 0.536
+  },
+  "benchmarks": [
+    {
+      "command": "python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --output-prefix step5_costprofile --bind-min-score 1.0 --strict-high-threshold 0.6",
+      "elapsed_sec": 0.469,
+      "return_code": 0,
+      "stdout_tail": "{\"mention_total\": 1141, \"definition_total\": 356, \"triple_total\": 3304, \"parse_error_count\": 0, \"span_valid_count\": 1141, \"normalization_attempted_count\": 1141, \"normalization_matched_count\": 1122, \"canonical_key_count\": 1122, \"mechanism_bound_count\": 1140, \"ready_with_mechanism_count\": 1122, \"strict_all_count\": 1122, \"strict_high_count\": 955, \"mechanism_bound_valid_all_count\": 1140, \"mechanism_bound_valid_numeric_count\": 1122, \"local_supported_count\": 1009, \"pricing_negative_conflict_count\": 0, \"unit_conflict_group_count\": 11, \"clause_candidate_non_empty_count\": 1701, \"clause_negative_count\": 56, \"raw_value_filtered_non_value_count\": 69, \"raw_value_filtered_by_rule_count\": 147, \"unit_pairing_dropped_count\": 101, \"unit_alias_applied_count\": 0, \"full_clause_retry_success_count\": 0, \"post_guard_adjusted_count\": 7, \"low_confidence_cap_count\": 21, \"time_window_tou_override_count\": 0, \"strict_high_compat_block_count\": 14, \"strict_high_weak_constraint_block_count\": 5}\n{\"span_valid_rate\": 1.0, \"normalization_matched_rate\": 0.983348, \"canonical_key_rate\": 0.983348, \"mechanism_bound_rate\": 0.999124, \"ready_with_mechanism_rate\": 0.983348, \"mechanism_bound_rate_valid_all\": 0.999124, \"mechanism_bound_rate_valid_numeric\": 1.0, \"strict_all_rate_valid_numeric\": 1.0, \"strict_high_rate_valid_numeric\": 0.851159, \"local_supported_rate_valid_numeric\": 0.899287, \"pricing_negative_conflict_rate_valid_numeric\": 0.0, \"clause_candidate_non_empty_rate\": 0.841246, \"clause_negative_rate\": 0.027695}\n{\"target_pass\": {\"normalization_matched_rate\": true, \"mechanism_bound_rate_valid_numeric\": true, \"strict_high_rate_valid_numeric\": true, \"local_supported_rate_valid_numeric\": true}, \"all_targets_passed\": true}",
+      "stderr_tail": "",
+      "id": "step5_normalize_validate_costprobe"
+    },
+    {
+      "command": "python3 00_整理记录/scripts/run_step6_gold_iaa.py --mentions 00_整理记录/step5_costprofile_parameter_mentions.jsonl --clause-corpus 00_整理记录/step3_clause_corpus.jsonl --sample-size 300 --strict-min 140 --hard-min 80 --seed 20260211 --output-prefix step6_costprofile",
+      "elapsed_sec": 0.189,
+      "return_code": 0,
+      "stdout_tail": "{\"kappa_mechanism\": 0.987945, \"kappa_param_type\": 1.0, \"exact_match_norm_unit\": 1.0, \"agreement_strict_high_eligible\": 1.0}\n{\"denominators\": {\"all_clause\": 2022, \"sample_total\": 300, \"valid_all\": 300, \"valid_numeric\": 287}, \"mechanism_precision_on_valid_numeric\": {\"num\": 267, \"den\": 283, \"rate\": 0.943463}, \"normalization_precision_on_valid_numeric\": {\"num\": 287, \"den\": 287, \"rate\": 1.0}, \"strict_high_precision\": {\"num\": 222, \"den\": 223, \"rate\": 0.995516}}\n{\"target_pass\": {\"kappa_mechanism_ge_0_80\": true, \"kappa_param_type_ge_0_80\": true, \"exact_match_norm_unit_ge_0_90\": true, \"agreement_strict_high_eligible_ge_0_90\": true, \"mechanism_precision_ge_0_90\": true, \"normalization_precision_ge_0_90\": true, \"strict_high_precision_ge_0_92\": true, \"time_raw_not_time_window_eq_0\": true, \"price_value_large_raw_small_norm_eq_0\": true, \"candidate_score_strict_high_eq_0\": true, \"sample_size_ge_240\": true, \"sample_strict_ge_120\": true, \"sample_hard_ge_60\": true}, \"all_targets_passed\": true}",
+      "stderr_tail": "",
+      "id": "step6_gold_iaa_costprobe"
+    },
+    {
+      "command": "python3 00_整理记录/scripts/run_step8_2_query_pack.py --step8-dir 结果文件夹/step8_iter1 --output-dir 00_整理记录/step8_2_costprofile --overwrite",
+      "elapsed_sec": 0.343,
+      "return_code": 0,
+      "stdout_tail": "{\"output_dir\": \"00_\\u6574\\u7406\\u8bb0\\u5f55/step8_2_costprofile\", \"all_targets_passed\": true}",
+      "stderr_tail": "",
+      "id": "step8_2_query_pack_costprobe"
+    },
+    {
+      "command": "python3 00_整理记录/scripts/run_step9_query_eval.py",
+      "elapsed_sec": 0.342,
+      "return_code": 0,
+      "stdout_tail": "{\"all_targets_passed\":true,\"output\":\"00_整理记录/step9_iter1/step9_query_exec_report.json\"}",
+      "stderr_tail": "",
+      "id": "step9_query_eval"
+    },
+    {
+      "command": "python3 00_整理记录/scripts/eval_step9_gate.py",
+      "elapsed_sec": 0.042,
+      "return_code": 0,
+      "stdout_tail": "{\"all_targets_passed\":true,\"output\":\"00_整理记录/step9_iter1/step9_gate_report.json\"}",
+      "stderr_tail": "",
+      "id": "step9_gate_eval"
+    }
+  ],
+  "benchmarks_all_passed": true,
+  "keep_bench_artifacts": false,
+  "reproducibility_alignment": {
+    "artifacts": [
+      "结果文件夹/README_使用指南.md",
+      "结果文件夹/step8_iter1/manifest.json",
+      "结果文件夹/step8_iter1/validation_report.json",
+      "结果文件夹/step8_2_iter1/step8_2_eval_report.json",
+      "00_整理记录/step9_iter1/step9_gate_report.json"
+    ],
+    "data": {
+      "public_structured": [
+        "00_整理记录/step3_clause_corpus.jsonl",
+        "00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl",
+        "00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_definitions.jsonl"
+      ],
+      "traceability_fields": [
+        "doc_instance_id",
+        "clause_id",
+        "evidence_span_start",
+        "evidence_span_end",
+        "canonical_key"
+      ]
+    },
+    "environment": {
+      "python": "3.12.3",
+      "cpu_cores": 2,
+      "mem_total_gib": 1.922
+    },
+    "results": {
+      "deterministic_replay_match": true,
+      "step9_all_targets_passed": true,
+      "step9_query_execution_success_rate": 1.0,
+      "step9_core_path_coverage": 1.0
+    }
+  },
+  "notes": [
+    "Benchmarks are measured on cached intermediate artifacts and include script runtime only.",
+    "Step4 full UIE inference cost is not included in this report."
+  ]
+}

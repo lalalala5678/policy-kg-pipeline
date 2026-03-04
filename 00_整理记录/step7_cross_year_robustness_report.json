@@ -1,0 +1,172 @@
+{
+  "input": {
+    "doc_predictions": "00_整理记录/step4_seq_step2_doc_predictions.jsonl",
+    "mentions": "00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl",
+    "year_extract_rule": "issue_date first, fallback source_path regex /(20\\d{2})/"
+  },
+  "rows": [
+    {
+      "year": 2012,
+      "mention_total": 99,
+      "valid_all": 99,
+      "valid_numeric": 90,
+      "normalization_matched_rate_on_valid_all": 0.909091,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.868687,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.955556
+    },
+    {
+      "year": 2013,
+      "mention_total": 17,
+      "valid_all": 17,
+      "valid_numeric": 17,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.235294,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.235294
+    },
+    {
+      "year": 2015,
+      "mention_total": 2,
+      "valid_all": 2,
+      "valid_numeric": 2,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.0
+    },
+    {
+      "year": 2016,
+      "mention_total": 57,
+      "valid_all": 57,
+      "valid_numeric": 53,
+      "normalization_matched_rate_on_valid_all": 0.929825,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.929825,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "year": 2017,
+      "mention_total": 36,
+      "valid_all": 36,
+      "valid_numeric": 35,
+      "normalization_matched_rate_on_valid_all": 0.972222,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.5,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.514286
+    },
+    {
+      "year": 2018,
+      "mention_total": 8,
+      "valid_all": 8,
+      "valid_numeric": 8,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.5,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.5
+    },
+    {
+      "year": 2019,
+      "mention_total": 51,
+      "valid_all": 51,
+      "valid_numeric": 41,
+      "normalization_matched_rate_on_valid_all": 0.803922,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.666667,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.829268
+    },
+    {
+      "year": 2020,
+      "mention_total": 21,
+      "valid_all": 21,
+      "valid_numeric": 20,
+      "normalization_matched_rate_on_valid_all": 0.952381,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.761905,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.8
+    },
+    {
+      "year": 2021,
+      "mention_total": 85,
+      "valid_all": 85,
+      "valid_numeric": 80,
+      "normalization_matched_rate_on_valid_all": 0.941176,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.823529,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.875
+    },
+    {
+      "year": 2022,
+      "mention_total": 72,
+      "valid_all": 72,
+      "valid_numeric": 70,
+      "normalization_matched_rate_on_valid_all": 0.972222,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.944444,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.971429
+    },
+    {
+      "year": 2023,
+      "mention_total": 86,
+      "valid_all": 86,
+      "valid_numeric": 85,
+      "normalization_matched_rate_on_valid_all": 0.988372,
+      "mechanism_bound_rate_valid_all": 0.988372,
+      "strict_high_rate_valid_all": 0.930233,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.941176
+    },
+    {
+      "year": 2024,
+      "mention_total": 143,
+      "valid_all": 143,
+      "valid_numeric": 137,
+      "normalization_matched_rate_on_valid_all": 0.958042,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.93007,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.970803
+    }
+  ],
+  "summary": {
+    "year_coverage_count": 12,
+    "year_source_counts": {
+      "issue_date": 214,
+      "source_path": 5,
+      "none": 98
+    },
+    "missing_year_mentions": 464,
+    "stable_year_threshold_valid_all": 30,
+    "stable_year_count": 8,
+    "stability": {
+      "normalization_matched_rate_on_valid_all": {
+        "min": 0.803922,
+        "max": 0.988372,
+        "range": 0.18445,
+        "std": 0.054846
+      },
+      "mechanism_bound_rate_valid_all": {
+        "min": 0.988372,
+        "max": 1.0,
+        "range": 0.011628,
+        "std": 0.003846
+      },
+      "strict_high_rate_valid_all": {
+        "min": 0.5,
+        "max": 0.944444,
+        "range": 0.444444,
+        "std": 0.149987
+      }
+    }
+  }
+}

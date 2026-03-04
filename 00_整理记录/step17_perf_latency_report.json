@@ -1,0 +1,170 @@
+{
+  "input": {
+    "step8_2_dir": "结果文件夹/step8_2_iter1",
+    "neo4j_url": "http://127.0.0.1:17474",
+    "repeat": 30
+  },
+  "import_benchmark": {
+    "command": "/usr/bin/time -f elapsed_sec=%e max_rss_kb=%M python3 00_整理记录/scripts/run_step9_neo4j_eval.py --overwrite",
+    "return_code": 0,
+    "elapsed_sec": 215.91,
+    "max_rss_kb": 27776,
+    "stdout_tail": "{\"all_targets_passed\":true,\"output\":\"00_整理记录/step9_iter1/step9_neo4j_import_report.json\"}",
+    "stderr_tail": "elapsed_sec=215.91 max_rss_kb=27776"
+  },
+  "query_latency_overall": {
+    "query_count": 12,
+    "repeat": 30,
+    "total_runs": 360,
+    "successful_runs": 360,
+    "latency_ms_p50": 5.354,
+    "latency_ms_p95": 130.423,
+    "latency_ms_mean": 17.665
+  },
+  "query_latency_by_template": [
+    {
+      "query_id": "Q01",
+      "title": "policy_to_mechanism_path",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 8,
+      "latency_ms_p50": 6.806,
+      "latency_ms_p95": 10.966,
+      "latency_ms_mean": 7.103,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q02",
+      "title": "mechanism_reverse_to_policy",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 4,
+      "latency_ms_p50": 4.907,
+      "latency_ms_p95": 7.811,
+      "latency_ms_mean": 5.302,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q03",
+      "title": "mechanism_to_definitions",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 2,
+      "latency_ms_p50": 4.97,
+      "latency_ms_p95": 7.877,
+      "latency_ms_mean": 5.536,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q04",
+      "title": "definition_reverse_to_policy",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 5.677,
+      "latency_ms_p95": 8.51,
+      "latency_ms_mean": 5.966,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q05",
+      "title": "time_window_mechanisms_by_policy",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 7,
+      "latency_ms_p50": 4.768,
+      "latency_ms_p95": 9.01,
+      "latency_ms_mean": 5.213,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q06",
+      "title": "threshold_filter_by_param_type",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 5.322,
+      "latency_ms_p95": 7.406,
+      "latency_ms_mean": 5.637,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q07",
+      "title": "region_proxy_filter",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 5.018,
+      "latency_ms_p95": 7.817,
+      "latency_ms_mean": 5.524,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q08",
+      "title": "target_group_proxy_filter",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 4.555,
+      "latency_ms_p95": 6.897,
+      "latency_ms_mean": 4.866,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q09",
+      "title": "mechanism_conflict_rank",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 12.582,
+      "latency_ms_p95": 16.972,
+      "latency_ms_mean": 13.213,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q10",
+      "title": "high_risk_facts",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 5.224,
+      "latency_ms_p95": 9.315,
+      "latency_ms_mean": 5.837,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q11",
+      "title": "cross_clause_conflict_by_mechanism_type",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 2,
+      "latency_ms_p50": 4.431,
+      "latency_ms_p95": 6.313,
+      "latency_ms_mean": 4.708,
+      "error_sample": []
+    },
+    {
+      "query_id": "Q12",
+      "title": "strict_all_backfill_candidates",
+      "repeat": 30,
+      "success_runs": 30,
+      "error_runs": 0,
+      "result_count_median": 10,
+      "latency_ms_p50": 130.776,
+      "latency_ms_p95": 218.261,
+      "latency_ms_mean": 143.069,
+      "error_sample": []
+    }
+  ]
+}

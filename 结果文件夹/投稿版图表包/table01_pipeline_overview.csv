@@ -1,0 +1,10 @@
+stage,metric,value,source
+Step1,file_total,151,policy_readthrough_summary.json
+Step3,document_units,317,step3_qc_report.json
+Step3,clause_total,2022,step3_qc_report.json
+Step4,iter3_total_score,76.332,step4_iteration_scores.json
+Step5,normalization_matched_rate,0.945662,step5_seq_step2_v2_rebind14_fixabcd_plus2_validation_report.json
+Step6,kappa_mechanism,0.987997,step6_iter4_fixabcd_plus_iaa_report.json
+Step7,all_targets_passed,True,step7_gate_iter3_final.json
+Step8,deterministic_replay_match,True,step8_iter1/validation_report.json
+Step9,query_execution_success_rate,1.0,step9_iter1/step9_gate_report.json

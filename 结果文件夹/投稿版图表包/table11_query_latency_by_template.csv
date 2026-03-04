@@ -1,0 +1,13 @@
+query_id,title,repeat,success_runs,error_runs,result_count_median,latency_ms_p50,latency_ms_p95,latency_ms_mean
+Q01,policy_to_mechanism_path,30,30,0,8,6.806,10.966,7.103
+Q02,mechanism_reverse_to_policy,30,30,0,4,4.907,7.811,5.302
+Q03,mechanism_to_definitions,30,30,0,2,4.97,7.877,5.536
+Q04,definition_reverse_to_policy,30,30,0,10,5.677,8.51,5.966
+Q05,time_window_mechanisms_by_policy,30,30,0,7,4.768,9.01,5.213
+Q06,threshold_filter_by_param_type,30,30,0,10,5.322,7.406,5.637
+Q07,region_proxy_filter,30,30,0,10,5.018,7.817,5.524
+Q08,target_group_proxy_filter,30,30,0,10,4.555,6.897,4.866
+Q09,mechanism_conflict_rank,30,30,0,10,12.582,16.972,13.213
+Q10,high_risk_facts,30,30,0,10,5.224,9.315,5.837
+Q11,cross_clause_conflict_by_mechanism_type,30,30,0,2,4.431,6.313,4.708
+Q12,strict_all_backfill_candidates,30,30,0,10,130.776,218.261,143.069

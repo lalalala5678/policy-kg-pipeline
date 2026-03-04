@@ -1,0 +1,8 @@
+ablation_type,metric,full_method,ablation,delta
+Ablation-A_no_rule_postprocess,step4_total_score,76.332,39.482,36.85
+Ablation-A_no_rule_postprocess,step4_strict_triplet_ready_rate,0.251731,0.0,0.251731
+Ablation-A_no_rule_postprocess,step4_param_bind_rate,0.88075,0.0,0.88075
+Ablation-B_bind_min_score_99,step5_mechanism_bound_rate_valid_all,0.999124,0.921998,0.077126
+Ablation-B_bind_min_score_99,step5_strict_high_rate_valid_all,0.802805,0.0,0.802805
+Ablation-B_bind_min_score_99,step5_local_supported_rate_valid_all,0.846626,0.489921,0.356705
+Ablation-B_bind_min_score_99,step5_all_targets_passed,True,False,

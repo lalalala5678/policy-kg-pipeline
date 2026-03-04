@@ -1,0 +1,386 @@
+{
+  "input": {
+    "mentions_file": "00_整理记录/step5_seq_step2_v2_rebind14_fixabcd_plus2_parameter_mentions.jsonl",
+    "region_rule": "source_path keyword matching (province/autonomous-region aliases)"
+  },
+  "rows": [
+    {
+      "region": "unknown",
+      "mention_total": 710,
+      "valid_all": 710,
+      "valid_numeric": 675,
+      "normalization_matched_rate_on_valid_all": 0.950704,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.74507,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.783704
+    },
+    {
+      "region": "上海",
+      "mention_total": 28,
+      "valid_all": 28,
+      "valid_numeric": 26,
+      "normalization_matched_rate_on_valid_all": 0.928571,
+      "mechanism_bound_rate_valid_all": 0.964286,
+      "strict_high_rate_valid_all": 0.928571,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "云南",
+      "mention_total": 4,
+      "valid_all": 4,
+      "valid_numeric": 4,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "内蒙古",
+      "mention_total": 12,
+      "valid_all": 12,
+      "valid_numeric": 10,
+      "normalization_matched_rate_on_valid_all": 0.833333,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.666667,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.8
+    },
+    {
+      "region": "北京",
+      "mention_total": 21,
+      "valid_all": 21,
+      "valid_numeric": 21,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.952381,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.952381
+    },
+    {
+      "region": "吉林",
+      "mention_total": 15,
+      "valid_all": 15,
+      "valid_numeric": 13,
+      "normalization_matched_rate_on_valid_all": 0.866667,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.733333,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.846154
+    },
+    {
+      "region": "四川",
+      "mention_total": 18,
+      "valid_all": 18,
+      "valid_numeric": 15,
+      "normalization_matched_rate_on_valid_all": 0.833333,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.722222,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.866667
+    },
+    {
+      "region": "天津",
+      "mention_total": 14,
+      "valid_all": 14,
+      "valid_numeric": 12,
+      "normalization_matched_rate_on_valid_all": 0.857143,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.857143,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "宁夏",
+      "mention_total": 11,
+      "valid_all": 11,
+      "valid_numeric": 11,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.909091,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.909091
+    },
+    {
+      "region": "安徽",
+      "mention_total": 8,
+      "valid_all": 8,
+      "valid_numeric": 8,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "山东",
+      "mention_total": 18,
+      "valid_all": 18,
+      "valid_numeric": 18,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "山西",
+      "mention_total": 19,
+      "valid_all": 19,
+      "valid_numeric": 19,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "广东",
+      "mention_total": 11,
+      "valid_all": 11,
+      "valid_numeric": 11,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.727273,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.727273
+    },
+    {
+      "region": "广西",
+      "mention_total": 23,
+      "valid_all": 23,
+      "valid_numeric": 22,
+      "normalization_matched_rate_on_valid_all": 0.956522,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.956522,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "新疆",
+      "mention_total": 15,
+      "valid_all": 15,
+      "valid_numeric": 15,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "江苏",
+      "mention_total": 16,
+      "valid_all": 16,
+      "valid_numeric": 16,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "江西",
+      "mention_total": 3,
+      "valid_all": 3,
+      "valid_numeric": 3,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "河北",
+      "mention_total": 17,
+      "valid_all": 17,
+      "valid_numeric": 16,
+      "normalization_matched_rate_on_valid_all": 0.941176,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.941176,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "河南",
+      "mention_total": 10,
+      "valid_all": 10,
+      "valid_numeric": 10,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "浙江",
+      "mention_total": 14,
+      "valid_all": 14,
+      "valid_numeric": 14,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.928571,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.928571
+    },
+    {
+      "region": "海南",
+      "mention_total": 13,
+      "valid_all": 13,
+      "valid_numeric": 12,
+      "normalization_matched_rate_on_valid_all": 0.923077,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.923077,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "湖北",
+      "mention_total": 16,
+      "valid_all": 16,
+      "valid_numeric": 16,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "湖南",
+      "mention_total": 20,
+      "valid_all": 20,
+      "valid_numeric": 15,
+      "normalization_matched_rate_on_valid_all": 0.75,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.7,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.933333
+    },
+    {
+      "region": "甘肃",
+      "mention_total": 8,
+      "valid_all": 8,
+      "valid_numeric": 8,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "福建",
+      "mention_total": 9,
+      "valid_all": 9,
+      "valid_numeric": 9,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "西藏",
+      "mention_total": 9,
+      "valid_all": 9,
+      "valid_numeric": 6,
+      "normalization_matched_rate_on_valid_all": 0.666667,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.444444,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.666667
+    },
+    {
+      "region": "贵州",
+      "mention_total": 12,
+      "valid_all": 12,
+      "valid_numeric": 9,
+      "normalization_matched_rate_on_valid_all": 0.75,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.75,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "辽宁",
+      "mention_total": 15,
+      "valid_all": 15,
+      "valid_numeric": 15,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "重庆",
+      "mention_total": 14,
+      "valid_all": 14,
+      "valid_numeric": 12,
+      "normalization_matched_rate_on_valid_all": 0.857143,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.857143,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "陕西",
+      "mention_total": 15,
+      "valid_all": 15,
+      "valid_numeric": 15,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 0.866667,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.866667
+    },
+    {
+      "region": "青海",
+      "mention_total": 16,
+      "valid_all": 16,
+      "valid_numeric": 16,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    },
+    {
+      "region": "黑龙江",
+      "mention_total": 7,
+      "valid_all": 7,
+      "valid_numeric": 7,
+      "normalization_matched_rate_on_valid_all": 1.0,
+      "mechanism_bound_rate_valid_all": 1.0,
+      "strict_high_rate_valid_all": 1.0,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0
+    }
+  ],
+  "summary": {
+    "region_count": 32,
+    "stable_region_threshold_valid_all": 20,
+    "stable_region_count": 4,
+    "unknown_region_mentions": 710,
+    "stability": {
+      "normalization_matched_rate_on_valid_all": {
+        "min": 0.75,
+        "max": 1.0,
+        "range": 0.25,
+        "std": 0.095136
+      },
+      "mechanism_bound_rate_valid_all": {
+        "min": 0.964286,
+        "max": 1.0,
+        "range": 0.035714,
+        "std": 0.015465
+      },
+      "strict_high_rate_valid_all": {
+        "min": 0.7,
+        "max": 0.956522,
+        "range": 0.256522,
+        "std": 0.106978
+      }
+    }
+  }
+}

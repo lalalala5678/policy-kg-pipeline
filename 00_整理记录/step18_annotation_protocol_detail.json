@@ -1,0 +1,106 @@
+{
+  "input": {
+    "sampling_plan": "00_整理记录/step6_iter4_fixabcd_plus_gold_sampling_plan.json",
+    "iaa_report": "00_整理记录/step6_iter4_fixabcd_plus_iaa_report.json",
+    "passA_labels": "00_整理记录/step6_iter4_fixabcd_plus_gold_passA_labels.jsonl",
+    "passB_labels": "00_整理记录/step6_iter4_fixabcd_plus_gold_passB_labels.jsonl",
+    "adjudicated_labels": "00_整理记录/step6_iter4_fixabcd_plus_gold_adjudicated.jsonl"
+  },
+  "role_layout": {
+    "blind_annotators": 2,
+    "adjudication_stage": 1,
+    "total_roles": 3
+  },
+  "workflow": [
+    "Step-A: passA blind labeling",
+    "Step-B: passB blind labeling",
+    "Step-C: disagreement adjudication and gold finalization"
+  ],
+  "sample_counts": {
+    "sample_v1_count": 300,
+    "passA_count": 300,
+    "passB_count": 300,
+    "adjudicated_count": 300
+  },
+  "sampling_structure": {
+    "target_total": 300,
+    "actual_total": 300,
+    "strict_high_count": 214,
+    "hard_case_count": 157,
+    "bind_group_distribution": {
+      "high_conf": 243,
+      "fallback": 23,
+      "candidate_score": 33,
+      "other": 1
+    },
+    "hard_tag_distribution": {
+      "time_token": 28,
+      "negative_domain": 43,
+      "task_clause": 44,
+      "candidate_score": 33,
+      "threshold_price_same_clause": 24
+    },
+    "mechanism_distribution": {
+      "tou_pricing": 55,
+      "subsidy": 48,
+      "task_assessment": 73,
+      "tiered_pricing": 42,
+      "technology_route": 46,
+      "general_price_adjustment": 34,
+      "differential_penalty_pricing": 1,
+      "None": 1
+    },
+    "param_type_distribution": {
+      "price_delta_pct": 40,
+      "subsidy_amount": 19,
+      "time_window": 28,
+      "ratio_target": 101,
+      "price_value": 25,
+      "area_subsidy_amount": 5,
+      "target_household_count": 15,
+      "None": 22,
+      "consumption_threshold_kwh": 28,
+      "tonnage_threshold": 2,
+      "funding_share_ratio": 3,
+      "duration_threshold_hour": 5,
+      "other": 3,
+      "duration_threshold_month": 2,
+      "duration_threshold_year": 2
+    }
+  },
+  "iaa_metrics": {
+    "kappa_mechanism": 0.987997,
+    "kappa_param_type": 1.0,
+    "exact_match_norm_unit": 1.0,
+    "agreement_strict_high_eligible": 1.0
+  },
+  "quality_metrics": {
+    "denominators": {
+      "all_clause": 2022,
+      "sample_total": 300,
+      "valid_all": 300,
+      "valid_numeric": 278
+    },
+    "mechanism_precision_on_valid_numeric": {
+      "num": 261,
+      "den": 274,
+      "rate": 0.952555
+    },
+    "normalization_precision_on_valid_numeric": {
+      "num": 277,
+      "den": 278,
+      "rate": 0.996403
+    },
+    "strict_high_precision": {
+      "num": 213,
+      "den": 214,
+      "rate": 0.995327
+    }
+  },
+  "error_clusters": {
+    "time_raw_not_time_window": 0,
+    "price_value_large_raw_small_norm": 0,
+    "candidate_score_strict_high": 0
+  },
+  "all_targets_passed": true
+}

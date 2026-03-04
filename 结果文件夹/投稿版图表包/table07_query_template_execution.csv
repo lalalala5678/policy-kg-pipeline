@@ -1,0 +1,13 @@
+query_id,title,path_tag,executed_successfully,result_count,error
+Q01,policy_to_mechanism_path,forward_main,True,8,
+Q02,mechanism_reverse_to_policy,reverse_main,True,4,
+Q03,mechanism_to_definitions,forward_main,True,2,
+Q04,definition_reverse_to_policy,reverse_main,True,10,
+Q05,time_window_mechanisms_by_policy,forward_main,True,7,
+Q06,threshold_filter_by_param_type,forward_main,True,10,
+Q07,region_proxy_filter,forward_main,True,10,
+Q08,target_group_proxy_filter,forward_main,True,10,
+Q09,mechanism_conflict_rank,risk_signal,True,10,
+Q10,high_risk_facts,risk_signal,True,10,
+Q11,cross_clause_conflict_by_mechanism_type,risk_signal,True,2,
+Q12,strict_all_backfill_candidates,risk_signal,True,10,

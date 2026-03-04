@@ -1,0 +1,166 @@
+{
+  "variants": {
+    "full": [
+      "--output-prefix",
+      "step15_baseline_full",
+      "--binding-mode",
+      "full"
+    ],
+    "uie_only": [
+      "--output-prefix",
+      "step15_baseline_uie_only",
+      "--binding-mode",
+      "uie_only"
+    ],
+    "rule_only": [
+      "--output-prefix",
+      "step15_baseline_rule_only",
+      "--binding-mode",
+      "rule_only"
+    ],
+    "no_rebind": [
+      "--output-prefix",
+      "step15_baseline_no_rebind",
+      "--binding-mode",
+      "full",
+      "--bind-min-score",
+      "99"
+    ],
+    "no_gate": [
+      "--output-prefix",
+      "step15_baseline_no_gate",
+      "--binding-mode",
+      "full",
+      "--disable-strict-high-guards"
+    ]
+  },
+  "runs": {
+    "full": {
+      "command": "python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --strict-high-threshold 0.6 --bind-min-score 1.0 --output-prefix step15_baseline_full --binding-mode full",
+      "return_code": 0,
+      "elapsed_sec": 0.479,
+      "stdout_tail": "{\"mention_total\": 1141, \"definition_total\": 356, \"triple_total\": 3304, \"parse_error_count\": 0, \"span_valid_count\": 1141, \"normalization_attempted_count\": 1141, \"normalization_matched_count\": 1122, \"canonical_key_count\": 1122, \"mechanism_bound_count\": 1140, \"ready_with_mechanism_count\": 1122, \"strict_all_count\": 1122, \"strict_high_count\": 955, \"mechanism_bound_valid_all_count\": 1140, \"mechanism_bound_valid_numeric_count\": 1122, \"local_supported_count\": 1009, \"pricing_negative_conflict_count\": 0, \"unit_conflict_group_count\": 11, \"clause_candidate_non_empty_count\": 1701, \"clause_negative_count\": 56, \"raw_value_filtered_non_value_count\": 69, \"raw_value_filtered_by_rule_count\": 147, \"unit_pairing_dropped_count\": 101, \"unit_alias_applied_count\": 0, \"full_clause_retry_success_count\": 0, \"post_guard_adjusted_count\": 7, \"low_confidence_cap_count\": 21, \"time_window_tou_override_count\": 0, \"strict_high_compat_block_count\": 14, \"strict_high_weak_constraint_block_count\": 5}\n{\"span_valid_rate\": 1.0, \"normalization_matched_rate\": 0.983348, \"canonical_key_rate\": 0.983348, \"mechanism_bound_rate\": 0.999124, \"ready_with_mechanism_rate\": 0.983348, \"mechanism_bound_rate_valid_all\": 0.999124, \"mechanism_bound_rate_valid_numeric\": 1.0, \"strict_all_rate_valid_numeric\": 1.0, \"strict_high_rate_valid_numeric\": 0.851159, \"local_supported_rate_valid_numeric\": 0.899287, \"pricing_negative_conflict_rate_valid_numeric\": 0.0, \"clause_candidate_non_empty_rate\": 0.841246, \"clause_negative_rate\": 0.027695}\n{\"target_pass\": {\"normalization_matched_rate\": true, \"mechanism_bound_rate_valid_numeric\": true, \"strict_high_rate_valid_numeric\": true, \"local_supported_rate_valid_numeric\": true}, \"all_targets_passed\": true}",
+      "stderr_tail": ""
+    },
+    "uie_only": {
+      "command": "python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --strict-high-threshold 0.6 --bind-min-score 1.0 --output-prefix step15_baseline_uie_only --binding-mode uie_only",
+      "return_code": 0,
+      "elapsed_sec": 0.469,
+      "stdout_tail": "{\"mention_total\": 1141, \"definition_total\": 356, \"triple_total\": 3294, \"parse_error_count\": 0, \"span_valid_count\": 1141, \"normalization_attempted_count\": 1141, \"normalization_matched_count\": 1122, \"canonical_key_count\": 1122, \"mechanism_bound_count\": 1130, \"ready_with_mechanism_count\": 1112, \"strict_all_count\": 1112, \"strict_high_count\": 0, \"mechanism_bound_valid_all_count\": 1130, \"mechanism_bound_valid_numeric_count\": 1112, \"local_supported_count\": 560, \"pricing_negative_conflict_count\": 0, \"unit_conflict_group_count\": 10, \"clause_candidate_non_empty_count\": 1554, \"clause_negative_count\": 56, \"raw_value_filtered_non_value_count\": 69, \"raw_value_filtered_by_rule_count\": 147, \"unit_pairing_dropped_count\": 101, \"unit_alias_applied_count\": 0, \"full_clause_retry_success_count\": 0, \"post_guard_adjusted_count\": 7, \"low_confidence_cap_count\": 0, \"time_window_tou_override_count\": 0, \"strict_high_compat_block_count\": 14, \"strict_high_weak_constraint_block_count\": 5}\n{\"span_valid_rate\": 1.0, \"normalization_matched_rate\": 0.983348, \"canonical_key_rate\": 0.983348, \"mechanism_bound_rate\": 0.990359, \"ready_with_mechanism_rate\": 0.974584, \"mechanism_bound_rate_valid_all\": 0.990359, \"mechanism_bound_rate_valid_numeric\": 0.991087, \"strict_all_rate_valid_numeric\": 0.991087, \"strict_high_rate_valid_numeric\": 0.0, \"local_supported_rate_valid_numeric\": 0.499109, \"pricing_negative_conflict_rate_valid_numeric\": 0.0, \"clause_candidate_non_empty_rate\": 0.768546, \"clause_negative_rate\": 0.027695}\n{\"target_pass\": {\"normalization_matched_rate\": true, \"mechanism_bound_rate_valid_numeric\": true, \"strict_high_rate_valid_numeric\": false, \"local_supported_rate_valid_numeric\": false}, \"all_targets_passed\": false}",
+      "stderr_tail": ""
+    },
+    "rule_only": {
+      "command": "python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --strict-high-threshold 0.6 --bind-min-score 1.0 --output-prefix step15_baseline_rule_only --binding-mode rule_only",
+      "return_code": 0,
+      "elapsed_sec": 0.486,
+      "stdout_tail": "{\"mention_total\": 1141, \"definition_total\": 356, \"triple_total\": 3299, \"parse_error_count\": 0, \"span_valid_count\": 1141, \"normalization_attempted_count\": 1141, \"normalization_matched_count\": 1122, \"canonical_key_count\": 1122, \"mechanism_bound_count\": 1128, \"ready_with_mechanism_count\": 1117, \"strict_all_count\": 1117, \"strict_high_count\": 933, \"mechanism_bound_valid_all_count\": 1128, \"mechanism_bound_valid_numeric_count\": 1117, \"local_supported_count\": 992, \"pricing_negative_conflict_count\": 0, \"unit_conflict_group_count\": 11, \"clause_candidate_non_empty_count\": 1554, \"clause_negative_count\": 56, \"raw_value_filtered_non_value_count\": 69, \"raw_value_filtered_by_rule_count\": 147, \"unit_pairing_dropped_count\": 101, \"unit_alias_applied_count\": 0, \"full_clause_retry_success_count\": 0, \"post_guard_adjusted_count\": 7, \"low_confidence_cap_count\": 1, \"time_window_tou_override_count\": 0, \"strict_high_compat_block_count\": 14, \"strict_high_weak_constraint_block_count\": 5}\n{\"span_valid_rate\": 1.0, \"normalization_matched_rate\": 0.983348, \"canonical_key_rate\": 0.983348, \"mechanism_bound_rate\": 0.988606, \"ready_with_mechanism_rate\": 0.978966, \"mechanism_bound_rate_valid_all\": 0.988606, \"mechanism_bound_rate_valid_numeric\": 0.995544, \"strict_all_rate_valid_numeric\": 0.995544, \"strict_high_rate_valid_numeric\": 0.831551, \"local_supported_rate_valid_numeric\": 0.884135, \"pricing_negative_conflict_rate_valid_numeric\": 0.0, \"clause_candidate_non_empty_rate\": 0.768546, \"clause_negative_rate\": 0.027695}\n{\"target_pass\": {\"normalization_matched_rate\": true, \"mechanism_bound_rate_valid_numeric\": true, \"strict_high_rate_valid_numeric\": true, \"local_supported_rate_valid_numeric\": true}, \"all_targets_passed\": true}",
+      "stderr_tail": ""
+    },
+    "no_rebind": {
+      "command": "python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --strict-high-threshold 0.6 --bind-min-score 1.0 --output-prefix step15_baseline_no_rebind --binding-mode full --bind-min-score 99",
+      "return_code": 0,
+      "elapsed_sec": 0.477,
+      "stdout_tail": "{\"mention_total\": 1141, \"definition_total\": 356, \"triple_total\": 3223, \"parse_error_count\": 0, \"span_valid_count\": 1141, \"normalization_attempted_count\": 1141, \"normalization_matched_count\": 1122, \"canonical_key_count\": 1122, \"mechanism_bound_count\": 1052, \"ready_with_mechanism_count\": 1034, \"strict_all_count\": 1034, \"strict_high_count\": 0, \"mechanism_bound_valid_all_count\": 1052, \"mechanism_bound_valid_numeric_count\": 1034, \"local_supported_count\": 559, \"pricing_negative_conflict_count\": 0, \"unit_conflict_group_count\": 10, \"clause_candidate_non_empty_count\": 1701, \"clause_negative_count\": 56, \"raw_value_filtered_non_value_count\": 69, \"raw_value_filtered_by_rule_count\": 147, \"unit_pairing_dropped_count\": 101, \"unit_alias_applied_count\": 0, \"full_clause_retry_success_count\": 0, \"post_guard_adjusted_count\": 7, \"low_confidence_cap_count\": 971, \"time_window_tou_override_count\": 0, \"strict_high_compat_block_count\": 14, \"strict_high_weak_constraint_block_count\": 5}\n{\"span_valid_rate\": 1.0, \"normalization_matched_rate\": 0.983348, \"canonical_key_rate\": 0.983348, \"mechanism_bound_rate\": 0.921998, \"ready_with_mechanism_rate\": 0.906223, \"mechanism_bound_rate_valid_all\": 0.921998, \"mechanism_bound_rate_valid_numeric\": 0.921569, \"strict_all_rate_valid_numeric\": 0.921569, \"strict_high_rate_valid_numeric\": 0.0, \"local_supported_rate_valid_numeric\": 0.498217, \"pricing_negative_conflict_rate_valid_numeric\": 0.0, \"clause_candidate_non_empty_rate\": 0.841246, \"clause_negative_rate\": 0.027695}\n{\"target_pass\": {\"normalization_matched_rate\": true, \"mechanism_bound_rate_valid_numeric\": true, \"strict_high_rate_valid_numeric\": false, \"local_supported_rate_valid_numeric\": false}, \"all_targets_passed\": false}",
+      "stderr_tail": ""
+    },
+    "no_gate": {
+      "command": "python3 00_整理记录/scripts/run_step5_normalize_validate.py --clause-pred-file 00_整理记录/step4_seq_step2_clause_predictions.jsonl --clause-source-file 00_整理记录/step3_clause_corpus.jsonl --strict-high-threshold 0.6 --bind-min-score 1.0 --output-prefix step15_baseline_no_gate --binding-mode full --disable-strict-high-guards",
+      "return_code": 0,
+      "elapsed_sec": 0.49,
+      "stdout_tail": "{\"mention_total\": 1141, \"definition_total\": 356, \"triple_total\": 3304, \"parse_error_count\": 0, \"span_valid_count\": 1141, \"normalization_attempted_count\": 1141, \"normalization_matched_count\": 1122, \"canonical_key_count\": 1122, \"mechanism_bound_count\": 1140, \"ready_with_mechanism_count\": 1122, \"strict_all_count\": 1122, \"strict_high_count\": 1122, \"mechanism_bound_valid_all_count\": 1140, \"mechanism_bound_valid_numeric_count\": 1122, \"local_supported_count\": 1009, \"pricing_negative_conflict_count\": 0, \"unit_conflict_group_count\": 11, \"clause_candidate_non_empty_count\": 1701, \"clause_negative_count\": 56, \"raw_value_filtered_non_value_count\": 69, \"raw_value_filtered_by_rule_count\": 147, \"unit_pairing_dropped_count\": 101, \"unit_alias_applied_count\": 0, \"full_clause_retry_success_count\": 0, \"post_guard_adjusted_count\": 7, \"low_confidence_cap_count\": 21, \"time_window_tou_override_count\": 0, \"strict_high_compat_block_count\": 14, \"strict_high_weak_constraint_block_count\": 5}\n{\"span_valid_rate\": 1.0, \"normalization_matched_rate\": 0.983348, \"canonical_key_rate\": 0.983348, \"mechanism_bound_rate\": 0.999124, \"ready_with_mechanism_rate\": 0.983348, \"mechanism_bound_rate_valid_all\": 0.999124, \"mechanism_bound_rate_valid_numeric\": 1.0, \"strict_all_rate_valid_numeric\": 1.0, \"strict_high_rate_valid_numeric\": 1.0, \"local_supported_rate_valid_numeric\": 0.899287, \"pricing_negative_conflict_rate_valid_numeric\": 0.0, \"clause_candidate_non_empty_rate\": 0.841246, \"clause_negative_rate\": 0.027695}\n{\"target_pass\": {\"normalization_matched_rate\": true, \"mechanism_bound_rate_valid_numeric\": true, \"strict_high_rate_valid_numeric\": true, \"local_supported_rate_valid_numeric\": true}, \"all_targets_passed\": true}",
+      "stderr_tail": ""
+    }
+  },
+  "rows": [
+    {
+      "baseline": "full",
+      "binding_mode": "full",
+      "disable_strict_high_guards": false,
+      "bind_min_score": 1.0,
+      "strict_high_threshold": 0.6,
+      "valid_all": 1141,
+      "valid_numeric": 1122,
+      "normalization_matched_rate": 0.983348,
+      "mechanism_bound_rate_valid_all": 0.999124,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 0.851159,
+      "strict_high_rate_valid_all": 0.836985,
+      "local_supported_rate_valid_numeric": 0.899287,
+      "local_supported_rate_valid_all": 0.884312,
+      "all_targets_passed": true,
+      "report_path": "00_整理记录/step15_baseline_full_validation_report.json"
+    },
+    {
+      "baseline": "uie_only",
+      "binding_mode": "uie_only",
+      "disable_strict_high_guards": false,
+      "bind_min_score": 1.0,
+      "strict_high_threshold": 0.6,
+      "valid_all": 1141,
+      "valid_numeric": 1122,
+      "normalization_matched_rate": 0.983348,
+      "mechanism_bound_rate_valid_all": 0.990359,
+      "mechanism_bound_rate_valid_numeric": 0.991087,
+      "strict_high_rate_valid_numeric": 0.0,
+      "strict_high_rate_valid_all": 0.0,
+      "local_supported_rate_valid_numeric": 0.499109,
+      "local_supported_rate_valid_all": 0.490798,
+      "all_targets_passed": false,
+      "report_path": "00_整理记录/step15_baseline_uie_only_validation_report.json"
+    },
+    {
+      "baseline": "rule_only",
+      "binding_mode": "rule_only",
+      "disable_strict_high_guards": false,
+      "bind_min_score": 1.0,
+      "strict_high_threshold": 0.6,
+      "valid_all": 1141,
+      "valid_numeric": 1122,
+      "normalization_matched_rate": 0.983348,
+      "mechanism_bound_rate_valid_all": 0.988606,
+      "mechanism_bound_rate_valid_numeric": 0.995544,
+      "strict_high_rate_valid_numeric": 0.831551,
+      "strict_high_rate_valid_all": 0.817704,
+      "local_supported_rate_valid_numeric": 0.884135,
+      "local_supported_rate_valid_all": 0.869413,
+      "all_targets_passed": true,
+      "report_path": "00_整理记录/step15_baseline_rule_only_validation_report.json"
+    },
+    {
+      "baseline": "no_rebind",
+      "binding_mode": "full",
+      "disable_strict_high_guards": false,
+      "bind_min_score": 99.0,
+      "strict_high_threshold": 0.6,
+      "valid_all": 1141,
+      "valid_numeric": 1122,
+      "normalization_matched_rate": 0.983348,
+      "mechanism_bound_rate_valid_all": 0.921998,
+      "mechanism_bound_rate_valid_numeric": 0.921569,
+      "strict_high_rate_valid_numeric": 0.0,
+      "strict_high_rate_valid_all": 0.0,
+      "local_supported_rate_valid_numeric": 0.498217,
+      "local_supported_rate_valid_all": 0.489921,
+      "all_targets_passed": false,
+      "report_path": "00_整理记录/step15_baseline_no_rebind_validation_report.json"
+    },
+    {
+      "baseline": "no_gate",
+      "binding_mode": "full",
+      "disable_strict_high_guards": true,
+      "bind_min_score": 1.0,
+      "strict_high_threshold": 0.6,
+      "valid_all": 1141,
+      "valid_numeric": 1122,
+      "normalization_matched_rate": 0.983348,
+      "mechanism_bound_rate_valid_all": 0.999124,
+      "mechanism_bound_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_numeric": 1.0,
+      "strict_high_rate_valid_all": 0.983348,
+      "local_supported_rate_valid_numeric": 0.899287,
+      "local_supported_rate_valid_all": 0.884312,
+      "all_targets_passed": true,
+      "report_path": "00_整理记录/step15_baseline_no_gate_validation_report.json"
+    }
+  ]
+}

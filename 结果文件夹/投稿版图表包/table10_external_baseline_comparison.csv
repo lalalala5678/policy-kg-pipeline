@@ -1,0 +1,6 @@
+baseline,binding_mode,disable_strict_high_guards,valid_all,valid_numeric,normalization_matched_rate,mechanism_bound_rate_valid_all,strict_high_rate_valid_all,local_supported_rate_valid_all,all_targets_passed
+full,full,False,1141,1122,0.983348,0.999124,0.836985,0.884312,True
+uie_only,uie_only,False,1141,1122,0.983348,0.990359,0.0,0.490798,False
+rule_only,rule_only,False,1141,1122,0.983348,0.988606,0.817704,0.869413,True
+no_rebind,full,False,1141,1122,0.983348,0.921998,0.0,0.489921,False
+no_gate,full,True,1141,1122,0.983348,0.999124,0.983348,0.884312,True

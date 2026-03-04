@@ -1,0 +1,11 @@
+metric,value
+blind_annotators,2
+adjudication_stage,1
+sample_total,300
+strict_high_count,214
+hard_case_count,157
+kappa_mechanism,0.987997
+kappa_param_type,1.0
+mechanism_precision_on_valid_numeric,0.952555
+normalization_precision_on_valid_numeric,0.996403
+strict_high_precision,0.995327
